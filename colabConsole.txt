@@ -1,38 +1,50 @@
 
 
-2026-01-15 21:35:18.211814: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:467] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+2026-01-15 22:20:46.098960: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:467] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
 WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
-E0000 00:00:1768512918.242813    2282 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
-E0000 00:00:1768512918.252175    2282 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
-W0000 00:00:1768512918.276757    2282 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-W0000 00:00:1768512918.276788    2282 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-W0000 00:00:1768512918.276796    2282 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-W0000 00:00:1768512918.276802    2282 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-2026-01-15 21:35:18.283341: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+E0000 00:00:1768515646.118625   14475 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+E0000 00:00:1768515646.124631   14475 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+W0000 00:00:1768515646.139869   14475 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1768515646.139893   14475 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1768515646.139897   14475 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1768515646.139900   14475 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+2026-01-15 22:20:46.144429: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
 To enable the following instructions: AVX2 AVX512F FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
 Starting training for NumberLink...
-Train args: TrainArgs(batch_size=128, lr=0.001, lr_d=0.99999, max_itrs=10000, balance_steps=False, rb=1, targ_up_searches=0, display=100)
-Update args: UpBWASArgs(up_heur_args=UpHeurArgs(up_args=UpArgs(step_max=100, up_itrs=100, up_gen_itrs=100, up_procs=2, up_search_itrs=100, up_batch_size=100, up_nnet_batch_size=10000, sync_main=False, up_v=True), ub_heur_solns=False, backup=1), weight=1.0, eps=0.2)
+Train args: TrainArgs(batch_size=128, lr=0.001, lr_d=0.99999, max_itrs=10000, balance_steps=False, rb=1, targ_up_searches=0, display=10)
+Update args: UpBWASArgs(up_heur_args=UpHeurArgs(up_args=UpArgs(step_max=100, up_itrs=50, up_gen_itrs=10, up_procs=2, up_search_itrs=20, up_batch_size=32, up_nnet_batch_size=4096, sync_main=False, up_v=True), ub_heur_solns=False, backup=1), weight=1.0, eps=0.2)
 device: cpu, devices: [], on_gpu: False
-Traceback (most recent call last):
-  File "/content/numberlinkSolver/DeepXube/examples/train_numberlink.py", line 74, in <module>
-    main()
-  File "/content/numberlinkSolver/DeepXube/examples/train_numberlink.py", line 69, in main
-    train(updater, args.nnet_dir, train_args, debug=args.debug)
-  File "/content/numberlinkSolver/DeepXube/deepxube/training/train_heur.py", line 99, in train
-    train_heur: TrainHeur = TrainHeur(updater, heur_file, heur_targ_file, status_file, device, on_gpu, writer,
-                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/content/numberlinkSolver/DeepXube/deepxube/training/trainers.py", line 102, in __init__
-    shapes_dtypes: List[Tuple[Tuple[int, ...], np.dtype]] = updater.get_shapes_dtypes()
-                                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/content/numberlinkSolver/DeepXube/deepxube/base/updater.py", line 421, in get_shapes_dtypes
-    states, goals = self.env.get_start_goal_pairs([0])
-                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/content/numberlinkSolver/DeepXube/deepxube/base/env.py", line 229, in get_start_goal_pairs
-    states_start: List[S] = self.get_start_states(len(num_steps_l))
-                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/content/numberlinkSolver/DeepXube/deepxube/implementations/numberlink.py", line 93, in get_start_states
-    grid=env._grid[i],
-         ^^^^^^^^^
-AttributeError: 'NumberLinkRGBVectorEnv' object has no attribute '_grid'
+Initializing data buffer with max size 1,280
+Input array sizes:
+index: 0, dtype: float32, shape: (4, 7, 7)
+index: 1, dtype: float32, shape: ()
+index: 2, dtype: float64, shape: ()
+Data buffer initialized. Time: 0.0002663135528564453
+
+Getting Data - itr: 0, update_num: 0, targ_update: 0, num_gen: 1,280
+Generating 1,280 training instances with 64 searches
+2026-01-15 22:21:15.927855: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:467] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+E0000 00:00:1768515675.993948   14611 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+E0000 00:00:1768515676.013468   14611 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+W0000 00:00:1768515676.058678   14611 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1768515676.060732   14611 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1768515676.060743   14611 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1768515676.060750   14611 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+2026-01-15 22:21:16.216789: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:467] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+E0000 00:00:1768515676.248868   14613 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+E0000 00:00:1768515676.259023   14613 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+2026-01-15 22:21:16.268018: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:467] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+E0000 00:00:1768515676.299538   14614 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+W0000 00:00:1768515676.310266   14613 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1768515676.310300   14613 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1768515676.310311   14613 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1768515676.310315   14613 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+E0000 00:00:1768515676.318026   14614 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+W0000 00:00:1768515676.359777   14614 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1768515676.359814   14614 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1768515676.359821   14614 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1768515676.359828   14614 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
 
