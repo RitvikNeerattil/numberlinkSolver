@@ -1,0 +1,5 @@
+Please try to run the environment and get familiar with its public API. We'll use the vector environment (see https://misaghsoltani.github.io/NumberLink/usage.html#vector-environment and https://misaghsoltani.github.io/NumberLink/apidocs/numberlink/numberlink.vector_env.html) in DeepXube so we can  use multiple instances of the environment efficiently in parallel (e.g. for generating data we create 10k instances and take given number of random steps).
+
+Use fully connected layers not convolutional because convolutional better for image.
+One hot encoded rep of each state?
+First gen data, use data encoder and parts will be trained, check documentation for deepxube, well mostly use similar/same config for numberlink as cube3 env, some dimensions config change, then heuristic training, hopefully learn a heuristic that will get good estimations

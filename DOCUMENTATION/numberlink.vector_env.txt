@@ -1,0 +1,20 @@
+Vector Environment
+
+The numberlink.vector_env.NumberLinkRGBVectorEnv class runs multiple puzzles in parallel. It shares all configuration objects with the single environment and exposes batched observations and rewards.
+
+import gymnasium as gym
+import numpy as np
+
+from numberlink import GeneratorConfig
+
+vec_env = gym.make_vec(
+   "NumberLinkRGB-v0",
+   num_envs=8,
+   render_mode="rgb_array",
+   generator=GeneratorConfig(width=6, height=6, colors=4),
+)
+
+observations, infos = vec_env.reset(seed=7)
+actions = [vec_env.single_action_space.sample(mask=mask.astype(np.int8)) for mask in infos["action_mask"]]
+observations, rewards, terminated, truncated, infos = vec_env.step(actions)
+vec_env.close()

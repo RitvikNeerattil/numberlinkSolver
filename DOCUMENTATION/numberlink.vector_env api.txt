@@ -1,0 +1,538 @@
+numberlink.vector_env
+
+Vectorized Gymnasium backend for the NumberLink environment.
+
+This module provides a vectorized implementation of the NumberLink environment suitable for use with gymnasium.vector. It exposes the NumberLinkRGBVectorEnv class which runs multiple puzzle instances in parallel and provides batched observations, actions, and information dictionaries.
+
+See numberlink.level_setup.build_level_template() and numberlink.level_setup.LevelTemplate for the level construction utilities used by the environment.
+Module Contents
+Classes
+
+NumberLinkRGBVectorEnv
+	
+
+Vectorized NumPy environment for NumberLink puzzles.
+Data
+
+InfoValue
+	
+
+InfoDict
+	
+
+LANE_NORMAL
+	
+
+LANE_VERTICAL
+	
+
+LANE_HORIZONTAL
+	
+
+LANE_BOTH
+	
+API
+
+numberlink.vector_env.InfoValue: TypeAlias = None[source]
+
+numberlink.vector_env.InfoDict: TypeAlias = None[source]
+
+numberlink.vector_env.LANE_NORMAL: numpy.uint8 = 'uint8(...)'[source]
+
+numberlink.vector_env.LANE_VERTICAL: numpy.uint8 = 'uint8(...)'[source]
+
+numberlink.vector_env.LANE_HORIZONTAL: numpy.uint8 = 'uint8(...)'[source]
+
+numberlink.vector_env.LANE_BOTH: numpy.uint8 = 'uint8(...)'[source]
+
+class numberlink.vector_env.NumberLinkRGBVectorEnv(num_envs: int, *, grid: collections.abc.Sequence[str] | None = None, render_mode: RenderMode | None = None, level_id: str | None = None, variant: numberlink.config.VariantConfig | None = None, bridges: collections.abc.Iterable[Coord] | None = None, generator: numberlink.config.GeneratorConfig | None = None, reward_config: numberlink.config.RewardConfig | None = None, render_config: numberlink.config.RenderConfig | None = None, step_limit: int | None = None, palette: dict[str, RGBInt] | None = None, solution: list[list[Coord]] | None = None)[source]
+
+    Bases: gymnasium.vector.VectorEnv[numberlink.types.ObsType, numpy.typing.NDArray[numpy.integer], numpy.typing.NDArray[numpy.float32 | numpy.bool_]]
+
+    Vectorized NumPy environment for NumberLink puzzles.
+
+    Run multiple NumberLink instances in parallel and present batched observations and actions compatible with gymnasium.vector.
+
+    The environment has two action modes. Use variant.cell_switching_mode to enable the cell switching mode.
+
+    Variables:
+
+            num_envs (int) – Number of parallel environments.
+
+            single_observation_space – Observation space for a single environment as a gymnasium.spaces.Box.
+
+            single_action_space – Action space for a single environment as a gymnasium.spaces.Discrete object.
+
+            observation_space (gymnasium.spaces.Space) – Batched observation space for all environments.
+
+            action_space (gymnasium.spaces.Space) – Batched action space for all environments.
+
+            variant (numberlink.config.VariantConfig) – Game rules and interaction mode configuration.
+
+            level_id (str | None) – Identifier for the current puzzle configuration or None when generated procedurally.
+
+            max_steps (int) – Maximum number of steps before truncation.
+
+    Initialization
+
+    Initialize the vectorized environment and allocate state arrays.
+
+    Build a numberlink.level_setup.LevelTemplate using numberlink.level_setup.build_level_template() and allocate the batched NumPy arrays used to represent grid codes, lane arrays, stacks, heads, masks, and lookup tables.
+
+    Parameters:
+
+            num_envs – Number of parallel environments to run.
+
+            grid – Optional grid specification as a sequence of strings.
+
+            render_mode – Rendering mode. Use 'rgb_array' for image observations or None for no rendering.
+
+            level_id – Optional identifier for a predefined level.
+
+            variant – Configuration for game rules and interaction modes.
+
+            bridges – Iterable of cell coordinates that allow crossing paths. See numberlink.level_setup.LevelTemplate.
+
+            generator – Procedural generation configuration.
+
+            reward_config – Reward shaping parameters.
+
+            render_config – Visual rendering style configuration.
+
+            step_limit – Maximum steps before truncation. If None use 10 * grid area.
+
+            palette – Optional mapping from color names to RGB tuples.
+
+            solution – Optional list of per-color coordinate paths representing a solved puzzle.
+
+    metadata: dict[str, list[str] | gymnasium.vector.AutoresetMode] = None[source]
+
+    static _normalize_generator_config(generator: numberlink.config.GeneratorConfig | None) → numberlink.config.GeneratorConfig | None[source]
+
+        Ensure generator configurations using bridges fall back to random walk mode.
+
+    _load_template(template: numberlink.level_setup.LevelTemplate) → tuple[gymnasium.spaces.Box, gymnasium.spaces.Discrete][source]
+
+        Load a numberlink.level_setup.LevelTemplate and initialize derived state.
+
+    _compute_solution_actions() → list[ActType] | None[source]
+
+        Return solution actions derived from precomputed coordinate paths when available.
+
+    encode_cell_switching_action(row: int, col: int, color_value: int) → int[source]
+
+        Encode a cell assignment into the flat action index used in cell switching mode.
+
+    get_solution() → list[ActType] | None[source]
+
+        Return a copy of the precomputed solution action list when available.
+
+    regenerate_level(seed: int | None = None) → tuple[ObsType, numberlink.vector_env.InfoDict][source]
+
+        Regenerate the current template using the stored generator configuration.
+
+    reset(*, seed: int | None = None, options: dict[str, numpy.typing.NDArray[bool]] | None = None) → tuple[ObsType, numberlink.vector_env.InfoDict][source]
+
+        Reset selected environments and return initial observations and info.
+
+        When options contains a 'reset_mask' key it must be a boolean array with shape (num_envs,). Only environments with a True entry are reset. The reset operation is performed by _reset_masked(). The returned info dictionary is produced by _build_info().
+
+        Parameters:
+
+                seed – Random seed for reproducibility across all environments.
+
+                options – Optional configuration dictionary. If provided it may contain 'reset_mask' with a boolean array of shape (num_envs,).
+
+        Returns:
+
+            Tuple (observations, infos) where observations is an array of shape (num_envs, height, width, 3) and infos is the dictionary returned by _build_info().
+        Return type:
+
+            tuple[ObsType, InfoDict]
+        Raises:
+
+            ValueError – If reset_mask does not have shape (num_envs,).
+
+    step(actions: numpy.typing.NDArray[numpy.integer]) → tuple[ObsType, numpy.typing.NDArray[numpy.float32], numpy.typing.NDArray[bool], numpy.typing.NDArray[bool], numberlink.vector_env.InfoDict][source]
+
+        Advance all environments by one step and return batched outputs.
+
+        In path mode actions encode (color, head, direction) and are decoded using lookup arrays prepared at initialization. In cell switching mode actions encode (row, col, color) and are handled by _step_cell_switch().
+
+        After applying actions the method updates step counters, computes rewards, determines terminal and truncation masks, and constructs the info dictionary using _build_info().
+
+        Parameters:
+
+            actions – Array of action indices for each environment with shape (num_envs,).
+        Returns:
+
+            Tuple (observations, rewards, terminations, truncations, infos).
+        Return type:
+
+            tuple[ObsType, NDArray[numpy.float32], NDArray[bool], NDArray[bool], InfoDict]
+
+    render() → tuple[gymnasium.core.RenderFrame, ...] | None[source]
+
+        Return rendered RGB frames for all environments as a tuple.
+
+        Each frame is an array of shape (height, width, 3) with type uint8. The visual rules for endpoints and bridges are implemented in _render_rgb().
+
+        Returns:
+
+            Tuple of RGB frames, one per environment, or None when rendering is not available for the configured mode.
+        Return type:
+
+            tuple[numberlink.types.RenderFrame, …] | None
+
+    close(**kwargs: dict[str, Any]) → None[source]
+
+        Perform environment cleanup for API compatibility.
+
+        The vectorized environment stores only in-memory NumPy arrays and does not require explicit cleanup. This method exists for API compatibility with gymnasium.Env.
+
+        Parameters:
+
+            kwargs (dict[str, Any]) – Additional keyword arguments accepted for API compatibility.
+
+    _reset_masked(mask: numpy.typing.NDArray[bool]) → None[source]
+
+        Reset internal state for a subset of environments indicated by mask.
+
+        The method restores the selected environments to the state derived from the numberlink.level_setup.LevelTemplate that was prepared during initialization.
+
+        Parameters:
+
+            mask (NDArray[bool]) – Boolean array of shape (num_envs,) indicating which environments to reset.
+
+    _step_cell_switch(actions: numpy.typing.NDArray[numpy.integer]) → numpy.typing.NDArray[bool][source]
+
+        Apply cell switching actions by setting cell colors directly.
+
+        Actions are decoded to (row, col, color) triples using lookup arrays created at initialization. Endpoint cells are not modified. The method writes into the grid or lane arrays and returns a bool mask of valid actions.
+
+        Parameters:
+
+            actions (NDArray[np.integer]) – Array of action indices for each environment.
+        Returns:
+
+            Boolean array indicating which actions were valid and applied.
+        Return type:
+
+            NDArray[bool]
+
+    _step_path(actions: numpy.typing.NDArray[numpy.integer]) → numpy.typing.NDArray[bool][source]
+
+        Apply path mode actions to extend or retract color paths.
+
+        The method decodes actions to (color, head, direction) using lookup arrays and validates moves using _can_occupy_targets(). It handles backtracking by calling _perform_backtrack(), and handles joins and endpoint connections by pushing to stacks with _push_stack() and updating occupancy with _occupy_targets().
+
+        Parameters:
+
+            actions (NDArray[np.integer]) – Array of action indices for each environment.
+        Returns:
+
+            Boolean array indicating which actions were valid and applied.
+        Return type:
+
+            NDArray[bool]
+
+    _perform_backtrack(env_idx: numpy.typing.NDArray[numpy.intp], color_idx: numpy.typing.NDArray[numpy.integer], head_idx: numpy.typing.NDArray[numpy.integer]) → None[source]
+
+        Remove the most recent path step for the specified heads.
+
+        The method removes the most recent entry from the stack for each (env_idx, color_idx, head_idx) triple unless the entry is the original endpoint. Occupancy is cleared from the grid or lane arrays depending on whether the position is a bridge cell.
+
+        Parameters:
+
+                env_idx – Environment indices to modify.
+
+                color_idx – Color indices for the paths to backtrack.
+
+                head_idx – Head indices indicating which endpoint to backtrack.
+
+    _occupy_targets(env_idx: numpy.typing.NDArray[numpy.intp], rows: numpy.typing.NDArray[numpy.integer], cols: numpy.typing.NDArray[numpy.integer], color_codes: numpy.typing.NDArray[numpy.unsignedinteger], lane_codes: numpy.typing.NDArray[numpy.uint8]) → None[source]
+
+        Set occupancy for the provided target positions and lane types.
+
+        For regular cells the grid code array is written. For bridge cells the appropriate lane arrays are updated according to lane_codes.
+
+        Parameters:
+
+                env_idx – Environment indices to modify.
+
+                rows – Row coordinates of cells to occupy.
+
+                cols – Column coordinates of cells to occupy.
+
+                color_codes – Color code values to place in the cells.
+
+                lane_codes – Lane type codes produced by _lane_codes().
+
+    _push_stack(env_idx: numpy.typing.NDArray[numpy.intp], color_idx: numpy.typing.NDArray[numpy.integer], head_idx: numpy.typing.NDArray[numpy.integer], rows: numpy.typing.NDArray[numpy.signedinteger], cols: numpy.typing.NDArray[numpy.signedinteger], lane_codes: numpy.typing.NDArray[numpy.uint8]) → None[source]
+
+        Push positions onto the per-color per-head stacks.
+
+        The stack arrays record path history for each head. This method stores the provided positions at the current stack length indices and increments the stack lengths accordingly.
+
+        Parameters:
+
+                env_idx – Environment indices to modify.
+
+                color_idx – Color indices for the paths being extended.
+
+                head_idx – Head indices (0 or 1) specifying which endpoint is moving.
+
+                rows – Row coordinates to push onto stacks.
+
+                cols – Column coordinates to push onto stacks.
+
+                lane_codes – Lane type codes associated with the positions.
+
+    _can_occupy_targets(env_idx: numpy.typing.NDArray[numpy.intp], rows: numpy.typing.NDArray[numpy.integer], cols: numpy.typing.NDArray[numpy.integer], color_codes: numpy.typing.NDArray[numpy.unsignedinteger], dir_idx: numpy.typing.NDArray[numpy.unsignedinteger]) → numpy.typing.NDArray[bool][source]
+
+        Return a boolean mask indicating which targets can be occupied.
+
+        For regular cells a target is occupiable when the grid code is zero. For bridge cells occupancy is allowed when the relevant lane is empty or already contains the same color code.
+
+        Parameters:
+
+                env_idx – Environment indices to check.
+
+                rows – Row coordinates of target cells.
+
+                cols – Column coordinates of target cells.
+
+                color_codes – Color codes attempting to occupy cells.
+
+                dir_idx – Direction indices used to infer lane orientation on bridge cells.
+
+        Returns:
+
+            Boolean array indicating which targets are occupiable.
+        Return type:
+
+            NDArray[bool]
+
+    _occupies_other_stack(env_idx: numpy.typing.NDArray[numpy.intp], color_idx: numpy.typing.NDArray[numpy.integer], head_idx: numpy.typing.NDArray[numpy.integer], rows: numpy.typing.NDArray[numpy.signedinteger], cols: numpy.typing.NDArray[numpy.signedinteger]) → numpy.typing.NDArray[bool][source]
+
+        Return mask of positions that appear in the opposite head’s stack.
+
+        The method checks for each target position whether it is present in the stack of the opposite head for the same color and environment.
+
+        Parameters:
+
+                env_idx – Environment indices to check.
+
+                color_idx – Color indices of the paths being checked.
+
+                head_idx – Head indices (0 or 1) for the moving endpoints.
+
+                rows – Row coordinates to check.
+
+                cols – Column coordinates to check.
+
+        Returns:
+
+            Boolean array where True indicates that the position exists in the opposite head’s stack.
+        Return type:
+
+            NDArray[bool]
+
+    _lane_codes(dir_idx: numpy.typing.NDArray[numpy.integer], rows: numpy.typing.NDArray[numpy.integer], cols: numpy.typing.NDArray[numpy.integer]) → numpy.typing.NDArray[numpy.uint8][source]
+
+        Return lane orientation codes for the specified cells.
+
+        For non-bridge cells the method returns LANE_NORMAL. For bridge cells it returns LANE_VERTICAL for vertical movement and LANE_HORIZONTAL for horizontal movement.
+
+        Parameters:
+
+                dir_idx – Direction indices where 0 is up, 1 is right, 2 is down, and 3 is left.
+
+                rows – Row coordinates of the cells.
+
+                cols – Column coordinates of the cells.
+
+        Returns:
+
+            Array of lane codes for each provided position.
+        Return type:
+
+            NDArray[np.uint8]
+
+    _update_heads() → None[source]
+
+        Update head positions so they reflect the current stack tops.
+
+        The method computes the top index for each stack and assigns the coordinates at that index into the _heads array.
+
+    _recompute_closed(colors: numpy.typing.NDArray[numpy.integer] | None = None) → None[source]
+
+        Recompute connectivity status for the provided color indices.
+
+        When colors is None the method recomputes connectivity for all colors. Connectivity is stored in the _closed array.
+
+        Parameters:
+
+            colors (NDArray[np.integer] | None) – Optional array of color indices to check.
+
+    _is_color_connected(env: int, color_index: int) → bool[source]
+
+        Return whether both endpoints of color_index are connected in environment env.
+
+    _compute_solved_mask() → numpy.typing.NDArray[bool][source]
+
+        Return a boolean mask of environments that satisfy solution rules.
+
+        In path mode an environment is solved when all colors are connected and, if variant.must_fill is true, when all cells are filled as defined by _all_filled(). In cell switching mode the method delegates to _validate_cell_switch_solution().
+
+        Returns:
+
+            Boolean array where True indicates a solved environment.
+        Return type:
+
+            NDArray[bool]
+
+    _all_filled() → numpy.typing.NDArray[bool][source]
+
+        Return a mask indicating environments where every cell is occupied.
+
+        Ensures non-bridge cells hold a nonzero grid code and that each bridge cell has at least one occupied lane.
+
+        Returns:
+
+            Boolean array indicating which environments are fully filled.
+        Return type:
+
+            NDArray[bool]
+
+    _validate_cell_switch_solution() → numpy.typing.NDArray[bool][source]
+
+        Validate solutions according to cell switching rules for each env.
+
+        The method enforces that each color forms a connected path between its endpoints, that endpoints have exactly one same-color neighbor, and that interior cells have exactly two same-color neighbors. If variant.must_fill is true the method requires that all cells are filled using _all_filled().
+
+        Returns:
+
+            Boolean array indicating which environments are valid solutions under cell switching rules.
+        Return type:
+
+            NDArray[bool]
+
+    _cell_has_color(env: int, row: int, col: int, color_code: int) → bool[source]
+
+        Return whether the given cell contains the specified color code.
+
+        For non-bridge cells the method tests the regular grid code. For bridge cells the method tests both vertical and horizontal lane arrays.
+
+        Parameters:
+
+                env – Environment index.
+
+                row – Row coordinate of the cell.
+
+                col – Column coordinate of the cell.
+
+                color_code – Color code to test for.
+
+        Returns:
+
+            True when the cell contains color_code.
+        Return type:
+
+            bool
+
+    _compute_action_mask() → numpy.typing.NDArray[numpy.uint8][source]
+
+        Compute the binary action mask for all environments.
+
+        When variant.cell_switching_mode is true the method returns a replicated static mask built by _build_cell_switch_mask(). In path mode the method examines head positions, previous stack entries, other head positions, and occupancy rules enforced by _can_occupy_targets() to determine valid moves.
+
+        Returns:
+
+            Binary array of shape (num_envs, action_space_size) where 1 indicates a permitted action.
+        Return type:
+
+            NDArray[np.uint8]
+
+    _build_cell_switch_mask() → numpy.typing.NDArray[numpy.uint8][source]
+
+        Build a static action mask used when cell switching mode is active.
+
+        Endpoint cells are excluded from writable targets. The mask encodes valid (row, col, color) combinations as a flat array of length _cell_action_size.
+
+        Returns:
+
+            Binary array of length _cell_action_size where 1 indicates a valid action.
+        Return type:
+
+            NDArray[np.uint8]
+
+    _build_info(*, action_mask: numpy.typing.NDArray[numpy.uint8], solved: numpy.typing.NDArray[bool] | None = None, deadlocked: numpy.typing.NDArray[bool] | None = None) → numberlink.vector_env.InfoDict[source]
+
+        Build the info dictionary returned by step() and reset().
+
+        The dictionary contains the current action mask, step counters, connection status per color, the level identifier, and flags for solved and deadlocked states. When solved or deadlocked are not provided the method computes them from the current state.
+
+        Parameters:
+
+                action_mask – Binary action mask for each environment.
+
+                solved – Optional precomputed solved mask for each environment.
+
+                deadlocked – Optional precomputed deadlocked mask for each environment.
+
+        Returns:
+
+            Dictionary with keys 'action_mask', 'steps', 'connected', 'level_id', 'solved', and 'deadlocked'.
+        Return type:
+
+            InfoDict
+
+    _render_rgb() → ObsType[source]
+
+        Render an RGB image for each environment and return as an array.
+
+        The method maps color codes to palette RGB values, blends bridge lane colors when both lanes are occupied, and applies endpoint styling according to _render_cfg.
+
+        Returns:
+
+            Array of shape (num_envs, height, width, 3) with uint8 RGB images.
+        Return type:
+
+            ObsType
+
+    spec: gymnasium.envs.registration.EnvSpec | None = None[source]
+
+    render_mode: str | None = None[source]
+
+    closed: bool = False[source]
+
+    observation_space: gymnasium.Space = None[source]
+
+    action_space: gymnasium.Space = None[source]
+
+    single_observation_space: gymnasium.Space = None[source]
+
+    single_action_space: gymnasium.Space = None[source]
+
+    num_envs: int = None[source]
+
+    _np_random: numpy.random.Generator | None = None[source]
+
+    _np_random_seed: int | None = None[source]
+
+    close_extras(**kwargs: Any)[source]
+
+    property np_random: numpy.random.Generator[source]
+
+    property np_random_seed: int | None[source]
+
+    property unwrapped[source]
+
+    _add_info(vector_infos: dict[str, Any], env_info: dict[str, Any], env_num: int) → dict[str, Any][source]
+
+    __del__()[source]
+
+    __repr__() → str[source]
+
+    classmethod __class_getitem__(item)[source]
