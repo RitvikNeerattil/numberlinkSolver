@@ -4,6 +4,17 @@ import sys
 
 
 def build_args(profile: str) -> dict:
+    if profile == "smoke":
+        return {
+            "procs": 1,
+            "batch_size": 256,
+            "up_batch_size": 50,
+            "up_nnet_batch_size": 5000,
+            "search_itrs": 50,
+            "step_max": 10,
+            "max_itrs": 2000,
+            "heur": "resnet_fc.256H_2B_bn",
+        }
     if profile == "local":
         return {
             "procs": 8,
@@ -31,7 +42,7 @@ def build_args(profile: str) -> dict:
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--profile", choices=["local", "colab"], default="local")
+    parser.add_argument("--profile", choices=["smoke", "local", "colab"], default="local")
     parser.add_argument(
         "--domain",
         default="numberlink.8x8x7_random_walk",
@@ -40,14 +51,26 @@ def main() -> None:
     parser.add_argument("--out_dir", default="runs/numberlink_8x8x7")
     parser.add_argument("--lr", type=float, default=1e-3)
     parser.add_argument("--lr_d", type=float, default=0.9999993)
+    parser.add_argument("--debug", action="store_true", default=False)
+    parser.add_argument(
+        "--quick",
+        action="store_true",
+        default=False,
+        help="Shortcut for a small 4x4 run: domain=numberlink.4x4x3_random_walk and profile=smoke.",
+    )
     args = parser.parse_args()
+
+    if args.quick:
+        args.profile = "smoke"
+        args.domain = "numberlink.level=builtin_5x5_rw_4c"
+        if args.out_dir == "runs/numberlink_8x8x7":
+            args.out_dir = "runs/numberlink_5x5_smoke"
 
     cfg = build_args(args.profile)
 
     cmd = [
         sys.executable,
-        "-m",
-        "deepxube._cli",
+        "run_deepxube_cli.py",
         "train",
         "--domain",
         args.domain,
@@ -78,6 +101,8 @@ def main() -> None:
         "--up_nnet_batch_size",
         str(cfg["up_nnet_batch_size"]),
     ]
+    if args.debug:
+        cmd.append("--debug")
 
     print("Running:", " ".join(cmd))
     subprocess.run(cmd, check=True)
