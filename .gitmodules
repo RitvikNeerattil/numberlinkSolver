@@ -1,6 +1,3 @@
 [submodule "NumberLink"]
 	path = NumberLink
 	url = https://github.com/RitvikNeerattil/NumberLink
-[submodule "DeepXube"]
-	path = DeepXube
-	url = https://github.com/RitvikNeerattil/deepxube
