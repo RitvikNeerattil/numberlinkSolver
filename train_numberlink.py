@@ -1,7 +1,16 @@
 import argparse
 import os
-import subprocess
-import sys
+
+from deepxube.base.updater import UpArgs, UpHeurArgs
+from deepxube.factories.updater_factory import get_updater
+from deepxube.training.train_utils import TrainArgs
+from deepxube.training.train_heur import train
+from deepxube.utils.command_line_utils import (
+    get_domain_from_arg,
+    get_heur_nnet_par_from_arg,
+    get_pathfind_from_arg,
+    get_pathfind_name_kwargs,
+)
 
 
 def main() -> None:
@@ -22,6 +31,12 @@ def main() -> None:
     parser.add_argument("--max_itrs", type=int, default=100)
     parser.add_argument("--lr", type=float, default=1e-3)
     parser.add_argument("--lr_d", type=float, default=0.999)
+    parser.add_argument(
+        "--curriculum",
+        action="store_true",
+        default=False,
+        help="Enable step-max curriculum (balances steps and increases difficulty when solved rate improves).",
+    )
     parser.add_argument("--debug", action="store_true", default=False)
     parser.add_argument(
         "--no_shm",
@@ -34,44 +49,26 @@ def main() -> None:
     if args.no_shm:
         os.environ["DEEPXUBE_NO_SHM"] = "1"
 
-    cmd = [
-        sys.executable,
-        "run_deepxube_cli.py",
-        "train",
-        "--domain",
-        args.domain,
-        "--heur",
-        args.heur,
-        "--heur_type",
-        "V",
-        "--pathfind",
-        "bwas.1_1.0_0.0",
-        "--dir",
-        args.out_dir,
-        "--batch_size",
-        str(args.batch_size),
-        "--lr",
-        str(args.lr),
-        "--lr_d",
-        str(args.lr_d),
-        "--max_itrs",
-        str(args.max_itrs),
-        "--procs",
-        str(args.procs),
-        "--step_max",
-        str(args.step_max),
-        "--search_itrs",
-        str(args.search_itrs),
-        "--up_batch_size",
-        str(args.up_batch_size),
-        "--up_nnet_batch_size",
-        str(args.up_nnet_batch_size),
-    ]
-    if args.debug:
-        cmd.append("--debug")
+    domain, domain_name = get_domain_from_arg(args.domain)
+    heur_nnet_par = get_heur_nnet_par_from_arg(domain, domain_name, args.heur, "V")[0]
+    pathfind_name, pathfind_kwargs = get_pathfind_name_kwargs("bwas.1_1.0_0.0")
+    get_pathfind_from_arg(domain, "V", "bwas.1_1.0_0.0")
 
-    print("Running:", " ".join(cmd))
-    subprocess.run(cmd, check=True)
+    up_args = UpArgs(
+        args.procs,
+        100,
+        args.step_max,
+        args.search_itrs,
+        up_batch_size=args.up_batch_size,
+        nnet_batch_size=args.up_nnet_batch_size,
+        sync_main=False,
+        v=args.debug,
+    )
+    up_heur_args = UpHeurArgs(False, 1)
+    updater = get_updater(domain, heur_nnet_par, pathfind_name, pathfind_kwargs, up_args, up_heur_args)
+
+    train_args = TrainArgs(args.batch_size, args.lr, args.lr_d, args.max_itrs, args.curriculum, display=0)
+    train(heur_nnet_par, "V", updater, args.out_dir, train_args, test_args=None, debug=args.debug)
 
 
 if __name__ == "__main__":
