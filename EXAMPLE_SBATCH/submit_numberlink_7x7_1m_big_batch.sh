@@ -39,7 +39,8 @@ python train_numberlink.py \
   --batch_size 512 \
   --up_batch_size 32 \
   --up_nnet_batch_size 4096 \
-  --step_max 14 \
+  --step_max 10 \
   --procs "${SLURM_CPUS_PER_TASK}" \
   --debug \
-  --out_dir runs/numberlink_7x7_nocurr_1m
+  --curriculum \
+  --out_dir runs/numberlink_7x7_curriculum_1m_big_batch
