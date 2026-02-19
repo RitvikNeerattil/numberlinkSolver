@@ -26,6 +26,8 @@ def main() -> None:
     parser.add_argument("--batch_size", type=int, default=128)
     parser.add_argument("--up_batch_size", type=int, default=32)
     parser.add_argument("--up_nnet_batch_size", type=int, default=1024)
+    parser.add_argument("--up_itrs", type=int, default=100)
+    parser.add_argument("--up_gen_itrs", type=int, default=None)
     parser.add_argument("--search_itrs", type=int, default=10)
     parser.add_argument("--step_max", type=int, default=5)
     parser.add_argument("--max_itrs", type=int, default=100)
@@ -56,9 +58,10 @@ def main() -> None:
 
     up_args = UpArgs(
         args.procs,
-        100,
+        args.up_itrs,
         args.step_max,
         args.search_itrs,
+        up_gen_itrs=args.up_gen_itrs,
         up_batch_size=args.up_batch_size,
         nnet_batch_size=args.up_nnet_batch_size,
         sync_main=False,

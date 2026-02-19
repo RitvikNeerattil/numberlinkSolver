@@ -34,8 +34,10 @@ PY
 python train_numberlink.py \
   --domain numberlink.7x7x3_random_walk \
   --heur resnet_fc.256H_2B_bn \
-  --max_itrs 1000000 \
-  --search_itrs 400 \
+  --max_itrs 10000 \
+  --search_itrs 200 \
+  --up_itrs 400 \
+  --up_gen_itrs 100 \
   --batch_size 1024 \
   --up_batch_size 64 \
   --up_nnet_batch_size 8192 \
