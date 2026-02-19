@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
 #SBATCH --job-name=nl_7x7_1m
 #SBATCH --chdir=/home/neerattr/numberlinkSolver
-#SBATCH --output=/home/neerattr/numberlinkSolver/logs/%x_%j.out
-#SBATCH --error=/home/neerattr/numberlinkSolver/logs/%x_%j.err
+#SBATCH --output=/home/neerattr/numberlinkSolver/logs/%j.out
+#SBATCH --error=/home/neerattr/numberlinkSolver/logs/%j.err
 #SBATCH --partition=gpu-A100
 #SBATCH --account=agostinelli
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 #SBATCH --gres=gpu:2
-#SBATCH --cpus-per-task=48
+#SBATCH --cpus-per-task=32
 #SBATCH --mem=64G
 #SBATCH --time=7-00:00:00
 
@@ -36,11 +36,11 @@ python train_numberlink.py \
   --heur resnet_fc.256H_2B_bn \
   --max_itrs 1000000 \
   --search_itrs 400 \
-  --batch_size 512 \
+  --batch_size 128 \
   --up_batch_size 32 \
-  --up_nnet_batch_size 4096 \
+  --up_nnet_batch_size 1024 \
   --step_max 10 \
-  --procs "${SLURM_CPUS_PER_TASK}" \
+  --procs "$(nproc)" \
   --debug \
   --curriculum \
-  --out_dir runs/numberlink_7x7_curriculum_1m_big_batch
+  --out_dir "runs/${SLURM_JOB_ID}"
