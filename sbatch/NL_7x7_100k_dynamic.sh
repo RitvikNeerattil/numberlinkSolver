@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-#SBATCH --job-name=nl_7x7_100k_resume319735
+#SBATCH --job-name=nl_7x7_100k_dynamic
 #SBATCH --chdir=/home/neerattr/testingdir/numberlinkSolver
 #SBATCH --output=/home/neerattr/testingdir/numberlinkSolver/logs/%j.out
 #SBATCH --error=/home/neerattr/testingdir/numberlinkSolver/logs/%j.err
@@ -45,4 +45,4 @@ python train_numberlink.py \
   --procs "${SLURM_CPUS_PER_TASK}" \
   --debug \
   --curriculum \
-  --out_dir "/home/neerattr/testingdir/numberlinkSolver/runs/319735"
+  --out_dir "runs/${SLURM_JOB_ID}"
