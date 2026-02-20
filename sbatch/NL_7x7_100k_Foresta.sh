@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #SBATCH --job-name=nl_7x7_100k_dynamic
-#SBATCH --chdir=/home/neerattr/testingdir/numberlinkSolver
+#SBATCH --chdir=/home/neerattr/numberlinkSolver
 #SBATCH --output=/home/neerattr/numberlinkSolver/logs/%j.out
 #SBATCH --error=/home/neerattr/numberlinkSolver/logs/%j.err
 #SBATCH --partition=gpu-A100
@@ -17,7 +17,7 @@ set -euo pipefail
 module load python3/anaconda/3.12
 source /home/neerattr/.venv/bin/activate
 
-cd /home/neerattr/testingdir/numberlinkSolver
+cd /home/neerattr/numberlinkSolver
 
 echo "Job ID: ${SLURM_JOB_ID:-N/A}"
 echo "Host: $(hostname)"
