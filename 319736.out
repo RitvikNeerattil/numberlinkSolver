@@ -1,0 +1,1614 @@
+Job ID: 319736
+Host: node035
+Partition: gpu-A100
+CUDA_VISIBLE_DEVICES: 0
+GPU 0: NVIDIA A100-SXM4-40GB (UUID: GPU-b948bd22-94cf-c7b2-25f7-5b1159e9a194)
+GPU 1: NVIDIA A100-SXM4-40GB (UUID: GPU-5de10fef-09ac-a40f-fcaa-892759f3cf4f)
+GPU 2: NVIDIA A100-SXM4-40GB (UUID: GPU-ab58a59c-9df0-f645-3988-392467243e45)
+GPU 3: NVIDIA A100-SXM4-40GB (UUID: GPU-210332fc-6522-b107-1c04-2f1cafb9b87e)
+CUDA OK, device_count= 1
+ResnetFC(
+  (one_hots): ModuleList(
+    (0-2): 3 x OneHot()
+  )
+  (heur): Sequential(
+    (0): Linear(in_features=588, out_features=256, bias=True)
+    (1): ResnetModel(
+      (blocks): ModuleList(
+        (0-1): 2 x ModuleList(
+          (0): FullyConnectedModel(
+            (layers): ModuleList(
+              (0): ModuleList(
+                (0): Linear(in_features=256, out_features=256, bias=True)
+                (1): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+                (2): ReLU()
+              )
+              (1): ModuleList(
+                (0): Linear(in_features=256, out_features=256, bias=True)
+                (1): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+                (2): LinearAct()
+              )
+            )
+          )
+        )
+      )
+      (act_fns): ModuleList(
+        (0-1): 2 x ReLU()
+      )
+    )
+    (2): Linear(in_features=256, out_features=1, bias=True)
+  )
+)
+NumberLink(width=7, height=7, colors=3, mode=random_walk, cell_switching_mode=False)
+BWAS(batch_size=1, weight=1.0, eps=0.0)
+TrainArgs(batch_size=2048, lr=0.001, lr_d=0.999, max_itrs=250000, balance_steps=True, rb=1, loss_thresh=inf, targ_up_searches=0, display=0)
+UpArgs(procs=48, up_itrs=800, step_max=30, search_itrs=30, up_gen_itrs=30, up_batch_size=128, nnet_batch_size=16384, sync_main=False, v=True)
+UpHeurArgs(ub_heur_solns=False, backup=1)
+SLURM JOB ID: 319736
+device: cuda:0, devices: [0], on_gpu: True
+Initializing data buffer with max size 61,440
+Input array sizes:
+index: 0, dtype: uint8, shape: (49,)
+index: 1, dtype: uint8, shape: (49,)
+index: 2, dtype: uint8, shape: (49,)
+index: 3, dtype: float64, shape: ()
+Data buffer initialized. Time: 0.00023484230041503906
+
+Getting Data - itr: 0, update_num: 0, targ_update: 0, num_gen: 61,440, step max (curr): 1
+Generating 61,440 training instances with 2,048 searches
+Generated 61,440 training instances
+Times - steps_gen: 0.01, inst_info: 0.00, inst_add: 0.00, backup: 0.08, to_np: 0.25, update_perf: 0.04, put: 0.43, ->get_states: 0.00, ->pathfinding: 2513.67, Tot: 2514.49
+	(get_states): Tot: 0.00
+	(pathfinding): root: 0.03, pop: 0.11, is_solved: 1250.94, ub: 0.02, expand: 1255.36, heur: 3.84, make_nodes: 0.62, up_inst: 0.79, check: 1.71, cost: 0.15, push: 0.10, Tot: 2513.67
+Steps: 0, %Solved: 100.00, avgItrs: 1.00, avgPathCosts: 0.00, CTG_Backup: 0.00(0.00/0.00/0.00), Num: 30000
+Steps: 1, %Solved: 47.13, avgItrs: 17.41, avgPathCosts: 1.63, CTG_Backup: 1.00(0.00/1.00/1.00), Num: 1133
+Data - %solved: 73.57, path_costs: 0.813, search_itrs: 9.206, cost-to-go (mean/min/max): 0.50/0.00/1.00
+Train - itrs: 800, loss: 6.21E-02, targ_updated: True
+Times - up_start: 0.01, up_data: 106.35, up_end: 0.60, data_samp: 0.17, train: 2.40, save: 0.02, Tot: 109.56
+
+Getting Data - itr: 800, update_num: 1, targ_update: 1, num_gen: 61,440, step max (curr): 2
+Generating 61,440 training instances with 2,048 searches
+Generated 61,440 training instances
+Times - steps_gen: 0.02, inst_info: 0.00, inst_add: 0.01, backup: 0.09, to_np: 0.27, update_perf: 0.03, put: 0.18, ->get_states: 0.00, ->pathfinding: 3642.87, Tot: 3643.47
+	(get_states): Tot: 0.00
+	(pathfinding): root: 0.03, pop: 0.12, is_solved: 1516.14, ub: 0.02, expand: 2119.95, heur: 3.67, make_nodes: 0.55, up_inst: 0.41, check: 1.71, cost: 0.14, push: 0.11, Tot: 3642.87
+Steps: 0, %Solved: 100.00, avgItrs: 1.00, avgPathCosts: 0.00, CTG_Backup: 0.00(0.00/0.00/0.00), Num: 21150
+Steps: 1, %Solved: 55.99, avgItrs: 7.50, avgPathCosts: 1.62, CTG_Backup: 1.14(0.13/1.00/1.51), Num: 893
+Steps: 2, %Solved: 74.66, avgItrs: 8.58, avgPathCosts: 2.04, CTG_Backup: 1.63(0.38/1.06/2.04), Num: 963
+Data - %solved: 76.88, path_costs: 1.220, search_itrs: 5.694, cost-to-go (mean/min/max): 0.91/0.00/2.08
+Train - itrs: 800, loss: 1.57E-01, targ_updated: True
+Times - up_start: 0.00, up_data: 134.60, up_end: 0.56, data_samp: 0.19, train: 2.33, save: 0.02, Tot: 137.71
+
+Getting Data - itr: 1600, update_num: 2, targ_update: 2, num_gen: 61,440, step max (curr): 4
+Generating 61,440 training instances with 2,048 searches
+Generated 61,440 training instances
+Times - steps_gen: 0.01, inst_info: 0.00, inst_add: 0.00, backup: 0.12, to_np: 0.30, update_perf: 0.03, put: 0.18, ->get_states: 0.00, ->pathfinding: 5381.93, Tot: 5382.57
+	(get_states): Tot: 0.00
+	(pathfinding): root: 0.02, pop: 0.15, is_solved: 1695.43, ub: 0.02, expand: 3679.39, heur: 3.74, make_nodes: 0.58, up_inst: 0.47, check: 1.83, cost: 0.15, push: 0.13, Tot: 5381.93
+Steps: 0, %Solved: 100.00, avgItrs: 1.00, avgPathCosts: 0.00, CTG_Backup: 0.00(0.00/0.00/0.00), Num: 13440
+Steps: 1, %Solved: 73.79, avgItrs: 10.07, avgPathCosts: 1.93, CTG_Backup: 1.32(0.20/1.00/1.78), Num: 580
+Steps: 2, %Solved: 83.57, avgItrs: 10.05, avgPathCosts: 2.36, CTG_Backup: 2.12(0.22/1.32/2.49), Num: 621
+Steps: 3, %Solved: 41.86, avgItrs: 13.91, avgPathCosts: 3.00, CTG_Backup: 2.33(0.24/2.01/2.75), Num: 442
+Steps: 4, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 2.56(0.24/2.00/2.96), Num: 378
+Data - %solved: 59.84, path_costs: 1.824, search_itrs: 8.759, cost-to-go (mean/min/max): 1.43/0.00/3.06
+Train - itrs: 800, loss: 2.28E-01, targ_updated: True
+Times - up_start: 0.00, up_data: 175.84, up_end: 0.60, data_samp: 0.19, train: 2.18, save: 0.02, Tot: 178.84
+
+Getting Data - itr: 2400, update_num: 3, targ_update: 3, num_gen: 61,440, step max (curr): 8
+Generating 61,440 training instances with 2,048 searches
+Generated 61,440 training instances
+Times - steps_gen: 0.02, inst_info: 0.00, inst_add: 0.00, update_perf: 0.03, backup: 0.14, to_np: 0.32, put: 0.17, ->get_states: 0.00, ->pathfinding: 7758.22, Tot: 7758.91
+	(get_states): Tot: 0.00
+	(pathfinding): root: 0.02, pop: 0.19, is_solved: 1735.20, ub: 0.02, expand: 6015.20, heur: 3.91, make_nodes: 0.65, up_inst: 0.51, check: 2.21, cost: 0.15, push: 0.16, Tot: 7758.22
+Steps: 0, %Solved: 100.00, avgItrs: 1.00, avgPathCosts: 0.00, CTG_Backup: 0.00(0.00/0.00/0.00), Num: 6750
+Steps: 1, %Solved: 73.98, avgItrs: 10.63, avgPathCosts: 1.96, CTG_Backup: 1.52(0.27/1.17/1.99), Num: 269
+Steps: 2, %Solved: 70.16, avgItrs: 9.23, avgPathCosts: 2.34, CTG_Backup: 2.30(0.20/1.98/2.65), Num: 305
+Steps: 3, %Solved: 45.91, avgItrs: 13.89, avgPathCosts: 3.16, CTG_Backup: 2.73(0.25/2.26/3.17), Num: 220
+Steps: 4, %Solved: 8.51, avgItrs: 21.95, avgPathCosts: 4.00, CTG_Backup: 3.08(0.25/2.43/3.50), Num: 235
+Steps: 5, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 3.31(0.23/2.86/3.76), Num: 219
+Steps: 6, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 3.39(0.21/2.77/3.92), Num: 229
+Steps: 7, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 3.58(0.18/3.05/3.98), Num: 235
+Steps: 8, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 3.63(0.17/3.30/4.06), Num: 231
+Data - %solved: 33.17, path_costs: 2.292, search_itrs: 11.340, cost-to-go (mean/min/max): 2.36/0.00/4.20
+Train - itrs: 800, loss: 1.81E-01, targ_updated: True
+Times - up_start: 0.00, up_data: 245.13, up_end: 0.60, data_samp: 0.19, train: 2.30, save: 0.02, Tot: 248.25
+
+Getting Data - itr: 3200, update_num: 4, targ_update: 4, num_gen: 61,440, step max (curr): 8
+Generating 61,440 training instances with 2,048 searches
+Generated 61,440 training instances
+Times - steps_gen: 0.01, inst_info: 0.00, inst_add: 0.00, backup: 0.14, to_np: 0.33, update_perf: 0.03, put: 0.18, ->get_states: 0.00, ->pathfinding: 7673.02, Tot: 7673.70
+	(get_states): Tot: 0.00
+	(pathfinding): root: 0.02, pop: 0.20, is_solved: 1741.92, ub: 0.02, expand: 5923.18, heur: 3.93, make_nodes: 0.68, up_inst: 0.52, check: 2.22, cost: 0.15, push: 0.17, Tot: 7673.02
+Steps: 0, %Solved: 100.00, avgItrs: 1.00, avgPathCosts: 0.00, CTG_Backup: 0.00(0.00/0.00/0.00), Num: 6450
+Steps: 1, %Solved: 53.76, avgItrs: 11.50, avgPathCosts: 1.95, CTG_Backup: 1.87(0.30/1.05/2.38), Num: 266
+Steps: 2, %Solved: 67.21, avgItrs: 9.90, avgPathCosts: 2.44, CTG_Backup: 2.63(0.25/2.16/3.13), Num: 305
+Steps: 3, %Solved: 39.27, avgItrs: 17.41, avgPathCosts: 3.25, CTG_Backup: 3.21(0.25/2.43/3.62), Num: 275
+Steps: 4, %Solved: 13.74, avgItrs: 25.07, avgPathCosts: 4.00, CTG_Backup: 3.53(0.23/3.08/3.87), Num: 211
+Steps: 5, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 3.96(0.19/3.43/4.28), Num: 231
+Steps: 6, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 4.04(0.30/3.27/4.70), Num: 222
+Steps: 7, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 4.34(0.18/3.93/4.89), Num: 242
+Steps: 8, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 4.41(0.23/4.06/4.92), Num: 232
+Data - %solved: 30.44, path_costs: 2.328, search_itrs: 12.974, cost-to-go (mean/min/max): 2.74/0.00/4.97
+Train - itrs: 800, loss: 2.55E-01, targ_updated: True
+Times - up_start: 0.00, up_data: 237.44, up_end: 0.61, data_samp: 0.18, train: 2.22, save: 0.02, Tot: 240.48
+
+Getting Data - itr: 4000, update_num: 5, targ_update: 5, num_gen: 61,440, step max (curr): 8
+Generating 61,440 training instances with 2,048 searches
+Generated 61,440 training instances
+Times - steps_gen: 0.03, inst_info: 0.00, inst_add: 0.00, backup: 0.15, to_np: 0.35, update_perf: 0.03, put: 0.18, ->get_states: 0.00, ->pathfinding: 7568.07, Tot: 7568.81
+	(get_states): Tot: 0.00
+	(pathfinding): root: 0.02, pop: 0.20, is_solved: 1733.02, ub: 0.03, expand: 5826.79, heur: 4.35, make_nodes: 0.68, up_inst: 0.54, check: 2.10, cost: 0.15, push: 0.18, Tot: 7568.07
+Steps: 0, %Solved: 100.00, avgItrs: 1.00, avgPathCosts: 0.00, CTG_Backup: 0.00(0.00/0.00/0.00), Num: 7080
+Steps: 1, %Solved: 64.29, avgItrs: 8.25, avgPathCosts: 1.71, CTG_Backup: 2.08(0.39/1.17/2.95), Num: 308
+Steps: 2, %Solved: 63.44, avgItrs: 10.62, avgPathCosts: 2.57, CTG_Backup: 2.76(0.22/2.07/3.58), Num: 279
+Steps: 3, %Solved: 65.49, avgItrs: 12.36, avgPathCosts: 3.20, CTG_Backup: 3.55(0.22/3.19/4.03), Num: 284
+Steps: 4, %Solved: 42.80, avgItrs: 21.74, avgPathCosts: 4.00, CTG_Backup: 4.11(0.23/3.64/4.56), Num: 250
+Steps: 5, %Solved: 6.19, avgItrs: 19.71, avgPathCosts: 5.00, CTG_Backup: 4.48(0.24/4.06/4.82), Num: 226
+Steps: 6, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 4.70(0.28/4.05/5.21), Num: 198
+Steps: 7, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 5.08(0.19/4.61/5.49), Num: 228
+Steps: 8, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 5.12(0.26/4.64/5.82), Num: 196
+Data - %solved: 38.02, path_costs: 2.746, search_itrs: 12.281, cost-to-go (mean/min/max): 2.91/0.00/5.90
+Train - itrs: 800, loss: 3.57E-01, targ_updated: True
+Times - up_start: 0.00, up_data: 240.16, up_end: 0.57, data_samp: 0.17, train: 2.26, save: 0.02, Tot: 243.19
+
+Getting Data - itr: 4800, update_num: 6, targ_update: 6, num_gen: 61,440, step max (curr): 8
+Generating 61,440 training instances with 2,048 searches
+Generated 61,440 training instances
+Times - steps_gen: 0.02, inst_info: 0.00, inst_add: 0.00, update_perf: 0.03, backup: 0.14, to_np: 0.33, put: 0.18, ->get_states: 0.00, ->pathfinding: 7531.05, Tot: 7531.75
+	(get_states): Tot: 0.00
+	(pathfinding): root: 0.02, pop: 0.19, is_solved: 1737.27, ub: 0.02, expand: 5786.19, heur: 3.91, make_nodes: 0.65, up_inst: 0.50, check: 1.97, cost: 0.15, push: 0.17, Tot: 7531.05
+Steps: 0, %Solved: 100.00, avgItrs: 1.00, avgPathCosts: 0.00, CTG_Backup: 0.00(0.00/0.00/0.00), Num: 6780
+Steps: 1, %Solved: 73.54, avgItrs: 10.16, avgPathCosts: 1.99, CTG_Backup: 2.12(0.28/1.54/2.78), Num: 291
+Steps: 2, %Solved: 70.53, avgItrs: 8.68, avgPathCosts: 2.41, CTG_Backup: 2.94(0.35/2.21/3.80), Num: 319
+Steps: 3, %Solved: 58.40, avgItrs: 13.08, avgPathCosts: 3.17, CTG_Backup: 3.81(0.25/2.71/4.43), Num: 262
+Steps: 4, %Solved: 38.33, avgItrs: 18.67, avgPathCosts: 4.03, CTG_Backup: 4.45(0.18/4.11/4.85), Num: 227
+Steps: 5, %Solved: 15.98, avgItrs: 24.97, avgPathCosts: 5.00, CTG_Backup: 4.96(0.19/4.57/5.36), Num: 219
+Steps: 6, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 5.26(0.31/4.66/5.74), Num: 239
+Steps: 7, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 5.58(0.26/4.98/5.99), Num: 249
+Steps: 8, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 5.78(0.26/5.27/6.27), Num: 252
+Data - %solved: 39.64, path_costs: 2.767, search_itrs: 12.760, cost-to-go (mean/min/max): 3.15/0.00/6.53
+Train - itrs: 800, loss: 3.73E-01, targ_updated: True
+Times - up_start: 0.00, up_data: 237.62, up_end: 0.56, data_samp: 0.20, train: 2.23, save: 0.02, Tot: 240.63
+
+Getting Data - itr: 5600, update_num: 7, targ_update: 7, num_gen: 61,440, step max (curr): 8
+Generating 61,440 training instances with 2,048 searches
+Generated 61,440 training instances
+Times - steps_gen: 0.03, inst_info: 0.00, inst_add: 0.00, update_perf: 0.02, backup: 0.14, to_np: 0.31, put: 0.18, ->get_states: 0.00, ->pathfinding: 7314.04, Tot: 7314.73
+	(get_states): Tot: 0.00
+	(pathfinding): root: 0.02, pop: 0.17, is_solved: 1739.96, ub: 0.02, expand: 5566.53, heur: 4.09, make_nodes: 0.61, up_inst: 0.48, check: 1.84, cost: 0.15, push: 0.17, Tot: 7314.04
+Steps: 0, %Solved: 100.00, avgItrs: 1.00, avgPathCosts: 0.00, CTG_Backup: 0.00(0.00/0.00/0.00), Num: 6180
+Steps: 1, %Solved: 63.91, avgItrs: 8.71, avgPathCosts: 1.78, CTG_Backup: 2.24(0.25/1.01/2.65), Num: 327
+Steps: 2, %Solved: 63.47, avgItrs: 9.73, avgPathCosts: 2.56, CTG_Backup: 3.10(0.24/2.38/4.00), Num: 334
+Steps: 3, %Solved: 70.25, avgItrs: 13.22, avgPathCosts: 3.34, CTG_Backup: 4.02(0.21/3.50/4.39), Num: 279
+Steps: 4, %Solved: 57.56, avgItrs: 16.60, avgPathCosts: 4.00, CTG_Backup: 4.75(0.22/4.22/5.25), Num: 271
+Steps: 5, %Solved: 15.69, avgItrs: 25.94, avgPathCosts: 5.00, CTG_Backup: 5.41(0.23/4.91/5.81), Num: 204
+Steps: 6, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 5.73(0.29/5.29/6.30), Num: 218
+Steps: 7, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 6.11(0.27/5.62/6.90), Num: 237
+Steps: 8, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 6.43(0.35/5.91/7.30), Num: 229
+Data - %solved: 41.21, path_costs: 2.779, search_itrs: 12.534, cost-to-go (mean/min/max): 3.24/0.00/7.55
+Train - itrs: 800, loss: 4.34E-01, targ_updated: True
+Times - up_start: 0.00, up_data: 242.55, up_end: 0.55, data_samp: 0.20, train: 2.20, save: 0.02, Tot: 245.53
+
+Getting Data - itr: 6400, update_num: 8, targ_update: 8, num_gen: 61,440, step max (curr): 8
+Generating 61,440 training instances with 2,048 searches
+Generated 61,440 training instances
+Times - steps_gen: 0.02, inst_info: 0.00, inst_add: 0.00, backup: 0.14, to_np: 0.33, update_perf: 0.02, put: 0.18, ->get_states: 0.00, ->pathfinding: 7280.15, Tot: 7280.86
+	(get_states): Tot: 0.00
+	(pathfinding): root: 0.02, pop: 0.18, is_solved: 1730.40, ub: 0.02, expand: 5542.47, heur: 3.82, make_nodes: 0.60, up_inst: 0.48, check: 1.84, cost: 0.15, push: 0.17, Tot: 7280.15
+Steps: 0, %Solved: 100.00, avgItrs: 1.00, avgPathCosts: 0.00, CTG_Backup: 0.00(0.00/0.00/0.00), Num: 7350
+Steps: 1, %Solved: 72.16, avgItrs: 7.89, avgPathCosts: 1.76, CTG_Backup: 2.48(0.31/1.72/3.09), Num: 291
+Steps: 2, %Solved: 59.44, avgItrs: 7.79, avgPathCosts: 2.42, CTG_Backup: 3.35(0.25/2.80/3.83), Num: 323
+Steps: 3, %Solved: 55.28, avgItrs: 11.52, avgPathCosts: 3.07, CTG_Backup: 4.10(0.24/3.59/4.84), Num: 284
+Steps: 4, %Solved: 58.16, avgItrs: 18.74, avgPathCosts: 4.04, CTG_Backup: 4.95(0.23/3.52/5.59), Num: 239
+Steps: 5, %Solved: 23.23, avgItrs: 23.63, avgPathCosts: 5.00, CTG_Backup: 5.68(0.17/5.18/5.99), Num: 198
+Steps: 6, %Solved: 6.39, avgItrs: 21.00, avgPathCosts: 6.00, CTG_Backup: 6.02(0.29/5.63/6.65), Num: 219
+Steps: 7, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 6.61(0.30/5.96/7.25), Num: 235
+Steps: 8, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 6.87(0.30/6.44/7.55), Num: 241
+Data - %solved: 41.63, path_costs: 3.184, search_itrs: 13.080, cost-to-go (mean/min/max): 3.35/0.00/7.80
+Train - itrs: 800, loss: 5.58E-01, targ_updated: True
+Times - up_start: 0.00, up_data: 234.10, up_end: 0.57, data_samp: 0.19, train: 2.20, save: 0.02, Tot: 237.08
+
+Getting Data - itr: 7200, update_num: 9, targ_update: 9, num_gen: 61,440, step max (curr): 8
+Generating 61,440 training instances with 2,048 searches
+Generated 61,440 training instances
+Times - steps_gen: 0.02, inst_info: 0.00, inst_add: 0.00, backup: 0.14, to_np: 0.32, update_perf: 0.02, put: 0.18, ->get_states: 0.00, ->pathfinding: 7064.22, Tot: 7064.92
+	(get_states): Tot: 0.00
+	(pathfinding): root: 0.02, pop: 0.17, is_solved: 1728.22, ub: 0.02, expand: 5328.87, heur: 3.80, make_nodes: 0.58, up_inst: 0.47, check: 1.75, cost: 0.15, push: 0.17, Tot: 7064.22
+Steps: 0, %Solved: 100.00, avgItrs: 1.00, avgPathCosts: 0.00, CTG_Backup: 0.00(0.00/0.00/0.00), Num: 6210
+Steps: 1, %Solved: 63.02, avgItrs: 9.63, avgPathCosts: 1.97, CTG_Backup: 2.58(0.30/1.82/3.23), Num: 311
+Steps: 2, %Solved: 71.79, avgItrs: 9.41, avgPathCosts: 2.51, CTG_Backup: 3.44(0.22/2.98/3.97), Num: 312
+Steps: 3, %Solved: 78.06, avgItrs: 15.21, avgPathCosts: 3.38, CTG_Backup: 4.33(0.23/3.77/4.91), Num: 278
+Steps: 4, %Solved: 51.76, avgItrs: 17.34, avgPathCosts: 4.14, CTG_Backup: 5.13(0.21/4.62/5.75), Num: 255
+Steps: 5, %Solved: 26.41, avgItrs: 21.46, avgPathCosts: 5.00, CTG_Backup: 5.97(0.19/5.55/6.50), Num: 231
+Steps: 6, %Solved: 9.69, avgItrs: 23.95, avgPathCosts: 6.00, CTG_Backup: 6.41(0.30/5.78/6.91), Num: 227
+Steps: 7, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 6.98(0.28/6.52/7.47), Num: 228
+Steps: 8, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.43(0.31/6.94/8.09), Num: 242
+Data - %solved: 44.53, path_costs: 3.287, search_itrs: 14.001, cost-to-go (mean/min/max): 3.44/0.00/8.41
+Train - itrs: 800, loss: 5.88E-01, targ_updated: True
+Times - up_start: 0.00, up_data: 233.77, up_end: 0.55, data_samp: 0.20, train: 2.22, save: 0.02, Tot: 236.77
+
+Getting Data - itr: 8000, update_num: 10, targ_update: 10, num_gen: 61,440, step max (curr): 8
+Generating 61,440 training instances with 2,048 searches
+Generated 61,440 training instances
+Times - steps_gen: 0.02, inst_info: 0.00, inst_add: 0.00, backup: 0.14, to_np: 0.33, update_perf: 0.03, put: 0.18, ->get_states: 0.00, ->pathfinding: 6899.10, Tot: 6899.81
+	(get_states): Tot: 0.00
+	(pathfinding): root: 0.02, pop: 0.19, is_solved: 1741.76, ub: 0.03, expand: 5149.75, heur: 4.12, make_nodes: 0.61, up_inst: 0.50, check: 1.78, cost: 0.15, push: 0.18, Tot: 6899.10
+Steps: 0, %Solved: 100.00, avgItrs: 1.00, avgPathCosts: 0.00, CTG_Backup: 0.00(0.00/0.00/0.00), Num: 6750
+Steps: 1, %Solved: 72.62, avgItrs: 7.64, avgPathCosts: 1.83, CTG_Backup: 2.68(0.28/2.09/3.21), Num: 409
+Steps: 2, %Solved: 73.14, avgItrs: 10.47, avgPathCosts: 2.64, CTG_Backup: 3.57(0.24/3.11/4.16), Num: 309
+Steps: 3, %Solved: 70.65, avgItrs: 14.07, avgPathCosts: 3.39, CTG_Backup: 4.46(0.22/3.96/4.92), Num: 293
+Steps: 4, %Solved: 55.74, avgItrs: 16.23, avgPathCosts: 4.00, CTG_Backup: 5.31(0.25/4.73/5.98), Num: 235
+Steps: 5, %Solved: 22.13, avgItrs: 21.25, avgPathCosts: 5.00, CTG_Backup: 6.12(0.24/5.60/6.76), Num: 235
+Steps: 6, %Solved: 5.00, avgItrs: 29.00, avgPathCosts: 6.00, CTG_Backup: 6.65(0.32/5.91/7.21), Num: 200
+Steps: 7, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.34(0.25/6.82/7.87), Num: 219
+Steps: 8, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.79(0.33/7.30/8.42), Num: 240
+Data - %solved: 44.36, path_costs: 3.266, search_itrs: 14.237, cost-to-go (mean/min/max): 3.49/0.00/8.47
+Train - itrs: 800, loss: 7.05E-01, targ_updated: True
+Times - up_start: 0.00, up_data: 224.03, up_end: 0.69, data_samp: 0.21, train: 2.18, save: 0.02, Tot: 227.13
+
+Getting Data - itr: 8800, update_num: 11, targ_update: 11, num_gen: 61,440, step max (curr): 8
+Generating 61,440 training instances with 2,048 searches
+Generated 61,440 training instances
+Times - steps_gen: 0.01, inst_info: 0.00, inst_add: 0.00, backup: 0.14, to_np: 0.31, update_perf: 0.03, put: 0.18, ->get_states: 0.00, ->pathfinding: 7044.31, Tot: 7044.98
+	(get_states): Tot: 0.00
+	(pathfinding): root: 0.02, pop: 0.18, is_solved: 1749.22, ub: 0.02, expand: 5287.81, heur: 3.95, make_nodes: 0.58, up_inst: 0.47, check: 1.74, cost: 0.15, push: 0.17, Tot: 7044.31
+Steps: 0, %Solved: 100.00, avgItrs: 1.00, avgPathCosts: 0.00, CTG_Backup: 0.00(0.00/0.00/0.00), Num: 6810
+Steps: 1, %Solved: 61.22, avgItrs: 8.76, avgPathCosts: 1.84, CTG_Backup: 2.74(0.29/2.28/3.41), Num: 312
+Steps: 2, %Solved: 63.02, avgItrs: 9.17, avgPathCosts: 2.49, CTG_Backup: 3.75(0.34/3.24/4.85), Num: 265
+Steps: 3, %Solved: 61.82, avgItrs: 13.07, avgPathCosts: 3.22, CTG_Backup: 4.56(0.22/3.95/4.99), Num: 275
+Steps: 4, %Solved: 55.51, avgItrs: 15.39, avgPathCosts: 4.11, CTG_Backup: 5.48(0.23/4.91/5.81), Num: 254
+Steps: 5, %Solved: 28.97, avgItrs: 18.76, avgPathCosts: 5.00, CTG_Backup: 6.38(0.22/5.99/6.97), Num: 214
+Steps: 6, %Solved: 11.83, avgItrs: 20.42, avgPathCosts: 6.00, CTG_Backup: 6.91(0.34/6.21/7.45), Num: 262
+Steps: 7, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.61(0.28/7.07/8.14), Num: 218
+Steps: 8, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 8.05(0.34/7.57/8.69), Num: 217
+Data - %solved: 42.49, path_costs: 3.236, search_itrs: 12.366, cost-to-go (mean/min/max): 3.57/0.00/8.69
+Train - itrs: 800, loss: 7.27E-01, targ_updated: True
+Times - up_start: 0.00, up_data: 225.20, up_end: 0.62, data_samp: 0.19, train: 2.15, save: 0.02, Tot: 228.19
+
+Getting Data - itr: 9600, update_num: 12, targ_update: 12, num_gen: 61,440, step max (curr): 8
+Generating 61,440 training instances with 2,048 searches
+Generated 61,440 training instances
+Times - steps_gen: 0.03, inst_info: 0.00, inst_add: 0.00, backup: 0.14, to_np: 0.31, update_perf: 0.02, put: 0.18, ->get_states: 0.00, ->pathfinding: 6735.30, Tot: 6735.99
+	(get_states): Tot: 0.00
+	(pathfinding): root: 0.02, pop: 0.17, is_solved: 1744.65, ub: 0.02, expand: 4983.62, heur: 3.81, make_nodes: 0.55, up_inst: 0.46, check: 1.69, cost: 0.15, push: 0.17, Tot: 6735.30
+Steps: 0, %Solved: 100.00, avgItrs: 1.00, avgPathCosts: 0.00, CTG_Backup: 0.00(0.00/0.00/0.00), Num: 6840
+Steps: 1, %Solved: 70.68, avgItrs: 8.06, avgPathCosts: 1.81, CTG_Backup: 2.84(0.25/2.40/3.45), Num: 365
+Steps: 2, %Solved: 68.80, avgItrs: 9.26, avgPathCosts: 2.52, CTG_Backup: 3.67(0.23/3.30/4.19), Num: 359
+Steps: 3, %Solved: 71.97, avgItrs: 11.90, avgPathCosts: 3.16, CTG_Backup: 4.66(0.21/4.16/5.12), Num: 289
+Steps: 4, %Solved: 62.61, avgItrs: 17.45, avgPathCosts: 4.09, CTG_Backup: 5.53(0.20/5.06/6.10), Num: 238
+Steps: 5, %Solved: 35.06, avgItrs: 21.22, avgPathCosts: 5.00, CTG_Backup: 6.43(0.20/6.07/7.09), Num: 231
+Steps: 6, %Solved: 9.52, avgItrs: 24.00, avgPathCosts: 6.00, CTG_Backup: 6.97(0.30/6.31/7.52), Num: 231
+Steps: 7, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.59(0.43/5.96/8.31), Num: 227
+Steps: 8, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 8.16(0.33/7.70/8.86), Num: 224
+Data - %solved: 46.52, path_costs: 3.224, search_itrs: 13.271, cost-to-go (mean/min/max): 3.58/0.00/8.86
+Train - itrs: 800, loss: 7.19E-01, targ_updated: True
+Times - up_start: 0.00, up_data: 215.48, up_end: 0.84, data_samp: 0.21, train: 2.24, save: 0.02, Tot: 218.80
+
+Getting Data - itr: 10400, update_num: 13, targ_update: 13, num_gen: 61,440, step max (curr): 8
+Generating 61,440 training instances with 2,048 searches
+Generated 61,440 training instances
+Times - steps_gen: 0.02, inst_info: 0.00, inst_add: 0.00, backup: 0.13, to_np: 0.30, update_perf: 0.02, put: 0.18, ->get_states: 0.00, ->pathfinding: 6912.00, Tot: 6912.65
+	(get_states): Tot: 0.00
+	(pathfinding): root: 0.02, pop: 0.16, is_solved: 1726.63, ub: 0.02, expand: 5178.38, heur: 3.77, make_nodes: 0.56, up_inst: 0.47, check: 1.67, cost: 0.15, push: 0.16, Tot: 6912.00
+Steps: 0, %Solved: 100.00, avgItrs: 1.00, avgPathCosts: 0.00, CTG_Backup: 0.00(0.00/0.00/0.00), Num: 6900
+Steps: 1, %Solved: 63.82, avgItrs: 8.65, avgPathCosts: 1.81, CTG_Backup: 2.84(0.26/2.09/3.48), Num: 304
+Steps: 2, %Solved: 74.20, avgItrs: 9.27, avgPathCosts: 2.49, CTG_Backup: 3.80(0.33/2.19/4.25), Num: 314
+Steps: 3, %Solved: 71.48, avgItrs: 15.70, avgPathCosts: 3.50, CTG_Backup: 4.67(0.20/4.14/5.14), Num: 270
+Steps: 4, %Solved: 50.36, avgItrs: 15.51, avgPathCosts: 4.08, CTG_Backup: 5.60(0.22/5.09/6.10), Num: 278
+Steps: 5, %Solved: 32.46, avgItrs: 20.82, avgPathCosts: 5.00, CTG_Backup: 6.54(0.26/5.99/7.11), Num: 228
+Steps: 6, %Solved: 12.18, avgItrs: 24.00, avgPathCosts: 6.00, CTG_Backup: 7.02(0.33/6.32/7.59), Num: 238
+Steps: 7, %Solved: 2.28, avgItrs: 28.00, avgPathCosts: 7.00, CTG_Backup: 7.73(0.29/7.05/8.21), Num: 219
+Steps: 8, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 8.34(0.32/7.79/8.93), Num: 225
+Data - %solved: 45.20, path_costs: 3.735, search_itrs: 15.370, cost-to-go (mean/min/max): 3.58/0.00/8.93
+Train - itrs: 800, loss: 7.74E-01, targ_updated: True
+Times - up_start: 0.00, up_data: 226.54, up_end: 0.71, data_samp: 0.19, train: 2.16, save: 0.02, Tot: 229.63
+
+Getting Data - itr: 11200, update_num: 14, targ_update: 14, num_gen: 61,440, step max (curr): 8
+Generating 61,440 training instances with 2,048 searches
+Generated 61,440 training instances
+Times - steps_gen: 0.03, inst_info: 0.00, inst_add: 0.00, update_perf: 0.03, backup: 0.14, to_np: 0.32, put: 0.18, ->get_states: 0.00, ->pathfinding: 6938.72, Tot: 6939.43
+	(get_states): Tot: 0.00
+	(pathfinding): root: 0.02, pop: 0.19, is_solved: 1740.82, ub: 0.03, expand: 5190.46, heur: 3.90, make_nodes: 0.65, up_inst: 0.52, check: 1.79, cost: 0.15, push: 0.19, Tot: 6938.72
+Steps: 0, %Solved: 100.00, avgItrs: 1.00, avgPathCosts: 0.00, CTG_Backup: 0.00(0.00/0.00/0.00), Num: 8040
+Steps: 1, %Solved: 74.74, avgItrs: 7.89, avgPathCosts: 1.76, CTG_Backup: 2.79(0.26/1.85/3.36), Num: 388
+Steps: 2, %Solved: 66.21, avgItrs: 9.15, avgPathCosts: 2.52, CTG_Backup: 3.79(0.27/2.85/4.30), Num: 293
+Steps: 3, %Solved: 78.03, avgItrs: 12.29, avgPathCosts: 3.21, CTG_Backup: 4.72(0.24/4.18/5.18), Num: 314
+Steps: 4, %Solved: 57.39, avgItrs: 16.64, avgPathCosts: 4.04, CTG_Backup: 5.68(0.21/5.30/6.16), Num: 230
+Steps: 5, %Solved: 44.63, avgItrs: 18.67, avgPathCosts: 5.00, CTG_Backup: 6.60(0.21/6.14/7.17), Num: 242
+Steps: 6, %Solved: 5.31, avgItrs: 20.25, avgPathCosts: 6.00, CTG_Backup: 7.07(0.30/6.45/7.57), Num: 226
+Steps: 7, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.79(0.28/7.17/8.39), Num: 199
+Steps: 8, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 8.35(0.30/7.87/9.00), Num: 233
+Data - %solved: 47.37, path_costs: 3.219, search_itrs: 12.270, cost-to-go (mean/min/max): 3.53/0.00/9.00
+Train - itrs: 800, loss: 8.92E-01, targ_updated: True
+Times - up_start: 0.00, up_data: 228.33, up_end: 0.59, data_samp: 0.18, train: 2.21, save: 0.02, Tot: 231.34
+
+Getting Data - itr: 12000, update_num: 15, targ_update: 15, num_gen: 61,440, step max (curr): 8
+Generating 61,440 training instances with 2,048 searches
+Generated 61,440 training instances
+Times - steps_gen: 0.02, inst_info: 0.00, inst_add: 0.00, update_perf: 0.02, backup: 0.14, to_np: 0.30, put: 0.18, ->get_states: 0.00, ->pathfinding: 6900.62, Tot: 6901.29
+	(get_states): Tot: 0.00
+	(pathfinding): root: 0.02, pop: 0.16, is_solved: 1712.59, ub: 0.02, expand: 5181.08, heur: 3.76, make_nodes: 0.54, up_inst: 0.48, check: 1.66, cost: 0.15, push: 0.17, Tot: 6900.62
+Steps: 0, %Solved: 100.00, avgItrs: 1.00, avgPathCosts: 0.00, CTG_Backup: 0.00(0.00/0.00/0.00), Num: 7080
+Steps: 1, %Solved: 70.68, avgItrs: 9.60, avgPathCosts: 1.90, CTG_Backup: 2.94(0.26/2.47/3.62), Num: 365
+Steps: 2, %Solved: 64.04, avgItrs: 8.70, avgPathCosts: 2.41, CTG_Backup: 3.82(0.23/3.39/4.39), Num: 356
+Steps: 3, %Solved: 67.21, avgItrs: 14.33, avgPathCosts: 3.36, CTG_Backup: 4.76(0.24/4.26/5.24), Num: 247
+Steps: 4, %Solved: 55.34, avgItrs: 14.86, avgPathCosts: 4.01, CTG_Backup: 5.76(0.15/5.33/6.25), Num: 253
+Steps: 5, %Solved: 32.35, avgItrs: 19.82, avgPathCosts: 5.00, CTG_Backup: 6.68(0.21/6.18/7.25), Num: 238
+Steps: 6, %Solved: 12.02, avgItrs: 23.08, avgPathCosts: 6.00, CTG_Backup: 7.18(0.32/6.47/7.79), Num: 208
+Steps: 7, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.94(0.22/7.51/8.26), Num: 214
+Steps: 8, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 8.46(0.28/7.96/9.03), Num: 236
+Data - %solved: 44.63, path_costs: 3.240, search_itrs: 13.055, cost-to-go (mean/min/max): 3.67/0.00/9.03
+Train - itrs: 800, loss: 8.82E-01, targ_updated: True
+Times - up_start: 0.00, up_data: 234.28, up_end: 0.60, data_samp: 0.20, train: 2.25, save: 0.02, Tot: 237.36
+
+Getting Data - itr: 12800, update_num: 16, targ_update: 16, num_gen: 61,440, step max (curr): 8
+Generating 61,440 training instances with 2,048 searches
+Generated 61,440 training instances
+Times - steps_gen: 0.01, inst_info: 0.00, inst_add: 0.00, backup: 0.14, to_np: 0.34, update_perf: 0.03, put: 0.18, ->get_states: 0.00, ->pathfinding: 7057.63, Tot: 7058.34
+	(get_states): Tot: 0.00
+	(pathfinding): root: 0.02, pop: 0.19, is_solved: 1730.05, ub: 0.03, expand: 5320.15, heur: 3.90, make_nodes: 0.65, up_inst: 0.52, check: 1.78, cost: 0.15, push: 0.19, Tot: 7057.63
+Steps: 0, %Solved: 100.00, avgItrs: 1.00, avgPathCosts: 0.00, CTG_Backup: 0.00(0.00/0.00/0.00), Num: 7020
+Steps: 1, %Solved: 75.00, avgItrs: 7.86, avgPathCosts: 1.80, CTG_Backup: 2.90(0.26/2.50/3.53), Num: 372
+Steps: 2, %Solved: 69.50, avgItrs: 9.68, avgPathCosts: 2.55, CTG_Backup: 3.80(0.24/3.38/4.36), Num: 341
+Steps: 3, %Solved: 60.65, avgItrs: 11.63, avgPathCosts: 3.23, CTG_Backup: 4.71(0.26/4.03/5.20), Num: 277
+Steps: 4, %Solved: 43.85, avgItrs: 16.93, avgPathCosts: 4.06, CTG_Backup: 5.71(0.19/5.29/6.21), Num: 244
+Steps: 5, %Solved: 32.16, avgItrs: 17.37, avgPathCosts: 5.00, CTG_Backup: 6.61(0.21/6.12/7.19), Num: 227
+Steps: 6, %Solved: 16.59, avgItrs: 27.50, avgPathCosts: 6.00, CTG_Backup: 7.11(0.32/6.45/7.66), Num: 229
+Steps: 7, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.82(0.28/7.42/8.35), Num: 234
+Steps: 8, %Solved: 2.38, avgItrs: 17.80, avgPathCosts: 8.00, CTG_Backup: 8.41(0.32/7.83/9.01), Num: 210
+Data - %solved: 44.46, path_costs: 3.829, search_itrs: 13.723, cost-to-go (mean/min/max): 3.66/0.00/9.01
+Train - itrs: 800, loss: 8.45E-01, targ_updated: True
+Times - up_start: 0.00, up_data: 237.28, up_end: 0.59, data_samp: 0.18, train: 2.17, save: 0.02, Tot: 240.24
+
+Getting Data - itr: 13600, update_num: 17, targ_update: 17, num_gen: 61,440, step max (curr): 8
+Generating 61,440 training instances with 2,048 searches
+Generated 61,440 training instances
+Times - steps_gen: 0.01, inst_info: 0.00, inst_add: 0.00, backup: 0.15, to_np: 0.34, update_perf: 0.03, put: 0.18, ->get_states: 0.00, ->pathfinding: 7061.74, Tot: 7062.45
+	(get_states): Tot: 0.00
+	(pathfinding): root: 0.02, pop: 0.19, is_solved: 1733.39, ub: 0.02, expand: 5320.89, heur: 3.90, make_nodes: 0.66, up_inst: 0.52, check: 1.82, cost: 0.15, push: 0.19, Tot: 7061.74
+Steps: 0, %Solved: 100.00, avgItrs: 1.00, avgPathCosts: 0.00, CTG_Backup: 0.00(0.00/0.00/0.00), Num: 6270
+Steps: 1, %Solved: 66.77, avgItrs: 8.71, avgPathCosts: 1.76, CTG_Backup: 2.99(0.38/2.42/4.62), Num: 331
+Steps: 2, %Solved: 65.28, avgItrs: 9.57, avgPathCosts: 2.49, CTG_Backup: 3.79(0.25/3.34/4.34), Num: 337
+Steps: 3, %Solved: 65.98, avgItrs: 15.42, avgPathCosts: 3.52, CTG_Backup: 4.68(0.23/4.20/5.20), Num: 244
+Steps: 4, %Solved: 47.51, avgItrs: 20.27, avgPathCosts: 4.30, CTG_Backup: 5.68(0.19/5.18/6.17), Num: 261
+Steps: 5, %Solved: 39.92, avgItrs: 21.32, avgPathCosts: 5.00, CTG_Backup: 6.53(0.19/6.11/7.16), Num: 248
+Steps: 6, %Solved: 9.65, avgItrs: 24.18, avgPathCosts: 6.00, CTG_Backup: 7.05(0.29/6.44/7.64), Num: 228
+Steps: 7, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.82(0.28/7.16/8.26), Num: 226
+Steps: 8, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 8.38(0.31/7.86/9.05), Num: 223
+Data - %solved: 43.90, path_costs: 3.296, search_itrs: 14.354, cost-to-go (mean/min/max): 3.67/0.00/9.05
+Train - itrs: 800, loss: 8.14E-01, targ_updated: True
+Times - up_start: 0.00, up_data: 237.10, up_end: 0.63, data_samp: 0.16, train: 2.10, save: 0.02, Tot: 240.03
+
+Getting Data - itr: 14400, update_num: 18, targ_update: 18, num_gen: 61,440, step max (curr): 8
+Generating 61,440 training instances with 2,048 searches
+Generated 61,440 training instances
+Times - steps_gen: 0.02, inst_info: 0.00, inst_add: 0.00, backup: 0.14, to_np: 0.33, update_perf: 0.03, put: 0.18, ->get_states: 0.00, ->pathfinding: 6925.93, Tot: 6926.64
+	(get_states): Tot: 0.00
+	(pathfinding): root: 0.02, pop: 0.19, is_solved: 1733.40, ub: 0.03, expand: 5184.56, heur: 4.53, make_nodes: 0.64, up_inst: 0.52, check: 1.73, cost: 0.15, push: 0.19, Tot: 6925.93
+Steps: 0, %Solved: 100.00, avgItrs: 1.00, avgPathCosts: 0.00, CTG_Backup: 0.00(0.00/0.00/0.00), Num: 7320
+Steps: 1, %Solved: 70.85, avgItrs: 9.24, avgPathCosts: 1.97, CTG_Backup: 2.83(0.24/2.40/3.50), Num: 319
+Steps: 2, %Solved: 70.55, avgItrs: 8.60, avgPathCosts: 2.53, CTG_Backup: 3.75(0.24/3.33/4.30), Num: 326
+Steps: 3, %Solved: 61.35, avgItrs: 14.86, avgPathCosts: 3.38, CTG_Backup: 4.72(0.22/4.15/5.19), Num: 251
+Steps: 4, %Solved: 59.00, avgItrs: 14.67, avgPathCosts: 4.02, CTG_Backup: 5.65(0.20/5.24/5.97), Num: 239
+Steps: 5, %Solved: 38.98, avgItrs: 21.41, avgPathCosts: 5.00, CTG_Backup: 6.61(0.18/6.10/6.97), Num: 236
+Steps: 6, %Solved: 13.11, avgItrs: 22.30, avgPathCosts: 6.00, CTG_Backup: 7.13(0.31/6.43/7.68), Num: 206
+Steps: 7, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.76(0.28/7.18/8.44), Num: 229
+Steps: 8, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 8.32(0.32/7.85/9.02), Num: 256
+Data - %solved: 45.98, path_costs: 3.273, search_itrs: 13.153, cost-to-go (mean/min/max): 3.58/0.00/9.02
+Train - itrs: 800, loss: 7.83E-01, targ_updated: True
+Times - up_start: 0.00, up_data: 224.71, up_end: 0.60, data_samp: 0.16, train: 2.12, save: 0.02, Tot: 227.62
+
+Getting Data - itr: 15200, update_num: 19, targ_update: 19, num_gen: 61,440, step max (curr): 8
+Generating 61,440 training instances with 2,048 searches
+Generated 61,440 training instances
+Times - steps_gen: 0.02, inst_info: 0.00, inst_add: 0.00, backup: 0.14, to_np: 0.31, update_perf: 0.02, put: 0.18, ->get_states: 0.00, ->pathfinding: 7111.72, Tot: 7112.39
+	(get_states): Tot: 0.00
+	(pathfinding): root: 0.02, pop: 0.17, is_solved: 1734.87, ub: 0.02, expand: 5369.65, heur: 3.82, make_nodes: 0.61, up_inst: 0.50, check: 1.73, cost: 0.15, push: 0.17, Tot: 7111.72
+Steps: 0, %Solved: 100.00, avgItrs: 1.00, avgPathCosts: 0.00, CTG_Backup: 0.00(0.00/0.00/0.00), Num: 6600
+Steps: 1, %Solved: 71.43, avgItrs: 9.70, avgPathCosts: 1.95, CTG_Backup: 2.87(0.24/2.45/3.53), Num: 322
+Steps: 2, %Solved: 63.80, avgItrs: 9.53, avgPathCosts: 2.52, CTG_Backup: 3.71(0.24/3.34/4.31), Num: 326
+Steps: 3, %Solved: 67.03, avgItrs: 14.03, avgPathCosts: 3.37, CTG_Backup: 4.77(0.18/4.43/5.19), Num: 276
+Steps: 4, %Solved: 59.70, avgItrs: 17.01, avgPathCosts: 4.14, CTG_Backup: 5.66(0.24/5.09/6.17), Num: 268
+Steps: 5, %Solved: 22.17, avgItrs: 21.67, avgPathCosts: 5.00, CTG_Backup: 6.61(0.17/6.14/7.16), Num: 203
+Steps: 6, %Solved: 5.60, avgItrs: 24.85, avgPathCosts: 6.00, CTG_Backup: 7.07(0.33/6.46/7.73), Num: 232
+Steps: 7, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.77(0.25/7.40/8.35), Num: 246
+Steps: 8, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 8.34(0.32/7.85/8.94), Num: 206
+Data - %solved: 43.30, path_costs: 3.283, search_itrs: 13.969, cost-to-go (mean/min/max): 3.59/0.00/8.94
+Train - itrs: 800, loss: 8.56E-01, targ_updated: True
+Times - up_start: 0.00, up_data: 224.52, up_end: 0.57, data_samp: 0.19, train: 2.22, save: 0.02, Tot: 227.52
+
+Getting Data - itr: 16000, update_num: 20, targ_update: 20, num_gen: 61,440, step max (curr): 8
+Generating 61,440 training instances with 2,048 searches
+Generated 61,440 training instances
+Times - steps_gen: 0.02, inst_info: 0.00, inst_add: 0.00, update_perf: 0.03, backup: 0.14, to_np: 0.32, put: 0.18, ->get_states: 0.00, ->pathfinding: 6834.80, Tot: 6835.48
+	(get_states): Tot: 0.00
+	(pathfinding): root: 0.02, pop: 0.18, is_solved: 1717.39, ub: 0.02, expand: 5110.03, heur: 3.98, make_nodes: 0.61, up_inst: 0.50, check: 1.73, cost: 0.15, push: 0.18, Tot: 6834.80
+Steps: 0, %Solved: 100.00, avgItrs: 1.00, avgPathCosts: 0.00, CTG_Backup: 0.00(0.00/0.00/0.00), Num: 6810
+Steps: 1, %Solved: 57.88, avgItrs: 8.10, avgPathCosts: 1.83, CTG_Backup: 2.92(0.24/2.49/3.52), Num: 311
+Steps: 2, %Solved: 69.80, avgItrs: 10.12, avgPathCosts: 2.69, CTG_Backup: 3.77(0.22/3.39/4.35), Num: 298
+Steps: 3, %Solved: 70.89, avgItrs: 12.35, avgPathCosts: 3.20, CTG_Backup: 4.76(0.22/4.30/5.23), Num: 316
+Steps: 4, %Solved: 61.13, avgItrs: 13.63, avgPathCosts: 4.03, CTG_Backup: 5.75(0.19/5.16/6.30), Num: 247
+Steps: 5, %Solved: 33.88, avgItrs: 21.49, avgPathCosts: 5.00, CTG_Backup: 6.68(0.21/6.28/7.31), Num: 245
+Steps: 6, %Solved: 10.50, avgItrs: 23.09, avgPathCosts: 6.00, CTG_Backup: 7.24(0.35/6.58/7.91), Num: 219
+Steps: 7, %Solved: 2.31, avgItrs: 29.00, avgPathCosts: 7.00, CTG_Backup: 7.91(0.41/6.34/8.67), Num: 216
+Steps: 8, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 8.54(0.34/7.93/9.27), Num: 217
+Data - %solved: 45.15, path_costs: 3.717, search_itrs: 14.848, cost-to-go (mean/min/max): 3.62/0.00/9.27
+Train - itrs: 800, loss: 8.73E-01, targ_updated: True
+Times - up_start: 0.00, up_data: 231.08, up_end: 0.57, data_samp: 0.18, train: 2.20, save: 0.02, Tot: 234.06
+
+Getting Data - itr: 16800, update_num: 21, targ_update: 21, num_gen: 61,440, step max (curr): 8
+Generating 61,440 training instances with 2,048 searches
+Generated 61,440 training instances
+Times - steps_gen: 0.01, inst_info: 0.00, inst_add: 0.00, backup: 0.14, to_np: 0.31, update_perf: 0.02, put: 0.18, ->get_states: 0.00, ->pathfinding: 7058.77, Tot: 7059.44
+	(get_states): Tot: 0.00
+	(pathfinding): root: 0.02, pop: 0.16, is_solved: 1736.37, ub: 0.02, expand: 5315.22, heur: 3.83, make_nodes: 0.61, up_inst: 0.51, check: 1.71, cost: 0.15, push: 0.17, Tot: 7058.77
+Steps: 0, %Solved: 100.00, avgItrs: 1.00, avgPathCosts: 0.00, CTG_Backup: 0.00(0.00/0.00/0.00), Num: 7020
+Steps: 1, %Solved: 79.82, avgItrs: 8.70, avgPathCosts: 1.85, CTG_Backup: 2.94(0.22/2.54/3.42), Num: 332
+Steps: 2, %Solved: 67.41, avgItrs: 9.20, avgPathCosts: 2.55, CTG_Backup: 3.83(0.24/3.42/4.38), Num: 313
+Steps: 3, %Solved: 65.05, avgItrs: 13.63, avgPathCosts: 3.31, CTG_Backup: 4.74(0.19/4.27/5.20), Num: 289
+Steps: 4, %Solved: 74.92, avgItrs: 14.65, avgPathCosts: 4.06, CTG_Backup: 5.76(0.39/3.63/6.30), Num: 303
+Steps: 5, %Solved: 36.15, avgItrs: 16.73, avgPathCosts: 5.00, CTG_Backup: 6.67(0.25/6.21/7.30), Num: 213
+Steps: 6, %Solved: 13.07, avgItrs: 21.27, avgPathCosts: 6.00, CTG_Backup: 7.20(0.32/6.64/7.83), Num: 199
+Steps: 7, %Solved: 4.08, avgItrs: 14.20, avgPathCosts: 7.00, CTG_Backup: 7.92(0.27/7.52/8.57), Num: 245
+Steps: 8, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 8.50(0.34/8.02/9.16), Num: 254
+Data - %solved: 48.94, path_costs: 3.721, search_itrs: 12.423, cost-to-go (mean/min/max): 3.70/0.00/9.16
+Train - itrs: 800, loss: 8.52E-01, targ_updated: True
+Times - up_start: 0.00, up_data: 234.34, up_end: 0.58, data_samp: 0.17, train: 2.13, save: 0.02, Tot: 237.25
+
+Getting Data - itr: 17600, update_num: 22, targ_update: 22, num_gen: 61,440, step max (curr): 8
+Generating 61,440 training instances with 2,048 searches
+Generated 61,440 training instances
+Times - steps_gen: 0.02, inst_info: 0.00, inst_add: 0.00, backup: 0.14, to_np: 0.30, update_perf: 0.02, put: 0.18, ->get_states: 0.00, ->pathfinding: 6771.22, Tot: 6771.88
+	(get_states): Tot: 0.00
+	(pathfinding): root: 0.02, pop: 0.17, is_solved: 1727.75, ub: 0.02, expand: 5036.31, heur: 3.84, make_nodes: 0.60, up_inst: 0.50, check: 1.69, cost: 0.15, push: 0.17, Tot: 6771.22
+Steps: 0, %Solved: 100.00, avgItrs: 1.00, avgPathCosts: 0.00, CTG_Backup: 0.00(0.00/0.00/0.00), Num: 7230
+Steps: 1, %Solved: 69.23, avgItrs: 9.67, avgPathCosts: 1.92, CTG_Backup: 2.89(0.31/2.15/3.54), Num: 364
+Steps: 2, %Solved: 84.12, avgItrs: 9.53, avgPathCosts: 2.52, CTG_Backup: 3.75(0.24/3.30/4.28), Num: 296
+Steps: 3, %Solved: 67.54, avgItrs: 12.81, avgPathCosts: 3.28, CTG_Backup: 4.73(0.25/4.09/5.15), Num: 305
+Steps: 4, %Solved: 63.95, avgItrs: 16.50, avgPathCosts: 4.07, CTG_Backup: 5.59(0.23/5.10/6.01), Num: 258
+Steps: 5, %Solved: 37.93, avgItrs: 17.78, avgPathCosts: 5.00, CTG_Backup: 6.60(0.20/6.14/7.03), Num: 232
+Steps: 6, %Solved: 7.87, avgItrs: 27.18, avgPathCosts: 6.00, CTG_Backup: 7.10(0.36/5.95/7.67), Num: 216
+Steps: 7, %Solved: 4.07, avgItrs: 15.00, avgPathCosts: 7.00, CTG_Backup: 7.85(0.30/7.17/8.43), Num: 221
+Steps: 8, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 8.39(0.30/7.85/8.89), Num: 238
+Data - %solved: 48.30, path_costs: 3.723, search_itrs: 13.682, cost-to-go (mean/min/max): 3.61/0.00/8.89
+Train - itrs: 800, loss: 8.08E-01, targ_updated: True
+Times - up_start: 0.00, up_data: 228.36, up_end: 0.59, data_samp: 0.18, train: 2.16, save: 0.02, Tot: 231.31
+
+Getting Data - itr: 18400, update_num: 23, targ_update: 23, num_gen: 61,440, step max (curr): 8
+Generating 61,440 training instances with 2,048 searches
+Generated 61,440 training instances
+Times - steps_gen: 0.02, inst_info: 0.00, inst_add: 0.00, backup: 0.13, to_np: 0.30, update_perf: 0.02, put: 0.18, ->get_states: 0.00, ->pathfinding: 7163.56, Tot: 7164.21
+	(get_states): Tot: 0.00
+	(pathfinding): root: 0.02, pop: 0.17, is_solved: 1737.49, ub: 0.02, expand: 5418.92, heur: 3.82, make_nodes: 0.58, up_inst: 0.50, check: 1.71, cost: 0.15, push: 0.17, Tot: 7163.56
+Steps: 0, %Solved: 100.00, avgItrs: 1.00, avgPathCosts: 0.00, CTG_Backup: 0.00(0.00/0.00/0.00), Num: 7200
+Steps: 1, %Solved: 54.81, avgItrs: 9.64, avgPathCosts: 1.93, CTG_Backup: 2.86(0.22/2.45/3.40), Num: 270
+Steps: 2, %Solved: 65.37, avgItrs: 10.61, avgPathCosts: 2.59, CTG_Backup: 3.70(0.17/3.32/4.07), Num: 283
+Steps: 3, %Solved: 65.95, avgItrs: 11.24, avgPathCosts: 3.25, CTG_Backup: 4.69(0.21/4.16/5.18), Num: 279
+Steps: 4, %Solved: 57.25, avgItrs: 13.96, avgPathCosts: 4.04, CTG_Backup: 5.57(0.38/3.68/6.14), Num: 276
+Steps: 5, %Solved: 33.33, avgItrs: 17.71, avgPathCosts: 5.00, CTG_Backup: 6.61(0.16/6.25/7.12), Num: 216
+Steps: 6, %Solved: 9.46, avgItrs: 20.33, avgPathCosts: 6.00, CTG_Backup: 7.15(0.28/6.56/7.61), Num: 222
+Steps: 7, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.82(0.28/7.17/8.45), Num: 221
+Steps: 8, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 8.42(0.31/7.88/9.00), Num: 191
+Data - %solved: 42.91, path_costs: 3.259, search_itrs: 12.071, cost-to-go (mean/min/max): 3.52/0.00/9.00
+Train - itrs: 800, loss: 7.92E-01, targ_updated: True
+Times - up_start: 0.00, up_data: 230.05, up_end: 0.60, data_samp: 0.17, train: 2.11, save: 0.02, Tot: 232.96
+
+Getting Data - itr: 19200, update_num: 24, targ_update: 24, num_gen: 61,440, step max (curr): 8
+Generating 61,440 training instances with 2,048 searches
+Generated 61,440 training instances
+Times - steps_gen: 0.02, inst_info: 0.00, inst_add: 0.00, update_perf: 0.02, backup: 0.13, to_np: 0.29, put: 0.18, ->get_states: 0.00, ->pathfinding: 6822.48, Tot: 6823.12
+	(get_states): Tot: 0.00
+	(pathfinding): root: 0.02, pop: 0.15, is_solved: 1723.86, ub: 0.02, expand: 5091.81, heur: 3.72, make_nodes: 0.56, up_inst: 0.44, check: 1.60, cost: 0.15, push: 0.16, Tot: 6822.48
+Steps: 0, %Solved: 100.00, avgItrs: 1.00, avgPathCosts: 0.00, CTG_Backup: 0.00(0.00/0.00/0.00), Num: 7470
+Steps: 1, %Solved: 78.74, avgItrs: 8.95, avgPathCosts: 1.95, CTG_Backup: 2.86(0.25/2.49/3.52), Num: 334
+Steps: 2, %Solved: 73.94, avgItrs: 9.30, avgPathCosts: 2.52, CTG_Backup: 3.85(0.28/3.37/4.38), Num: 330
+Steps: 3, %Solved: 57.37, avgItrs: 13.47, avgPathCosts: 3.24, CTG_Backup: 4.84(0.20/4.32/5.26), Num: 251
+Steps: 4, %Solved: 72.93, avgItrs: 16.85, avgPathCosts: 4.06, CTG_Backup: 5.77(0.19/5.28/6.16), Num: 266
+Steps: 5, %Solved: 43.24, avgItrs: 16.94, avgPathCosts: 5.00, CTG_Backup: 6.75(0.21/6.22/7.20), Num: 259
+Steps: 6, %Solved: 19.17, avgItrs: 23.98, avgPathCosts: 6.00, CTG_Backup: 7.25(0.35/6.56/7.85), Num: 240
+Steps: 7, %Solved: 3.24, avgItrs: 20.00, avgPathCosts: 7.00, CTG_Backup: 7.99(0.34/7.26/8.61), Num: 216
+Steps: 8, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 8.61(0.32/7.99/9.20), Num: 213
+Data - %solved: 49.85, path_costs: 3.721, search_itrs: 13.811, cost-to-go (mean/min/max): 3.61/0.00/9.20
+Train - itrs: 800, loss: 8.68E-01, targ_updated: True
+Times - up_start: 0.00, up_data: 226.42, up_end: 0.62, data_samp: 0.17, train: 2.13, save: 0.02, Tot: 229.36
+
+Getting Data - itr: 20000, update_num: 25, targ_update: 25, num_gen: 61,440, step max (curr): 8
+Generating 61,440 training instances with 2,048 searches
+Generated 61,440 training instances
+Times - steps_gen: 0.03, inst_info: 0.00, inst_add: 0.00, backup: 0.14, to_np: 0.30, update_perf: 0.02, put: 0.18, ->get_states: 0.00, ->pathfinding: 6933.02, Tot: 6933.69
+	(get_states): Tot: 0.00
+	(pathfinding): root: 0.02, pop: 0.17, is_solved: 1722.22, ub: 0.02, expand: 5203.75, heur: 3.79, make_nodes: 0.60, up_inst: 0.48, check: 1.65, cost: 0.15, push: 0.17, Tot: 6933.02
+Steps: 0, %Solved: 100.00, avgItrs: 1.00, avgPathCosts: 0.00, CTG_Backup: 0.00(0.00/0.00/0.00), Num: 7170
+Steps: 1, %Solved: 82.34, avgItrs: 10.29, avgPathCosts: 2.08, CTG_Backup: 2.91(0.24/2.47/3.39), Num: 334
+Steps: 2, %Solved: 64.58, avgItrs: 8.54, avgPathCosts: 2.38, CTG_Backup: 3.83(0.25/3.37/4.33), Num: 384
+Steps: 3, %Solved: 75.97, avgItrs: 14.45, avgPathCosts: 3.37, CTG_Backup: 4.75(0.22/4.17/5.23), Num: 308
+Steps: 4, %Solved: 66.25, avgItrs: 16.44, avgPathCosts: 4.06, CTG_Backup: 5.73(0.21/5.07/6.14), Num: 240
+Steps: 5, %Solved: 48.88, avgItrs: 18.32, avgPathCosts: 5.00, CTG_Backup: 6.62(0.22/6.14/7.15), Num: 223
+Steps: 6, %Solved: 14.23, avgItrs: 23.18, avgPathCosts: 6.00, CTG_Backup: 7.13(0.29/6.47/7.72), Num: 239
+Steps: 7, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.86(0.26/7.18/8.31), Num: 206
+Steps: 8, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 8.37(0.30/7.90/8.90), Num: 211
+Data - %solved: 50.25, path_costs: 3.269, search_itrs: 13.175, cost-to-go (mean/min/max): 3.62/0.00/8.90
+Train - itrs: 800, loss: 8.86E-01, targ_updated: True
+Times - up_start: 0.00, up_data: 227.41, up_end: 0.60, data_samp: 0.20, train: 2.16, save: 0.02, Tot: 230.39
+
+Getting Data - itr: 20800, update_num: 26, targ_update: 26, num_gen: 61,440, step max (curr): 16
+Generating 61,440 training instances with 2,048 searches
+Generated 61,440 training instances
+Times - steps_gen: 0.02, inst_info: 0.00, inst_add: 0.00, update_perf: 0.02, backup: 0.16, to_np: 0.32, put: 0.25, ->get_states: 0.00, ->pathfinding: 12696.73, Tot: 12697.51
+	(get_states): Tot: 0.00
+	(pathfinding): root: 0.01, pop: 0.21, is_solved: 1735.09, ub: 0.02, expand: 10952.94, heur: 4.21, make_nodes: 0.84, up_inst: 0.48, check: 2.55, cost: 0.17, push: 0.22, Tot: 12696.73
+Steps: 0, %Solved: 100.00, avgItrs: 1.00, avgPathCosts: 0.00, CTG_Backup: 0.00(0.00/0.00/0.00), Num: 3600
+Steps: 1, %Solved: 59.42, avgItrs: 12.76, avgPathCosts: 2.01, CTG_Backup: 2.93(0.28/2.42/3.52), Num: 138
+Steps: 2, %Solved: 45.14, avgItrs: 13.17, avgPathCosts: 2.88, CTG_Backup: 3.74(0.27/2.52/4.13), Num: 144
+Steps: 3, %Solved: 33.07, avgItrs: 15.86, avgPathCosts: 3.48, CTG_Backup: 4.78(0.24/4.17/5.26), Num: 127
+Steps: 4, %Solved: 42.86, avgItrs: 16.61, avgPathCosts: 4.04, CTG_Backup: 5.75(0.21/5.24/6.21), Num: 119
+Steps: 5, %Solved: 25.60, avgItrs: 18.16, avgPathCosts: 5.00, CTG_Backup: 6.66(0.23/6.15/7.21), Num: 125
+Steps: 6, %Solved: 17.65, avgItrs: 24.48, avgPathCosts: 6.00, CTG_Backup: 7.18(0.29/6.57/7.77), Num: 119
+Steps: 7, %Solved: 5.26, avgItrs: 14.00, avgPathCosts: 7.00, CTG_Backup: 7.94(0.31/7.24/8.50), Num: 133
+Steps: 8, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 8.45(0.27/7.97/8.94), Num: 129
+Steps: 9, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 9.06(0.29/8.47/9.66), Num: 129
+Steps: 10, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 9.34(0.36/8.49/9.89), Num: 118
+Steps: 11, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 9.75(0.37/9.06/10.45), Num: 118
+Steps: 12, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 10.22(0.45/9.62/11.14), Num: 110
+Steps: 13, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 10.85(0.41/9.99/11.54), Num: 121
+Steps: 14, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 11.36(0.37/10.63/12.05), Num: 117
+Steps: 15, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 11.68(0.61/10.80/12.93), Num: 119
+Steps: 16, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 11.83(0.36/10.98/12.44), Num: 115
+Data - %solved: 19.35, path_costs: 3.801, search_itrs: 14.503, cost-to-go (mean/min/max): 6.36/0.00/12.93
+Train - itrs: 800, loss: 8.93E+00, targ_updated: True
+Times - up_start: 0.01, up_data: 354.01, up_end: 0.54, data_samp: 0.17, train: 2.12, save: 0.02, Tot: 356.87
+
+Getting Data - itr: 21600, update_num: 27, targ_update: 27, num_gen: 61,440, step max (curr): 16
+Generating 61,440 training instances with 2,048 searches
+Generated 61,440 training instances
+Times - steps_gen: 0.01, inst_info: 0.00, inst_add: 0.00, update_perf: 0.02, backup: 0.15, to_np: 0.29, put: 0.16, ->get_states: 0.00, ->pathfinding: 12102.97, Tot: 12103.61
+	(get_states): Tot: 0.00
+	(pathfinding): root: 0.01, pop: 0.20, is_solved: 1730.79, ub: 0.02, expand: 10363.31, heur: 4.34, make_nodes: 0.81, up_inst: 0.47, check: 2.66, cost: 0.16, push: 0.19, Tot: 12102.97
+Steps: 0, %Solved: 100.00, avgItrs: 1.00, avgPathCosts: 0.00, CTG_Backup: 0.00(0.00/0.00/0.00), Num: 3750
+Steps: 1, %Solved: 26.15, avgItrs: 10.03, avgPathCosts: 1.91, CTG_Backup: 1.93(0.20/1.49/2.29), Num: 130
+Steps: 2, %Solved: 28.71, avgItrs: 13.97, avgPathCosts: 2.52, CTG_Backup: 2.47(0.25/1.92/3.08), Num: 101
+Steps: 3, %Solved: 17.21, avgItrs: 14.62, avgPathCosts: 3.00, CTG_Backup: 2.93(0.26/2.29/3.26), Num: 122
+Steps: 4, %Solved: 3.17, avgItrs: 18.75, avgPathCosts: 4.00, CTG_Backup: 3.50(0.34/2.88/4.28), Num: 126
+Steps: 5, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 3.99(0.22/3.61/4.41), Num: 128
+Steps: 6, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 4.37(0.23/3.94/4.86), Num: 115
+Steps: 7, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 4.72(0.31/4.44/5.47), Num: 135
+Steps: 8, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 5.32(0.27/4.80/5.76), Num: 133
+Steps: 9, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 5.83(0.30/5.14/6.23), Num: 120
+Steps: 10, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 6.05(0.30/5.39/6.45), Num: 112
+Steps: 11, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 6.54(0.29/5.66/6.97), Num: 109
+Steps: 12, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 6.89(0.32/6.19/7.41), Num: 122
+Steps: 13, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.25(0.29/6.73/7.74), Num: 140
+Steps: 14, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.58(0.26/7.10/8.08), Num: 129
+Steps: 15, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.79(0.36/7.11/8.46), Num: 105
+Steps: 16, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.96(0.30/7.37/8.46), Num: 106
+Data - %solved: 10.31, path_costs: 2.286, search_itrs: 11.673, cost-to-go (mean/min/max): 4.38/0.00/8.76
+Train - itrs: 800, loss: 7.91E-01, targ_updated: True
+Times - up_start: 0.00, up_data: 361.99, up_end: 0.59, data_samp: 0.17, train: 2.13, save: 0.02, Tot: 364.90
+
+Getting Data - itr: 22400, update_num: 28, targ_update: 28, num_gen: 61,440, step max (curr): 16
+Generating 61,440 training instances with 2,048 searches
+Generated 61,440 training instances
+Times - steps_gen: 0.01, inst_info: 0.00, inst_add: 0.00, update_perf: 0.02, backup: 0.16, to_np: 0.32, put: 0.17, ->get_states: 0.00, ->pathfinding: 12267.49, Tot: 12268.17
+	(get_states): Tot: 0.00
+	(pathfinding): root: 0.01, pop: 0.23, is_solved: 1722.56, ub: 0.02, expand: 10535.68, heur: 4.33, make_nodes: 0.95, up_inst: 0.48, check: 2.84, cost: 0.17, push: 0.22, Tot: 12267.49
+Steps: 0, %Solved: 100.00, avgItrs: 1.00, avgPathCosts: 0.00, CTG_Backup: 0.00(0.00/0.00/0.00), Num: 3210
+Steps: 1, %Solved: 36.05, avgItrs: 10.06, avgPathCosts: 1.85, CTG_Backup: 1.72(0.22/1.28/2.19), Num: 147
+Steps: 2, %Solved: 16.20, avgItrs: 17.61, avgPathCosts: 2.57, CTG_Backup: 2.05(0.20/1.60/2.46), Num: 142
+Steps: 3, %Solved: 12.26, avgItrs: 14.15, avgPathCosts: 3.00, CTG_Backup: 2.51(0.29/1.96/3.30), Num: 106
+Steps: 4, %Solved: 12.88, avgItrs: 21.41, avgPathCosts: 4.00, CTG_Backup: 3.07(0.24/2.39/3.86), Num: 132
+Steps: 5, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 3.65(0.33/2.90/4.37), Num: 122
+Steps: 6, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 3.90(0.25/3.47/4.48), Num: 120
+Steps: 7, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 4.38(0.24/3.99/4.83), Num: 113
+Steps: 8, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 4.90(0.35/4.22/5.48), Num: 129
+Steps: 9, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 5.38(0.30/4.87/5.86), Num: 125
+Steps: 10, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 5.62(0.31/5.03/6.19), Num: 111
+Steps: 11, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 6.18(0.28/5.52/6.70), Num: 123
+Steps: 12, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 6.55(0.33/5.99/7.05), Num: 136
+Steps: 13, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 6.94(0.36/6.09/7.52), Num: 118
+Steps: 14, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.43(0.27/6.59/7.97), Num: 99
+Steps: 15, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.69(0.37/6.88/8.27), Num: 109
+Steps: 16, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.62(0.31/7.22/8.20), Num: 115
+Data - %solved: 10.43, path_costs: 2.283, search_itrs: 12.846, cost-to-go (mean/min/max): 4.03/0.00/8.61
+Train - itrs: 800, loss: 2.74E-01, targ_updated: True
+Times - up_start: 0.00, up_data: 349.84, up_end: 0.65, data_samp: 0.17, train: 2.10, save: 0.02, Tot: 352.78
+
+Getting Data - itr: 23200, update_num: 29, targ_update: 29, num_gen: 61,440, step max (curr): 16
+Generating 61,440 training instances with 2,048 searches
+Generated 61,440 training instances
+Times - steps_gen: 0.01, inst_info: 0.00, inst_add: 0.00, update_perf: 0.02, backup: 0.15, to_np: 0.29, put: 0.24, ->get_states: 0.00, ->pathfinding: 12399.25, Tot: 12399.98
+	(get_states): Tot: 0.00
+	(pathfinding): root: 0.01, pop: 0.21, is_solved: 1718.70, ub: 0.02, expand: 10671.45, heur: 4.25, make_nodes: 0.98, up_inst: 0.45, check: 2.80, cost: 0.17, push: 0.20, Tot: 12399.25
+Steps: 0, %Solved: 100.00, avgItrs: 1.00, avgPathCosts: 0.00, CTG_Backup: 0.00(0.00/0.00/0.00), Num: 3750
+Steps: 1, %Solved: 34.11, avgItrs: 16.39, avgPathCosts: 2.30, CTG_Backup: 1.70(0.20/1.32/2.09), Num: 129
+Steps: 2, %Solved: 20.90, avgItrs: 10.93, avgPathCosts: 2.36, CTG_Backup: 2.17(0.27/1.56/2.88), Num: 134
+Steps: 3, %Solved: 18.75, avgItrs: 12.67, avgPathCosts: 3.00, CTG_Backup: 2.68(0.30/1.93/3.38), Num: 112
+Steps: 4, %Solved: 16.30, avgItrs: 24.27, avgPathCosts: 4.00, CTG_Backup: 3.18(0.31/2.43/3.77), Num: 135
+Steps: 5, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 3.81(0.28/3.24/4.46), Num: 116
+Steps: 6, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 4.14(0.27/3.56/4.79), Num: 119
+Steps: 7, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 4.54(0.31/4.08/5.02), Num: 117
+Steps: 8, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 5.05(0.28/4.59/5.57), Num: 128
+Steps: 9, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 5.58(0.32/4.93/5.97), Num: 107
+Steps: 10, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 5.65(0.34/5.13/6.27), Num: 113
+Steps: 11, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 6.22(0.39/5.53/6.71), Num: 126
+Steps: 12, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 6.65(0.37/6.04/7.28), Num: 125
+Steps: 13, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.14(0.33/6.53/7.64), Num: 132
+Steps: 14, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.61(0.25/6.97/8.07), Num: 104
+Steps: 15, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.54(0.41/6.88/8.16), Num: 120
+Steps: 16, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.76(0.29/7.24/8.36), Num: 121
+Data - %solved: 11.18, path_costs: 2.331, search_itrs: 13.051, cost-to-go (mean/min/max): 4.14/0.00/8.67
+Train - itrs: 800, loss: 4.57E-01, targ_updated: True
+Times - up_start: 0.00, up_data: 348.25, up_end: 0.66, data_samp: 0.16, train: 2.10, save: 0.02, Tot: 351.19
+
+Getting Data - itr: 24000, update_num: 30, targ_update: 30, num_gen: 61,440, step max (curr): 16
+Generating 61,440 training instances with 2,048 searches
+Generated 61,440 training instances
+Times - steps_gen: 0.02, inst_info: 0.00, inst_add: 0.00, backup: 0.15, to_np: 0.28, update_perf: 0.02, put: 0.17, ->get_states: 0.00, ->pathfinding: 12409.39, Tot: 12410.03
+	(get_states): Tot: 0.00
+	(pathfinding): root: 0.01, pop: 0.20, is_solved: 1727.73, ub: 0.02, expand: 10672.80, heur: 4.17, make_nodes: 0.98, up_inst: 0.44, check: 2.67, cost: 0.16, push: 0.20, Tot: 12409.39
+Steps: 0, %Solved: 100.00, avgItrs: 1.00, avgPathCosts: 0.00, CTG_Backup: 0.00(0.00/0.00/0.00), Num: 3930
+Steps: 1, %Solved: 31.15, avgItrs: 8.32, avgPathCosts: 1.63, CTG_Backup: 1.64(0.22/1.17/2.16), Num: 122
+Steps: 2, %Solved: 20.35, avgItrs: 8.96, avgPathCosts: 2.22, CTG_Backup: 2.06(0.27/1.54/2.78), Num: 113
+Steps: 3, %Solved: 10.32, avgItrs: 17.46, avgPathCosts: 3.00, CTG_Backup: 2.68(0.33/2.16/3.28), Num: 126
+Steps: 4, %Solved: 22.05, avgItrs: 24.43, avgPathCosts: 4.00, CTG_Backup: 3.09(0.23/2.62/3.70), Num: 127
+Steps: 5, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 3.55(0.24/3.01/4.36), Num: 128
+Steps: 6, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 4.07(0.29/3.39/4.73), Num: 110
+Steps: 7, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 4.63(0.26/4.10/5.14), Num: 107
+Steps: 8, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 4.92(0.31/4.36/5.55), Num: 139
+Steps: 9, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 5.36(0.34/4.82/5.93), Num: 120
+Steps: 10, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 5.66(0.29/5.08/6.14), Num: 124
+Steps: 11, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 6.19(0.32/5.50/6.65), Num: 127
+Steps: 12, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 6.58(0.31/5.88/7.14), Num: 114
+Steps: 13, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.04(0.29/6.48/7.56), Num: 122
+Steps: 14, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.42(0.24/6.96/7.91), Num: 126
+Steps: 15, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.56(0.37/6.86/8.22), Num: 122
+Steps: 16, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.70(0.29/7.15/8.22), Num: 103
+Data - %solved: 10.82, path_costs: 2.170, search_itrs: 12.032, cost-to-go (mean/min/max): 4.07/0.00/8.59
+Train - itrs: 800, loss: 3.15E-01, targ_updated: True
+Times - up_start: 0.00, up_data: 344.83, up_end: 0.59, data_samp: 0.16, train: 2.12, save: 0.02, Tot: 347.73
+
+Getting Data - itr: 24800, update_num: 31, targ_update: 31, num_gen: 61,440, step max (curr): 16
+Generating 61,440 training instances with 2,048 searches
+Generated 61,440 training instances
+Times - steps_gen: 0.03, inst_info: 0.00, inst_add: 0.00, update_perf: 0.02, backup: 0.15, to_np: 0.29, put: 0.17, ->get_states: 0.00, ->pathfinding: 12336.28, Tot: 12336.95
+	(get_states): Tot: 0.00
+	(pathfinding): root: 0.01, pop: 0.21, is_solved: 1728.24, ub: 0.02, expand: 10599.07, heur: 4.23, make_nodes: 0.90, up_inst: 0.49, check: 2.74, cost: 0.16, push: 0.21, Tot: 12336.28
+Steps: 0, %Solved: 100.00, avgItrs: 1.00, avgPathCosts: 0.00, CTG_Backup: 0.00(0.00/0.00/0.00), Num: 3510
+Steps: 1, %Solved: 22.13, avgItrs: 19.26, avgPathCosts: 2.59, CTG_Backup: 1.59(0.22/1.18/2.14), Num: 122
+Steps: 2, %Solved: 30.08, avgItrs: 18.38, avgPathCosts: 2.75, CTG_Backup: 2.14(0.30/1.55/2.74), Num: 133
+Steps: 3, %Solved: 21.54, avgItrs: 15.18, avgPathCosts: 3.00, CTG_Backup: 2.63(0.25/2.17/3.30), Num: 130
+Steps: 4, %Solved: 14.71, avgItrs: 22.05, avgPathCosts: 4.00, CTG_Backup: 3.03(0.31/2.36/3.90), Num: 136
+Steps: 5, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 3.73(0.25/3.20/4.11), Num: 129
+Steps: 6, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 3.95(0.20/3.50/4.46), Num: 133
+Steps: 7, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 4.42(0.28/4.01/5.15), Num: 121
+Steps: 8, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 4.86(0.30/4.32/5.42), Num: 110
+Steps: 9, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 5.39(0.30/4.78/5.93), Num: 109
+Steps: 10, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 5.77(0.30/5.11/6.22), Num: 121
+Steps: 11, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 6.05(0.36/5.38/6.73), Num: 113
+Steps: 12, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 6.63(0.34/5.90/7.09), Num: 115
+Steps: 13, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.11(0.31/6.48/7.60), Num: 103
+Steps: 14, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.48(0.30/6.87/8.03), Num: 120
+Steps: 15, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.55(0.44/6.87/8.32), Num: 131
+Steps: 16, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.71(0.36/7.18/8.32), Num: 115
+Data - %solved: 11.09, path_costs: 2.469, search_itrs: 15.173, cost-to-go (mean/min/max): 4.03/0.00/8.68
+Train - itrs: 800, loss: 3.16E-01, targ_updated: True
+Times - up_start: 0.00, up_data: 348.16, up_end: 0.61, data_samp: 0.19, train: 2.20, save: 0.02, Tot: 351.18
+
+Getting Data - itr: 25600, update_num: 32, targ_update: 32, num_gen: 61,440, step max (curr): 16
+Generating 61,440 training instances with 2,048 searches
+Generated 61,440 training instances
+Times - steps_gen: 0.01, inst_info: 0.00, inst_add: 0.00, update_perf: 0.02, backup: 0.16, to_np: 0.30, put: 0.29, ->get_states: 0.00, ->pathfinding: 12398.33, Tot: 12399.11
+	(get_states): Tot: 0.00
+	(pathfinding): root: 0.01, pop: 0.21, is_solved: 1731.45, ub: 0.02, expand: 10657.52, heur: 4.54, make_nodes: 0.99, up_inst: 0.46, check: 2.76, cost: 0.17, push: 0.21, Tot: 12398.33
+Steps: 0, %Solved: 100.00, avgItrs: 1.00, avgPathCosts: 0.00, CTG_Backup: 0.00(0.00/0.00/0.00), Num: 4050
+Steps: 1, %Solved: 39.13, avgItrs: 8.09, avgPathCosts: 1.72, CTG_Backup: 1.65(0.22/1.16/2.22), Num: 138
+Steps: 2, %Solved: 38.10, avgItrs: 19.30, avgPathCosts: 2.65, CTG_Backup: 2.05(0.24/1.55/2.83), Num: 105
+Steps: 3, %Solved: 31.09, avgItrs: 12.27, avgPathCosts: 3.00, CTG_Backup: 2.60(0.30/1.91/3.34), Num: 119
+Steps: 4, %Solved: 11.19, avgItrs: 23.80, avgPathCosts: 4.00, CTG_Backup: 3.07(0.24/2.41/3.69), Num: 134
+Steps: 5, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 3.62(0.25/3.09/4.07), Num: 132
+Steps: 6, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 4.08(0.25/3.71/4.45), Num: 122
+Steps: 7, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 4.60(0.28/4.18/5.06), Num: 111
+Steps: 8, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 5.02(0.33/4.54/5.59), Num: 118
+Steps: 9, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 5.40(0.29/4.87/5.95), Num: 113
+Steps: 10, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 5.76(0.36/5.09/6.15), Num: 126
+Steps: 11, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 6.27(0.30/5.56/6.68), Num: 124
+Steps: 12, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 6.68(0.31/6.02/7.17), Num: 105
+Steps: 13, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.13(0.33/6.53/7.60), Num: 113
+Steps: 14, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.37(0.25/6.87/7.86), Num: 145
+Steps: 15, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.63(0.35/6.87/8.18), Num: 117
+Steps: 16, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.85(0.31/7.21/8.29), Num: 107
+Data - %solved: 12.91, path_costs: 2.274, search_itrs: 12.893, cost-to-go (mean/min/max): 4.09/0.00/8.60
+Train - itrs: 800, loss: 3.57E-01, targ_updated: True
+Times - up_start: 0.00, up_data: 358.51, up_end: 0.59, data_samp: 0.23, train: 2.13, save: 0.02, Tot: 361.48
+
+Getting Data - itr: 26400, update_num: 33, targ_update: 33, num_gen: 61,440, step max (curr): 16
+Generating 61,440 training instances with 2,048 searches
+Generated 61,440 training instances
+Times - steps_gen: 0.01, inst_info: 0.00, inst_add: 0.00, update_perf: 0.02, backup: 0.15, to_np: 0.28, put: 0.23, ->get_states: 0.00, ->pathfinding: 12360.36, Tot: 12361.06
+	(get_states): Tot: 0.00
+	(pathfinding): root: 0.01, pop: 0.21, is_solved: 1725.37, ub: 0.03, expand: 10625.20, heur: 5.11, make_nodes: 0.90, up_inst: 0.46, check: 2.69, cost: 0.17, push: 0.21, Tot: 12360.36
+Steps: 0, %Solved: 100.00, avgItrs: 1.00, avgPathCosts: 0.00, CTG_Backup: 0.00(0.00/0.00/0.00), Num: 3390
+Steps: 1, %Solved: 21.53, avgItrs: 15.84, avgPathCosts: 2.29, CTG_Backup: 1.70(0.19/1.28/2.13), Num: 144
+Steps: 2, %Solved: 33.59, avgItrs: 18.98, avgPathCosts: 2.73, CTG_Backup: 2.12(0.25/1.57/2.75), Num: 131
+Steps: 3, %Solved: 8.62, avgItrs: 13.30, avgPathCosts: 3.00, CTG_Backup: 2.53(0.24/2.13/3.01), Num: 116
+Steps: 4, %Solved: 12.28, avgItrs: 23.57, avgPathCosts: 4.00, CTG_Backup: 3.21(0.20/2.73/3.57), Num: 114
+Steps: 5, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 3.63(0.27/3.21/4.38), Num: 121
+Steps: 6, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 4.05(0.25/3.43/4.63), Num: 131
+Steps: 7, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 4.46(0.31/3.96/5.11), Num: 107
+Steps: 8, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 4.92(0.37/4.37/5.48), Num: 121
+Steps: 9, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 5.44(0.38/4.82/5.94), Num: 117
+Steps: 10, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 5.66(0.37/5.00/6.22), Num: 118
+Steps: 11, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 6.18(0.29/5.53/6.60), Num: 118
+Steps: 12, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 6.70(0.29/5.98/7.16), Num: 117
+Steps: 13, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.06(0.29/6.59/7.52), Num: 121
+Steps: 14, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.37(0.24/6.95/7.86), Num: 133
+Steps: 15, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.54(0.37/6.93/8.23), Num: 114
+Steps: 16, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.76(0.32/7.22/8.37), Num: 115
+Data - %solved: 10.35, path_costs: 2.404, search_itrs: 14.537, cost-to-go (mean/min/max): 4.08/0.00/8.77
+Train - itrs: 800, loss: 4.52E-01, targ_updated: True
+Times - up_start: 0.00, up_data: 343.11, up_end: 0.64, data_samp: 0.22, train: 2.10, save: 0.02, Tot: 346.10
+
+Getting Data - itr: 27200, update_num: 34, targ_update: 34, num_gen: 61,440, step max (curr): 16
+Generating 61,440 training instances with 2,048 searches
+Generated 61,440 training instances
+Times - steps_gen: 0.02, inst_info: 0.00, inst_add: 0.00, backup: 0.16, to_np: 0.30, update_perf: 0.02, put: 0.17, ->get_states: 0.00, ->pathfinding: 12447.94, Tot: 12448.63
+	(get_states): Tot: 0.00
+	(pathfinding): root: 0.01, pop: 0.22, is_solved: 1733.36, ub: 0.03, expand: 10704.69, heur: 5.15, make_nodes: 0.92, up_inst: 0.45, check: 2.73, cost: 0.17, push: 0.22, Tot: 12447.94
+Steps: 0, %Solved: 100.00, avgItrs: 1.00, avgPathCosts: 0.00, CTG_Backup: 0.00(0.00/0.00/0.00), Num: 3450
+Steps: 1, %Solved: 36.76, avgItrs: 13.26, avgPathCosts: 2.08, CTG_Backup: 1.57(0.19/1.24/2.04), Num: 136
+Steps: 2, %Solved: 30.23, avgItrs: 17.08, avgPathCosts: 2.62, CTG_Backup: 2.06(0.26/1.56/2.81), Num: 129
+Steps: 3, %Solved: 26.67, avgItrs: 13.75, avgPathCosts: 3.00, CTG_Backup: 2.58(0.27/1.85/3.32), Num: 120
+Steps: 4, %Solved: 7.76, avgItrs: 26.00, avgPathCosts: 4.00, CTG_Backup: 3.14(0.29/2.68/3.90), Num: 116
+Steps: 5, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 3.68(0.28/3.01/4.36), Num: 119
+Steps: 6, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 4.00(0.31/3.39/4.68), Num: 115
+Steps: 7, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 4.43(0.28/3.94/4.96), Num: 126
+Steps: 8, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 4.91(0.29/4.39/5.52), Num: 126
+Steps: 9, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 5.45(0.37/4.84/5.90), Num: 116
+Steps: 10, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 5.76(0.30/5.18/6.17), Num: 137
+Steps: 11, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 6.25(0.30/5.43/6.65), Num: 100
+Steps: 12, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 6.71(0.31/5.91/7.14), Num: 121
+Steps: 13, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.04(0.31/6.49/7.57), Num: 145
+Steps: 14, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.40(0.27/6.88/8.00), Num: 116
+Steps: 15, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.59(0.37/6.88/8.30), Num: 101
+Steps: 16, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.74(0.28/7.21/8.30), Num: 120
+Data - %solved: 11.85, path_costs: 2.339, search_itrs: 14.217, cost-to-go (mean/min/max): 4.08/0.00/8.65
+Train - itrs: 800, loss: 3.65E-01, targ_updated: True
+Times - up_start: 0.00, up_data: 354.69, up_end: 0.62, data_samp: 0.24, train: 2.16, save: 0.02, Tot: 357.73
+
+Getting Data - itr: 28000, update_num: 35, targ_update: 35, num_gen: 61,440, step max (curr): 16
+Generating 61,440 training instances with 2,048 searches
+Generated 61,440 training instances
+Times - steps_gen: 0.03, inst_info: 0.00, inst_add: 0.00, update_perf: 0.02, backup: 0.16, to_np: 0.30, put: 0.33, ->get_states: 0.00, ->pathfinding: 12302.34, Tot: 12303.19
+	(get_states): Tot: 0.00
+	(pathfinding): root: 0.01, pop: 0.23, is_solved: 1727.92, ub: 0.03, expand: 10564.45, heur: 5.09, make_nodes: 0.99, up_inst: 0.48, check: 2.76, cost: 0.17, push: 0.22, Tot: 12302.34
+Steps: 0, %Solved: 100.00, avgItrs: 1.00, avgPathCosts: 0.00, CTG_Backup: 0.00(0.00/0.00/0.00), Num: 3450
+Steps: 1, %Solved: 38.46, avgItrs: 20.42, avgPathCosts: 2.46, CTG_Backup: 1.63(0.19/1.13/2.22), Num: 130
+Steps: 2, %Solved: 30.48, avgItrs: 17.72, avgPathCosts: 2.75, CTG_Backup: 1.96(0.24/1.54/2.81), Num: 105
+Steps: 3, %Solved: 42.62, avgItrs: 14.81, avgPathCosts: 3.00, CTG_Backup: 2.50(0.31/1.91/3.30), Num: 122
+Steps: 4, %Solved: 6.72, avgItrs: 23.88, avgPathCosts: 4.00, CTG_Backup: 3.01(0.23/2.41/3.42), Num: 119
+Steps: 5, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 3.65(0.20/3.40/4.10), Num: 131
+Steps: 6, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 4.08(0.32/3.51/4.74), Num: 141
+Steps: 7, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 4.56(0.26/4.08/5.07), Num: 133
+Steps: 8, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 4.95(0.30/4.36/5.47), Num: 111
+Steps: 9, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 5.43(0.33/4.82/6.06), Num: 114
+Steps: 10, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 5.79(0.30/4.99/6.20), Num: 121
+Steps: 11, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 6.16(0.31/5.39/6.69), Num: 120
+Steps: 12, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 6.57(0.36/5.93/7.12), Num: 105
+Steps: 13, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.09(0.35/6.46/7.55), Num: 137
+Steps: 14, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.50(0.27/6.87/7.98), Num: 109
+Steps: 15, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.51(0.36/6.87/8.24), Num: 133
+Steps: 16, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.84(0.28/7.27/8.24), Num: 109
+Data - %solved: 12.84, path_costs: 2.442, search_itrs: 15.564, cost-to-go (mean/min/max): 4.09/0.00/8.60
+Train - itrs: 800, loss: 3.67E-01, targ_updated: True
+Times - up_start: 0.00, up_data: 354.31, up_end: 0.68, data_samp: 0.21, train: 2.09, save: 0.02, Tot: 357.33
+
+Getting Data - itr: 28800, update_num: 36, targ_update: 36, num_gen: 61,440, step max (curr): 16
+Generating 61,440 training instances with 2,048 searches
+Generated 61,440 training instances
+Times - steps_gen: 0.01, inst_info: 0.00, inst_add: 0.00, update_perf: 0.02, backup: 0.16, to_np: 0.29, put: 0.17, ->get_states: 0.00, ->pathfinding: 12219.37, Tot: 12220.03
+	(get_states): Tot: 0.00
+	(pathfinding): root: 0.01, pop: 0.22, is_solved: 1724.83, ub: 0.03, expand: 10484.42, heur: 5.37, make_nodes: 0.92, up_inst: 0.46, check: 2.73, cost: 0.17, push: 0.21, Tot: 12219.37
+Steps: 0, %Solved: 100.00, avgItrs: 1.00, avgPathCosts: 0.00, CTG_Backup: 0.00(0.00/0.00/0.00), Num: 3270
+Steps: 1, %Solved: 21.15, avgItrs: 11.73, avgPathCosts: 1.91, CTG_Backup: 1.66(0.22/1.26/2.11), Num: 104
+Steps: 2, %Solved: 37.98, avgItrs: 12.92, avgPathCosts: 2.45, CTG_Backup: 2.04(0.22/1.54/2.46), Num: 129
+Steps: 3, %Solved: 27.66, avgItrs: 12.95, avgPathCosts: 3.00, CTG_Backup: 2.55(0.23/1.92/3.28), Num: 141
+Steps: 4, %Solved: 9.85, avgItrs: 20.54, avgPathCosts: 4.00, CTG_Backup: 3.10(0.24/2.68/3.54), Num: 132
+Steps: 5, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 3.60(0.24/3.21/4.08), Num: 121
+Steps: 6, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 4.04(0.25/3.42/4.63), Num: 123
+Steps: 7, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 4.44(0.25/3.94/5.00), Num: 109
+Steps: 8, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 4.87(0.31/4.36/5.36), Num: 136
+Steps: 9, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 5.37(0.33/4.82/5.89), Num: 117
+Steps: 10, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 5.69(0.33/5.03/6.20), Num: 127
+Steps: 11, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 6.05(0.34/5.41/6.52), Num: 106
+Steps: 12, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 6.69(0.28/6.12/7.17), Num: 135
+Steps: 13, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 6.91(0.27/6.45/7.46), Num: 127
+Steps: 14, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.45(0.26/6.90/7.99), Num: 99
+Steps: 15, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.51(0.42/6.85/8.29), Num: 124
+Steps: 16, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.69(0.31/7.24/8.29), Num: 121
+Data - %solved: 11.57, path_costs: 2.272, search_itrs: 11.827, cost-to-go (mean/min/max): 4.07/0.00/8.64
+Train - itrs: 800, loss: 3.32E-01, targ_updated: True
+Times - up_start: 0.00, up_data: 344.65, up_end: 0.59, data_samp: 0.21, train: 2.10, save: 0.02, Tot: 347.58
+
+Getting Data - itr: 29600, update_num: 37, targ_update: 37, num_gen: 61,440, step max (curr): 16
+Generating 61,440 training instances with 2,048 searches
+Generated 61,440 training instances
+Times - steps_gen: 0.02, inst_info: 0.00, inst_add: 0.00, update_perf: 0.02, backup: 0.16, to_np: 0.31, put: 0.17, ->get_states: 0.00, ->pathfinding: 12529.42, Tot: 12530.11
+	(get_states): Tot: 0.00
+	(pathfinding): root: 0.01, pop: 0.22, is_solved: 1730.54, ub: 0.03, expand: 10789.10, heur: 5.08, make_nodes: 0.89, up_inst: 0.45, check: 2.72, cost: 0.17, push: 0.21, Tot: 12529.42
+Steps: 0, %Solved: 100.00, avgItrs: 1.00, avgPathCosts: 0.00, CTG_Backup: 0.00(0.00/0.00/0.00), Num: 3840
+Steps: 1, %Solved: 36.94, avgItrs: 16.44, avgPathCosts: 2.24, CTG_Backup: 1.68(0.18/1.36/2.13), Num: 111
+Steps: 2, %Solved: 36.15, avgItrs: 18.89, avgPathCosts: 2.81, CTG_Backup: 1.97(0.17/1.66/2.74), Num: 130
+Steps: 3, %Solved: 16.54, avgItrs: 14.00, avgPathCosts: 3.00, CTG_Backup: 2.56(0.25/2.11/3.25), Num: 127
+Steps: 4, %Solved: 11.11, avgItrs: 25.45, avgPathCosts: 4.00, CTG_Backup: 3.02(0.35/2.30/3.84), Num: 99
+Steps: 5, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 3.58(0.27/2.99/4.04), Num: 120
+Steps: 6, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 3.94(0.25/3.48/4.72), Num: 117
+Steps: 7, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 4.40(0.27/3.90/5.11), Num: 130
+Steps: 8, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 4.86(0.33/4.12/5.47), Num: 128
+Steps: 9, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 5.48(0.30/4.85/5.86), Num: 122
+Steps: 10, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 5.68(0.27/5.16/6.11), Num: 118
+Steps: 11, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 6.14(0.35/5.35/6.64), Num: 119
+Steps: 12, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 6.72(0.30/6.03/7.14), Num: 104
+Steps: 13, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 6.97(0.34/6.48/7.55), Num: 136
+Steps: 14, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.46(0.22/6.85/7.99), Num: 136
+Steps: 15, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.55(0.39/6.86/8.27), Num: 115
+Steps: 16, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.74(0.34/7.15/8.27), Num: 115
+Data - %solved: 11.81, path_costs: 2.410, search_itrs: 15.157, cost-to-go (mean/min/max): 4.06/0.00/8.60
+Train - itrs: 800, loss: 2.98E-01, targ_updated: True
+Times - up_start: 0.00, up_data: 347.30, up_end: 0.61, data_samp: 0.24, train: 2.18, save: 0.02, Tot: 350.37
+
+Getting Data - itr: 30400, update_num: 38, targ_update: 38, num_gen: 61,440, step max (curr): 16
+Generating 61,440 training instances with 2,048 searches
+Generated 61,440 training instances
+Times - steps_gen: 0.03, inst_info: 0.00, inst_add: 0.00, update_perf: 0.02, backup: 0.15, to_np: 0.29, put: 0.17, ->get_states: 0.00, ->pathfinding: 12324.37, Tot: 12325.03
+	(get_states): Tot: 0.00
+	(pathfinding): root: 0.01, pop: 0.22, is_solved: 1736.68, ub: 0.03, expand: 10577.78, heur: 5.04, make_nodes: 1.05, up_inst: 0.46, check: 2.73, cost: 0.17, push: 0.21, Tot: 12324.37
+Steps: 0, %Solved: 100.00, avgItrs: 1.00, avgPathCosts: 0.00, CTG_Backup: 0.00(0.00/0.00/0.00), Num: 3780
+Steps: 1, %Solved: 42.86, avgItrs: 11.43, avgPathCosts: 1.88, CTG_Backup: 1.58(0.21/1.23/2.03), Num: 119
+Steps: 2, %Solved: 25.69, avgItrs: 15.70, avgPathCosts: 2.59, CTG_Backup: 2.05(0.21/1.60/2.48), Num: 144
+Steps: 3, %Solved: 17.70, avgItrs: 16.45, avgPathCosts: 3.00, CTG_Backup: 2.68(0.28/2.14/3.30), Num: 113
+Steps: 4, %Solved: 1.69, avgItrs: 27.00, avgPathCosts: 4.00, CTG_Backup: 3.08(0.25/2.71/3.69), Num: 118
+Steps: 5, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 3.67(0.30/3.00/4.37), Num: 122
+Steps: 6, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 4.02(0.31/3.37/4.72), Num: 132
+Steps: 7, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 4.54(0.29/3.93/5.12), Num: 127
+Steps: 8, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 4.89(0.29/4.45/5.51), Num: 123
+Steps: 9, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 5.45(0.32/4.82/5.90), Num: 121
+Steps: 10, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 5.73(0.30/4.97/6.12), Num: 121
+Steps: 11, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 6.09(0.35/5.36/6.62), Num: 108
+Steps: 12, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 6.61(0.31/5.86/7.04), Num: 124
+Steps: 13, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.06(0.29/6.48/7.53), Num: 98
+Steps: 14, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.43(0.21/7.04/7.91), Num: 126
+Steps: 15, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.50(0.40/6.84/8.24), Num: 115
+Steps: 16, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.61(0.27/7.17/8.20), Num: 123
+Data - %solved: 11.06, path_costs: 2.295, search_itrs: 14.317, cost-to-go (mean/min/max): 4.04/0.00/8.59
+Train - itrs: 800, loss: 3.39E-01, targ_updated: True
+Times - up_start: 0.00, up_data: 343.93, up_end: 0.60, data_samp: 0.21, train: 2.15, save: 0.02, Tot: 346.92
+
+Getting Data - itr: 31200, update_num: 39, targ_update: 39, num_gen: 61,440, step max (curr): 16
+Generating 61,440 training instances with 2,048 searches
+Generated 61,440 training instances
+Times - steps_gen: 0.02, inst_info: 0.00, inst_add: 0.00, update_perf: 0.02, backup: 0.16, to_np: 0.29, put: 0.25, ->get_states: 0.00, ->pathfinding: 12413.79, Tot: 12414.53
+	(get_states): Tot: 0.00
+	(pathfinding): root: 0.01, pop: 0.22, is_solved: 1722.92, ub: 0.03, expand: 10680.62, heur: 5.42, make_nodes: 0.93, up_inst: 0.46, check: 2.80, cost: 0.17, push: 0.22, Tot: 12413.79
+Steps: 0, %Solved: 100.00, avgItrs: 1.00, avgPathCosts: 0.00, CTG_Backup: 0.00(0.00/0.00/0.00), Num: 3990
+Steps: 1, %Solved: 34.85, avgItrs: 12.00, avgPathCosts: 2.04, CTG_Backup: 1.72(0.27/1.17/2.20), Num: 132
+Steps: 2, %Solved: 23.81, avgItrs: 12.68, avgPathCosts: 2.52, CTG_Backup: 2.14(0.28/1.59/2.80), Num: 105
+Steps: 3, %Solved: 34.88, avgItrs: 14.29, avgPathCosts: 3.00, CTG_Backup: 2.60(0.27/1.89/3.31), Num: 129
+Steps: 4, %Solved: 11.63, avgItrs: 21.60, avgPathCosts: 4.00, CTG_Backup: 3.15(0.24/2.64/3.65), Num: 129
+Steps: 5, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 3.68(0.24/3.07/4.12), Num: 118
+Steps: 6, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 4.01(0.30/3.46/4.67), Num: 118
+Steps: 7, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 4.49(0.28/4.04/5.07), Num: 120
+Steps: 8, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 4.95(0.31/4.50/5.51), Num: 124
+Steps: 9, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 5.40(0.37/4.81/5.96), Num: 123
+Steps: 10, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 5.70(0.29/5.03/6.16), Num: 111
+Steps: 11, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 6.25(0.30/5.43/6.70), Num: 105
+Steps: 12, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 6.72(0.34/5.90/7.19), Num: 116
+Steps: 13, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.06(0.35/6.50/7.58), Num: 136
+Steps: 14, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.53(0.26/6.96/8.01), Num: 119
+Steps: 15, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.53(0.39/6.88/8.23), Num: 127
+Steps: 16, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.73(0.31/7.21/8.26), Num: 118
+Data - %solved: 12.07, path_costs: 2.313, search_itrs: 12.314, cost-to-go (mean/min/max): 4.09/0.00/8.60
+Train - itrs: 800, loss: 3.60E-01, targ_updated: True
+Times - up_start: 0.00, up_data: 346.50, up_end: 0.61, data_samp: 0.26, train: 2.25, save: 0.02, Tot: 349.64
+
+Getting Data - itr: 32000, update_num: 40, targ_update: 40, num_gen: 61,440, step max (curr): 16
+Generating 61,440 training instances with 2,048 searches
+Generated 61,440 training instances
+Times - steps_gen: 0.01, inst_info: 0.00, inst_add: 0.00, backup: 0.16, to_np: 0.30, update_perf: 0.03, put: 0.24, ->get_states: 0.00, ->pathfinding: 12288.68, Tot: 12289.43
+	(get_states): Tot: 0.00
+	(pathfinding): root: 0.01, pop: 0.23, is_solved: 1728.46, ub: 0.03, expand: 10549.89, heur: 5.45, make_nodes: 0.97, up_inst: 0.47, check: 2.80, cost: 0.17, push: 0.22, Tot: 12288.68
+Steps: 0, %Solved: 100.00, avgItrs: 1.00, avgPathCosts: 0.00, CTG_Backup: 0.00(0.00/0.00/0.00), Num: 3960
+Steps: 1, %Solved: 25.21, avgItrs: 17.60, avgPathCosts: 2.27, CTG_Backup: 1.65(0.22/1.14/2.04), Num: 119
+Steps: 2, %Solved: 27.73, avgItrs: 13.39, avgPathCosts: 2.45, CTG_Backup: 2.06(0.27/1.59/2.79), Num: 119
+Steps: 3, %Solved: 13.14, avgItrs: 16.00, avgPathCosts: 3.00, CTG_Backup: 2.60(0.32/1.90/3.30), Num: 137
+Steps: 4, %Solved: 12.38, avgItrs: 23.92, avgPathCosts: 4.00, CTG_Backup: 3.06(0.28/2.39/3.62), Num: 105
+Steps: 5, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 3.69(0.28/3.20/4.32), Num: 113
+Steps: 6, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 4.03(0.29/3.56/4.72), Num: 142
+Steps: 7, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 4.60(0.23/4.18/5.05), Num: 124
+Steps: 8, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 4.90(0.30/4.47/5.46), Num: 114
+Steps: 9, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 5.41(0.34/4.77/5.86), Num: 112
+Steps: 10, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 5.67(0.32/5.00/6.12), Num: 119
+Steps: 11, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 6.16(0.30/5.39/6.51), Num: 125
+Steps: 12, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 6.52(0.34/5.85/6.97), Num: 122
+Steps: 13, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.02(0.30/6.48/7.44), Num: 109
+Steps: 14, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.43(0.26/6.84/7.89), Num: 115
+Steps: 15, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.48(0.38/6.84/8.20), Num: 134
+Steps: 16, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.65(0.32/7.15/8.19), Num: 119
+Data - %solved: 10.50, path_costs: 2.344, search_itrs: 14.383, cost-to-go (mean/min/max): 4.06/0.00/8.55
+Train - itrs: 800, loss: 3.03E-01, targ_updated: True
+Times - up_start: 0.00, up_data: 343.14, up_end: 0.59, data_samp: 0.26, train: 2.24, save: 0.02, Tot: 346.25
+
+Getting Data - itr: 32800, update_num: 41, targ_update: 41, num_gen: 61,440, step max (curr): 16
+Generating 61,440 training instances with 2,048 searches
+Generated 61,440 training instances
+Times - steps_gen: 0.01, inst_info: 0.00, inst_add: 0.00, update_perf: 0.02, backup: 0.16, to_np: 0.29, put: 0.17, ->get_states: 0.00, ->pathfinding: 12295.45, Tot: 12296.11
+	(get_states): Tot: 0.00
+	(pathfinding): root: 0.01, pop: 0.22, is_solved: 1731.78, ub: 0.03, expand: 10553.91, heur: 4.98, make_nodes: 0.93, up_inst: 0.48, check: 2.73, cost: 0.17, push: 0.21, Tot: 12295.45
+Steps: 0, %Solved: 100.00, avgItrs: 1.00, avgPathCosts: 0.00, CTG_Backup: 0.00(0.00/0.00/0.00), Num: 3960
+Steps: 1, %Solved: 33.07, avgItrs: 15.95, avgPathCosts: 2.29, CTG_Backup: 1.68(0.17/1.16/1.98), Num: 127
+Steps: 2, %Solved: 15.87, avgItrs: 15.75, avgPathCosts: 2.60, CTG_Backup: 2.03(0.16/1.71/2.49), Num: 126
+Steps: 3, %Solved: 29.03, avgItrs: 14.03, avgPathCosts: 3.00, CTG_Backup: 2.56(0.29/1.95/3.35), Num: 124
+Steps: 4, %Solved: 6.36, avgItrs: 23.57, avgPathCosts: 4.00, CTG_Backup: 3.10(0.32/2.43/3.93), Num: 110
+Steps: 5, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 3.68(0.22/3.28/4.11), Num: 117
+Steps: 6, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 4.00(0.32/2.68/4.68), Num: 115
+Steps: 7, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 4.48(0.30/4.05/5.12), Num: 142
+Steps: 8, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 5.09(0.29/4.37/5.48), Num: 135
+Steps: 9, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 5.39(0.33/4.79/5.91), Num: 122
+Steps: 10, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 5.74(0.27/5.12/6.24), Num: 130
+Steps: 11, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 6.26(0.30/5.50/6.71), Num: 109
+Steps: 12, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 6.49(0.37/5.96/7.10), Num: 114
+Steps: 13, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.10(0.20/6.43/7.53), Num: 126
+Steps: 14, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.44(0.24/6.87/7.96), Num: 108
+Steps: 15, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.52(0.37/6.89/8.28), Num: 115
+Steps: 16, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.68(0.37/7.14/8.28), Num: 117
+Data - %solved: 10.84, path_costs: 2.377, search_itrs: 14.060, cost-to-go (mean/min/max): 4.05/0.00/8.61
+Train - itrs: 800, loss: 2.60E-01, targ_updated: True
+Times - up_start: 0.00, up_data: 340.36, up_end: 0.61, data_samp: 0.23, train: 2.18, save: 0.02, Tot: 343.40
+
+Getting Data - itr: 33600, update_num: 42, targ_update: 42, num_gen: 61,440, step max (curr): 16
+Generating 61,440 training instances with 2,048 searches
+Generated 61,440 training instances
+Times - steps_gen: 0.01, inst_info: 0.00, inst_add: 0.00, update_perf: 0.02, backup: 0.15, to_np: 0.29, put: 0.17, ->get_states: 0.00, ->pathfinding: 12210.82, Tot: 12211.47
+	(get_states): Tot: 0.00
+	(pathfinding): root: 0.01, pop: 0.21, is_solved: 1724.10, ub: 0.03, expand: 10476.83, heur: 5.15, make_nodes: 0.90, up_inst: 0.48, check: 2.74, cost: 0.17, push: 0.21, Tot: 12210.82
+Steps: 0, %Solved: 100.00, avgItrs: 1.00, avgPathCosts: 0.00, CTG_Backup: 0.00(0.00/0.00/0.00), Num: 3540
+Steps: 1, %Solved: 28.91, avgItrs: 17.35, avgPathCosts: 2.22, CTG_Backup: 1.67(0.19/1.13/2.17), Num: 128
+Steps: 2, %Solved: 23.42, avgItrs: 17.42, avgPathCosts: 2.69, CTG_Backup: 2.09(0.21/1.71/2.79), Num: 111
+Steps: 3, %Solved: 17.86, avgItrs: 14.30, avgPathCosts: 3.00, CTG_Backup: 2.59(0.34/1.91/3.31), Num: 112
+Steps: 4, %Solved: 3.88, avgItrs: 28.00, avgPathCosts: 4.00, CTG_Backup: 3.10(0.33/2.38/3.82), Num: 129
+Steps: 5, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 3.70(0.28/3.21/4.37), Num: 104
+Steps: 6, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 4.00(0.24/3.45/4.47), Num: 124
+Steps: 7, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 4.51(0.26/4.02/5.01), Num: 131
+Steps: 8, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 4.97(0.29/4.38/5.51), Num: 123
+Steps: 9, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 5.35(0.35/4.84/5.98), Num: 117
+Steps: 10, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 5.77(0.30/5.14/6.22), Num: 106
+Steps: 11, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 6.17(0.36/5.43/6.73), Num: 115
+Steps: 12, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 6.72(0.29/5.90/7.19), Num: 126
+Steps: 13, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.09(0.28/6.53/7.58), Num: 115
+Steps: 14, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.51(0.31/6.91/8.01), Num: 142
+Steps: 15, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.61(0.41/6.94/8.29), Num: 121
+Steps: 16, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.73(0.26/7.24/8.29), Num: 130
+Data - %solved: 10.24, path_costs: 2.382, search_itrs: 15.615, cost-to-go (mean/min/max): 4.16/0.00/8.63
+Train - itrs: 800, loss: 4.10E-01, targ_updated: True
+Times - up_start: 0.00, up_data: 343.25, up_end: 0.53, data_samp: 0.16, train: 2.14, save: 0.02, Tot: 346.11
+
+Getting Data - itr: 34400, update_num: 43, targ_update: 43, num_gen: 61,440, step max (curr): 16
+Generating 61,440 training instances with 2,048 searches
+Generated 61,440 training instances
+Times - steps_gen: 0.01, inst_info: 0.00, inst_add: 0.00, update_perf: 0.02, backup: 0.15, to_np: 0.28, put: 0.33, ->get_states: 0.00, ->pathfinding: 12459.12, Tot: 12459.93
+	(get_states): Tot: 0.00
+	(pathfinding): root: 0.01, pop: 0.21, is_solved: 1727.34, ub: 0.03, expand: 10721.92, heur: 4.91, make_nodes: 1.11, up_inst: 0.44, check: 2.78, cost: 0.17, push: 0.21, Tot: 12459.12
+Steps: 0, %Solved: 100.00, avgItrs: 1.00, avgPathCosts: 0.00, CTG_Backup: 0.00(0.00/0.00/0.00), Num: 3330
+Steps: 1, %Solved: 34.03, avgItrs: 10.45, avgPathCosts: 1.84, CTG_Backup: 1.64(0.18/1.21/2.04), Num: 144
+Steps: 2, %Solved: 21.21, avgItrs: 26.18, avgPathCosts: 3.00, CTG_Backup: 2.07(0.17/1.61/2.45), Num: 132
+Steps: 3, %Solved: 18.42, avgItrs: 14.10, avgPathCosts: 3.00, CTG_Backup: 2.50(0.26/1.91/3.28), Num: 114
+Steps: 4, %Solved: 12.39, avgItrs: 25.93, avgPathCosts: 4.00, CTG_Backup: 3.13(0.25/2.35/3.76), Num: 113
+Steps: 5, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 3.55(0.27/3.04/4.26), Num: 109
+Steps: 6, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 3.98(0.26/3.49/4.59), Num: 121
+Steps: 7, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 4.48(0.29/3.96/5.04), Num: 128
+Steps: 8, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 4.91(0.32/4.32/5.42), Num: 130
+Steps: 9, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 5.27(0.37/4.75/5.84), Num: 116
+Steps: 10, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 5.59(0.29/5.07/6.12), Num: 120
+Steps: 11, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 6.08(0.35/5.35/6.60), Num: 116
+Steps: 12, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 6.55(0.35/5.85/7.01), Num: 105
+Steps: 13, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.01(0.35/6.39/7.48), Num: 136
+Steps: 14, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.42(0.23/6.91/7.87), Num: 117
+Steps: 15, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.48(0.38/6.87/8.16), Num: 120
+Steps: 16, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.56(0.29/7.14/8.16), Num: 126
+Data - %solved: 10.94, path_costs: 2.367, search_itrs: 15.530, cost-to-go (mean/min/max): 4.07/0.00/8.53
+Train - itrs: 800, loss: 2.53E-01, targ_updated: True
+Times - up_start: 0.00, up_data: 358.36, up_end: 0.57, data_samp: 0.20, train: 2.10, save: 0.02, Tot: 361.25
+
+Getting Data - itr: 35200, update_num: 44, targ_update: 44, num_gen: 61,440, step max (curr): 16
+Generating 61,440 training instances with 2,048 searches
+Generated 61,440 training instances
+Times - steps_gen: 0.01, inst_info: 0.00, inst_add: 0.00, update_perf: 0.02, backup: 0.16, to_np: 0.30, put: 0.17, ->get_states: 0.00, ->pathfinding: 12248.59, Tot: 12249.26
+	(get_states): Tot: 0.00
+	(pathfinding): root: 0.01, pop: 0.22, is_solved: 1734.43, ub: 0.03, expand: 10504.06, heur: 5.32, make_nodes: 0.93, up_inst: 0.47, check: 2.74, cost: 0.17, push: 0.21, Tot: 12248.59
+Steps: 0, %Solved: 100.00, avgItrs: 1.00, avgPathCosts: 0.00, CTG_Backup: 0.00(0.00/0.00/0.00), Num: 3450
+Steps: 1, %Solved: 40.50, avgItrs: 13.45, avgPathCosts: 2.06, CTG_Backup: 1.62(0.20/1.25/2.18), Num: 121
+Steps: 2, %Solved: 42.04, avgItrs: 12.73, avgPathCosts: 2.44, CTG_Backup: 2.07(0.20/1.59/2.42), Num: 157
+Steps: 3, %Solved: 21.37, avgItrs: 15.24, avgPathCosts: 3.00, CTG_Backup: 2.64(0.31/1.91/3.31), Num: 117
+Steps: 4, %Solved: 17.09, avgItrs: 23.65, avgPathCosts: 4.00, CTG_Backup: 3.14(0.34/2.38/3.92), Num: 117
+Steps: 5, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 3.67(0.27/3.09/4.10), Num: 124
+Steps: 6, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 3.99(0.29/3.53/4.77), Num: 127
+Steps: 7, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 4.43(0.27/3.97/5.09), Num: 142
+Steps: 8, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 4.84(0.30/4.32/5.46), Num: 97
+Steps: 9, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 5.33(0.30/4.77/5.88), Num: 118
+Steps: 10, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 5.72(0.34/5.02/6.09), Num: 108
+Steps: 11, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 6.19(0.38/5.40/6.70), Num: 108
+Steps: 12, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 6.56(0.36/5.89/7.17), Num: 126
+Steps: 13, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 6.99(0.34/6.44/7.54), Num: 128
+Steps: 14, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.38(0.26/6.89/7.84), Num: 132
+Steps: 15, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.56(0.41/6.83/8.31), Num: 128
+Steps: 16, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.65(0.36/6.98/8.31), Num: 108
+Data - %solved: 13.00, path_costs: 2.300, search_itrs: 13.213, cost-to-go (mean/min/max): 4.07/0.00/8.67
+Train - itrs: 800, loss: 3.29E-01, targ_updated: True
+Times - up_start: 0.00, up_data: 338.77, up_end: 0.59, data_samp: 0.23, train: 2.18, save: 0.02, Tot: 341.79
+
+Getting Data - itr: 36000, update_num: 45, targ_update: 45, num_gen: 61,440, step max (curr): 16
+Generating 61,440 training instances with 2,048 searches
+Generated 61,440 training instances
+Times - steps_gen: 0.02, inst_info: 0.00, inst_add: 0.00, update_perf: 0.02, backup: 0.16, to_np: 0.31, put: 0.25, ->get_states: 0.00, ->pathfinding: 12412.85, Tot: 12413.62
+	(get_states): Tot: 0.00
+	(pathfinding): root: 0.01, pop: 0.22, is_solved: 1720.77, ub: 0.03, expand: 10682.09, heur: 5.10, make_nodes: 0.98, up_inst: 0.45, check: 2.82, cost: 0.17, push: 0.22, Tot: 12412.85
+Steps: 0, %Solved: 100.00, avgItrs: 1.00, avgPathCosts: 0.00, CTG_Backup: 0.00(0.00/0.00/0.00), Num: 3570
+Steps: 1, %Solved: 25.00, avgItrs: 16.46, avgPathCosts: 2.11, CTG_Backup: 1.58(0.18/1.20/2.04), Num: 112
+Steps: 2, %Solved: 37.50, avgItrs: 10.11, avgPathCosts: 2.31, CTG_Backup: 2.11(0.20/1.69/2.80), Num: 120
+Steps: 3, %Solved: 15.97, avgItrs: 16.68, avgPathCosts: 3.00, CTG_Backup: 2.57(0.29/1.90/3.30), Num: 119
+Steps: 4, %Solved: 7.81, avgItrs: 22.70, avgPathCosts: 4.00, CTG_Backup: 3.04(0.30/2.35/3.59), Num: 128
+Steps: 5, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 3.64(0.28/3.16/4.35), Num: 122
+Steps: 6, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 3.91(0.29/3.40/4.70), Num: 128
+Steps: 7, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 4.40(0.29/3.95/5.09), Num: 108
+Steps: 8, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 4.90(0.33/4.37/5.55), Num: 125
+Steps: 9, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 5.35(0.38/4.80/5.85), Num: 123
+Steps: 10, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 5.70(0.32/5.06/6.19), Num: 137
+Steps: 11, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 6.08(0.36/5.48/6.68), Num: 119
+Steps: 12, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 6.62(0.30/6.07/7.09), Num: 126
+Steps: 13, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 6.99(0.35/6.46/7.52), Num: 126
+Steps: 14, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.43(0.27/6.82/7.87), Num: 112
+Steps: 15, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.49(0.38/6.82/8.28), Num: 111
+Steps: 16, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.69(0.30/7.16/8.28), Num: 120
+Data - %solved: 10.96, path_costs: 2.284, search_itrs: 13.392, cost-to-go (mean/min/max): 4.06/0.00/8.61
+Train - itrs: 800, loss: 3.79E-01, targ_updated: True
+Times - up_start: 0.00, up_data: 356.50, up_end: 0.62, data_samp: 0.22, train: 2.15, save: 0.02, Tot: 359.51
+
+Getting Data - itr: 36800, update_num: 46, targ_update: 46, num_gen: 61,440, step max (curr): 16
+Generating 61,440 training instances with 2,048 searches
+Generated 61,440 training instances
+Times - steps_gen: 0.02, inst_info: 0.00, inst_add: 0.00, update_perf: 0.02, backup: 0.16, to_np: 0.29, put: 0.25, ->get_states: 0.00, ->pathfinding: 12038.91, Tot: 12039.66
+	(get_states): Tot: 0.00
+	(pathfinding): root: 0.01, pop: 0.22, is_solved: 1722.21, ub: 0.03, expand: 10306.63, heur: 5.29, make_nodes: 0.93, up_inst: 0.48, check: 2.73, cost: 0.17, push: 0.21, Tot: 12038.91
+Steps: 0, %Solved: 100.00, avgItrs: 1.00, avgPathCosts: 0.00, CTG_Backup: 0.00(0.00/0.00/0.00), Num: 3570
+Steps: 1, %Solved: 45.16, avgItrs: 9.86, avgPathCosts: 1.73, CTG_Backup: 1.61(0.24/1.22/2.11), Num: 124
+Steps: 2, %Solved: 23.68, avgItrs: 17.19, avgPathCosts: 2.67, CTG_Backup: 1.99(0.20/1.49/2.37), Num: 114
+Steps: 3, %Solved: 34.81, avgItrs: 15.06, avgPathCosts: 3.00, CTG_Backup: 2.57(0.34/1.85/3.19), Num: 135
+Steps: 4, %Solved: 7.27, avgItrs: 24.00, avgPathCosts: 4.00, CTG_Backup: 3.09(0.27/2.33/3.78), Num: 110
+Steps: 5, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 3.62(0.29/3.02/4.29), Num: 137
+Steps: 6, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 3.92(0.28/3.41/4.65), Num: 119
+Steps: 7, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 4.41(0.26/3.94/5.03), Num: 120
+Steps: 8, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 4.98(0.30/4.44/5.44), Num: 103
+Steps: 9, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 5.41(0.34/4.07/5.90), Num: 119
+Steps: 10, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 5.71(0.31/5.16/6.17), Num: 133
+Steps: 11, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 6.23(0.31/5.53/6.65), Num: 125
+Steps: 12, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 6.70(0.28/5.88/7.15), Num: 134
+Steps: 13, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.09(0.31/6.50/7.51), Num: 134
+Steps: 14, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.43(0.28/6.97/7.91), Num: 116
+Steps: 15, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.66(0.39/6.88/8.22), Num: 116
+Steps: 16, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.69(0.28/7.27/8.22), Num: 98
+Data - %solved: 12.41, path_costs: 2.280, search_itrs: 13.421, cost-to-go (mean/min/max): 4.07/0.00/8.57
+Train - itrs: 800, loss: 2.93E-01, targ_updated: True
+Times - up_start: 0.00, up_data: 351.79, up_end: 0.56, data_samp: 0.28, train: 2.29, save: 0.02, Tot: 354.96
+
+Getting Data - itr: 37600, update_num: 47, targ_update: 47, num_gen: 61,440, step max (curr): 16
+Generating 61,440 training instances with 2,048 searches
+Generated 61,440 training instances
+Times - steps_gen: 0.03, inst_info: 0.00, inst_add: 0.00, backup: 0.16, to_np: 0.31, update_perf: 0.02, put: 0.18, ->get_states: 0.00, ->pathfinding: 12312.23, Tot: 12312.93
+	(get_states): Tot: 0.00
+	(pathfinding): root: 0.01, pop: 0.21, is_solved: 1720.57, ub: 0.03, expand: 10581.65, heur: 5.15, make_nodes: 0.92, up_inst: 0.45, check: 2.73, cost: 0.17, push: 0.35, Tot: 12312.23
+Steps: 0, %Solved: 100.00, avgItrs: 1.00, avgPathCosts: 0.00, CTG_Backup: 0.00(0.00/0.00/0.00), Num: 3600
+Steps: 1, %Solved: 34.93, avgItrs: 16.02, avgPathCosts: 2.35, CTG_Backup: 1.69(0.22/1.25/2.18), Num: 146
+Steps: 2, %Solved: 25.00, avgItrs: 15.52, avgPathCosts: 2.63, CTG_Backup: 2.02(0.23/1.52/2.44), Num: 108
+Steps: 3, %Solved: 25.81, avgItrs: 13.31, avgPathCosts: 3.00, CTG_Backup: 2.68(0.35/1.90/3.31), Num: 124
+Steps: 4, %Solved: 10.48, avgItrs: 20.38, avgPathCosts: 4.00, CTG_Backup: 3.12(0.30/2.40/3.85), Num: 124
+Steps: 5, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 3.64(0.29/3.08/4.36), Num: 124
+Steps: 6, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 4.02(0.28/3.47/4.71), Num: 109
+Steps: 7, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 4.44(0.30/4.01/5.02), Num: 150
+Steps: 8, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 4.95(0.30/4.49/5.46), Num: 129
+Steps: 9, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 5.43(0.33/4.81/5.89), Num: 96
+Steps: 10, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 5.71(0.37/5.01/6.19), Num: 106
+Steps: 11, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 6.13(0.37/5.41/6.63), Num: 134
+Steps: 12, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 6.58(0.33/5.99/7.04), Num: 128
+Steps: 13, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.04(0.31/6.47/7.56), Num: 113
+Steps: 14, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.37(0.30/6.86/7.98), Num: 107
+Steps: 15, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.61(0.36/6.86/8.25), Num: 114
+Steps: 16, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.61(0.31/7.15/8.22), Num: 125
+Data - %solved: 11.54, path_costs: 2.397, search_itrs: 13.247, cost-to-go (mean/min/max): 4.04/0.00/8.59
+Train - itrs: 800, loss: 3.07E-01, targ_updated: True
+Times - up_start: 0.00, up_data: 345.45, up_end: 0.58, data_samp: 0.23, train: 2.16, save: 0.02, Tot: 348.44
+
+Getting Data - itr: 38400, update_num: 48, targ_update: 48, num_gen: 61,440, step max (curr): 16
+Generating 61,440 training instances with 2,048 searches
+Generated 61,440 training instances
+Times - steps_gen: 0.01, inst_info: 0.00, inst_add: 0.00, update_perf: 0.02, backup: 0.16, to_np: 0.29, put: 0.17, ->get_states: 0.00, ->pathfinding: 12481.33, Tot: 12481.99
+	(get_states): Tot: 0.00
+	(pathfinding): root: 0.01, pop: 0.22, is_solved: 1735.13, ub: 0.03, expand: 10735.37, heur: 5.99, make_nodes: 0.92, up_inst: 0.52, check: 2.76, cost: 0.17, push: 0.21, Tot: 12481.33
+Steps: 0, %Solved: 100.00, avgItrs: 1.00, avgPathCosts: 0.00, CTG_Backup: 0.00(0.00/0.00/0.00), Num: 3930
+Steps: 1, %Solved: 23.73, avgItrs: 15.21, avgPathCosts: 2.18, CTG_Backup: 1.65(0.22/1.21/2.22), Num: 118
+Steps: 2, %Solved: 15.20, avgItrs: 24.16, avgPathCosts: 2.84, CTG_Backup: 2.06(0.32/1.59/2.84), Num: 125
+Steps: 3, %Solved: 20.17, avgItrs: 17.67, avgPathCosts: 3.00, CTG_Backup: 2.57(0.23/2.21/3.32), Num: 119
+Steps: 4, %Solved: 14.29, avgItrs: 23.94, avgPathCosts: 4.00, CTG_Backup: 3.15(0.24/2.43/3.90), Num: 126
+Steps: 5, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 3.62(0.27/3.14/4.39), Num: 122
+Steps: 6, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 4.06(0.29/3.48/4.72), Num: 125
+Steps: 7, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 4.56(0.28/4.05/5.16), Num: 126
+Steps: 8, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 4.96(0.30/4.57/5.57), Num: 119
+Steps: 9, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 5.45(0.33/4.89/5.92), Num: 112
+Steps: 10, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 5.76(0.33/5.06/6.16), Num: 125
+Steps: 11, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 6.27(0.34/5.47/6.72), Num: 125
+Steps: 12, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 6.59(0.34/5.97/7.22), Num: 126
+Steps: 13, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.18(0.26/6.53/7.57), Num: 104
+Steps: 14, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.50(0.28/7.04/8.02), Num: 122
+Steps: 15, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.48(0.35/6.91/8.31), Num: 107
+Steps: 16, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.75(0.27/7.20/8.31), Num: 128
+Data - %solved: 10.20, path_costs: 2.404, search_itrs: 16.397, cost-to-go (mean/min/max): 4.09/0.00/8.63
+Train - itrs: 800, loss: 3.64E-01, targ_updated: True
+Times - up_start: 0.00, up_data: 347.60, up_end: 0.58, data_samp: 0.22, train: 2.14, save: 0.02, Tot: 350.57
+
+Getting Data - itr: 39200, update_num: 49, targ_update: 49, num_gen: 61,440, step max (curr): 16
+Generating 61,440 training instances with 2,048 searches
+Generated 61,440 training instances
+Times - steps_gen: 0.02, inst_info: 0.00, inst_add: 0.00, update_perf: 0.02, backup: 0.16, to_np: 0.29, put: 0.17, ->get_states: 0.00, ->pathfinding: 12375.38, Tot: 12376.05
+	(get_states): Tot: 0.00
+	(pathfinding): root: 0.01, pop: 0.21, is_solved: 1725.73, ub: 0.03, expand: 10639.39, heur: 5.48, make_nodes: 0.91, up_inst: 0.47, check: 2.78, cost: 0.17, push: 0.21, Tot: 12375.38
+Steps: 0, %Solved: 100.00, avgItrs: 1.00, avgPathCosts: 0.00, CTG_Backup: 0.00(0.00/0.00/0.00), Num: 3570
+Steps: 1, %Solved: 39.55, avgItrs: 12.25, avgPathCosts: 2.00, CTG_Backup: 1.68(0.21/1.22/2.20), Num: 134
+Steps: 2, %Solved: 37.59, avgItrs: 18.96, avgPathCosts: 2.68, CTG_Backup: 2.03(0.26/1.57/2.81), Num: 133
+Steps: 3, %Solved: 10.20, avgItrs: 15.80, avgPathCosts: 3.00, CTG_Backup: 2.63(0.24/1.92/3.35), Num: 147
+Steps: 4, %Solved: 7.89, avgItrs: 26.89, avgPathCosts: 4.00, CTG_Backup: 3.15(0.22/2.78/3.73), Num: 114
+Steps: 5, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 3.65(0.29/3.20/4.45), Num: 95
+Steps: 6, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 3.99(0.29/3.47/4.48), Num: 116
+Steps: 7, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 4.54(0.25/4.00/5.08), Num: 109
+Steps: 8, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 4.96(0.30/4.50/5.48), Num: 121
+Steps: 9, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 5.40(0.31/4.82/5.94), Num: 110
+Steps: 10, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 5.70(0.33/5.11/6.25), Num: 141
+Steps: 11, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 6.13(0.40/5.13/6.73), Num: 126
+Steps: 12, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 6.64(0.35/5.92/7.19), Num: 119
+Steps: 13, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.11(0.31/6.53/7.60), Num: 116
+Steps: 14, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.36(0.30/6.87/7.92), Num: 122
+Steps: 15, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.51(0.37/6.94/8.23), Num: 119
+Steps: 16, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.72(0.27/7.21/8.34), Num: 124
+Data - %solved: 11.49, path_costs: 2.336, search_itrs: 14.979, cost-to-go (mean/min/max): 4.10/0.00/8.63
+Train - itrs: 800, loss: 3.54E-01, targ_updated: True
+Times - up_start: 0.00, up_data: 350.00, up_end: 0.61, data_samp: 0.22, train: 2.12, save: 0.02, Tot: 352.97
+
+Getting Data - itr: 40000, update_num: 50, targ_update: 50, num_gen: 61,440, step max (curr): 16
+Generating 61,440 training instances with 2,048 searches
+Generated 61,440 training instances
+Times - steps_gen: 0.01, inst_info: 0.00, inst_add: 0.00, update_perf: 0.02, backup: 0.15, to_np: 0.28, put: 0.16, ->get_states: 0.00, ->pathfinding: 12256.56, Tot: 12257.19
+	(get_states): Tot: 0.00
+	(pathfinding): root: 0.01, pop: 0.21, is_solved: 1728.95, ub: 0.03, expand: 10517.95, heur: 5.01, make_nodes: 0.86, up_inst: 0.44, check: 2.72, cost: 0.16, push: 0.20, Tot: 12256.56
+Steps: 0, %Solved: 100.00, avgItrs: 1.00, avgPathCosts: 0.00, CTG_Backup: 0.00(0.00/0.00/0.00), Num: 3630
+Steps: 1, %Solved: 25.83, avgItrs: 8.61, avgPathCosts: 1.65, CTG_Backup: 1.67(0.19/1.24/1.99), Num: 120
+Steps: 2, %Solved: 28.06, avgItrs: 17.03, avgPathCosts: 2.69, CTG_Backup: 2.08(0.24/1.60/2.81), Num: 139
+Steps: 3, %Solved: 11.38, avgItrs: 14.29, avgPathCosts: 3.00, CTG_Backup: 2.59(0.23/2.18/3.31), Num: 123
+Steps: 4, %Solved: 17.50, avgItrs: 24.19, avgPathCosts: 4.00, CTG_Backup: 3.12(0.24/2.39/3.67), Num: 120
+Steps: 5, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 3.71(0.34/3.08/4.38), Num: 139
+Steps: 6, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 3.98(0.26/3.47/4.46), Num: 118
+Steps: 7, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 4.46(0.27/4.03/5.12), Num: 113
+Steps: 8, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 5.00(0.27/4.56/5.40), Num: 106
+Steps: 9, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 5.37(0.33/4.83/5.91), Num: 124
+Steps: 10, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 5.66(0.32/5.04/6.10), Num: 114
+Steps: 11, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 6.22(0.36/5.43/6.69), Num: 115
+Steps: 12, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 6.71(0.32/6.03/7.15), Num: 126
+Steps: 13, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.06(0.29/6.49/7.51), Num: 117
+Steps: 14, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.44(0.24/6.84/7.83), Num: 109
+Steps: 15, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.60(0.35/6.92/8.30), Num: 129
+Steps: 16, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.77(0.31/7.22/8.30), Num: 118
+Data - %solved: 10.75, path_costs: 2.267, search_itrs: 13.023, cost-to-go (mean/min/max): 4.08/0.00/8.64
+Train - itrs: 800, loss: 3.04E-01, targ_updated: True
+Times - up_start: 0.00, up_data: 343.24, up_end: 0.69, data_samp: 0.21, train: 2.16, save: 0.02, Tot: 346.32
+
+Getting Data - itr: 40800, update_num: 51, targ_update: 51, num_gen: 61,440, step max (curr): 16
+Generating 61,440 training instances with 2,048 searches
+Generated 61,440 training instances
+Times - steps_gen: 0.01, inst_info: 0.00, inst_add: 0.00, update_perf: 0.02, backup: 0.15, to_np: 0.28, put: 0.43, ->get_states: 0.00, ->pathfinding: 12448.02, Tot: 12448.93
+	(get_states): Tot: 0.00
+	(pathfinding): root: 0.01, pop: 0.22, is_solved: 1726.15, ub: 0.03, expand: 10712.06, heur: 4.99, make_nodes: 0.93, up_inst: 0.46, check: 2.79, cost: 0.17, push: 0.21, Tot: 12448.02
+Steps: 0, %Solved: 100.00, avgItrs: 1.00, avgPathCosts: 0.00, CTG_Backup: 0.00(0.00/0.00/0.00), Num: 3690
+Steps: 1, %Solved: 31.85, avgItrs: 11.58, avgPathCosts: 1.93, CTG_Backup: 1.71(0.24/1.25/2.25), Num: 135
+Steps: 2, %Solved: 13.27, avgItrs: 22.20, avgPathCosts: 2.80, CTG_Backup: 2.10(0.22/1.56/2.86), Num: 113
+Steps: 3, %Solved: 21.95, avgItrs: 15.00, avgPathCosts: 3.00, CTG_Backup: 2.61(0.28/2.17/3.37), Num: 123
+Steps: 4, %Solved: 9.85, avgItrs: 23.15, avgPathCosts: 4.00, CTG_Backup: 3.19(0.35/2.40/3.94), Num: 132
+Steps: 5, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 3.65(0.26/3.09/4.15), Num: 114
+Steps: 6, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 4.07(0.29/3.46/4.70), Num: 115
+Steps: 7, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 4.52(0.23/4.01/5.07), Num: 122
+Steps: 8, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 4.95(0.29/4.42/5.44), Num: 132
+Steps: 9, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 5.48(0.30/4.97/5.93), Num: 117
+Steps: 10, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 5.65(0.32/5.07/6.22), Num: 133
+Steps: 11, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 6.16(0.31/5.58/6.71), Num: 100
+Steps: 12, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 6.60(0.36/5.92/7.09), Num: 105
+Steps: 13, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 6.98(0.33/6.49/7.56), Num: 132
+Steps: 14, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.36(0.29/6.83/7.97), Num: 108
+Steps: 15, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.47(0.36/6.83/8.05), Num: 118
+Steps: 16, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.67(0.34/7.20/8.20), Num: 128
+Data - %solved: 10.41, path_costs: 2.346, search_itrs: 14.587, cost-to-go (mean/min/max): 4.07/0.00/8.58
+Train - itrs: 800, loss: 2.91E-01, targ_updated: True
+Times - up_start: 0.00, up_data: 352.35, up_end: 0.65, data_samp: 0.24, train: 2.17, save: 0.02, Tot: 355.43
+
+Getting Data - itr: 41600, update_num: 52, targ_update: 52, num_gen: 61,440, step max (curr): 16
+Generating 61,440 training instances with 2,048 searches
+Generated 61,440 training instances
+Times - steps_gen: 0.02, inst_info: 0.00, inst_add: 0.00, update_perf: 0.02, backup: 0.16, to_np: 0.29, put: 0.24, ->get_states: 0.00, ->pathfinding: 12212.83, Tot: 12213.57
+	(get_states): Tot: 0.00
+	(pathfinding): root: 0.01, pop: 0.22, is_solved: 1731.52, ub: 0.03, expand: 10471.54, heur: 5.04, make_nodes: 0.89, up_inst: 0.46, check: 2.74, cost: 0.17, push: 0.21, Tot: 12212.83
+Steps: 0, %Solved: 100.00, avgItrs: 1.00, avgPathCosts: 0.00, CTG_Backup: 0.00(0.00/0.00/0.00), Num: 3840
+Steps: 1, %Solved: 30.53, avgItrs: 7.75, avgPathCosts: 1.73, CTG_Backup: 1.61(0.20/1.14/2.06), Num: 131
+Steps: 2, %Solved: 32.81, avgItrs: 17.33, avgPathCosts: 2.62, CTG_Backup: 2.10(0.27/1.73/2.84), Num: 128
+Steps: 3, %Solved: 27.43, avgItrs: 15.03, avgPathCosts: 3.00, CTG_Backup: 2.60(0.34/1.90/3.33), Num: 113
+Steps: 4, %Solved: 1.61, avgItrs: 27.00, avgPathCosts: 4.00, CTG_Backup: 3.17(0.23/2.68/3.86), Num: 124
+Steps: 5, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 3.64(0.25/3.13/4.06), Num: 137
+Steps: 6, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 4.16(0.33/3.50/4.69), Num: 122
+Steps: 7, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 4.50(0.28/4.08/5.20), Num: 114
+Steps: 8, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 4.91(0.30/4.53/5.64), Num: 127
+Steps: 9, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 5.52(0.32/4.82/5.99), Num: 117
+Steps: 10, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 5.75(0.33/5.02/6.16), Num: 125
+Steps: 11, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 6.22(0.36/5.57/6.71), Num: 133
+Steps: 12, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 6.70(0.33/5.94/7.21), Num: 105
+Steps: 13, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.04(0.34/6.50/7.62), Num: 120
+Steps: 14, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.49(0.33/6.86/7.91), Num: 114
+Steps: 15, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.69(0.39/7.00/8.29), Num: 127
+Steps: 16, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.78(0.35/7.18/8.29), Num: 108
+Data - %solved: 11.32, path_costs: 2.269, search_itrs: 13.623, cost-to-go (mean/min/max): 4.09/0.00/8.65
+Train - itrs: 800, loss: 3.37E-01, targ_updated: True
+Times - up_start: 0.00, up_data: 341.44, up_end: 0.63, data_samp: 0.26, train: 2.24, save: 0.02, Tot: 344.60
+
+Getting Data - itr: 42400, update_num: 53, targ_update: 53, num_gen: 61,440, step max (curr): 16
+Generating 61,440 training instances with 2,048 searches
+Generated 61,440 training instances
+Times - steps_gen: 0.01, inst_info: 0.00, inst_add: 0.00, update_perf: 0.02, backup: 0.16, to_np: 0.30, put: 0.18, ->get_states: 0.00, ->pathfinding: 12369.33, Tot: 12370.01
+	(get_states): Tot: 0.00
+	(pathfinding): root: 0.01, pop: 0.22, is_solved: 1736.06, ub: 0.02, expand: 10624.07, heur: 4.33, make_nodes: 0.97, up_inst: 0.48, check: 2.77, cost: 0.17, push: 0.22, Tot: 12369.33
+Steps: 0, %Solved: 100.00, avgItrs: 1.00, avgPathCosts: 0.00, CTG_Backup: 0.00(0.00/0.00/0.00), Num: 3030
+Steps: 1, %Solved: 23.42, avgItrs: 13.77, avgPathCosts: 2.08, CTG_Backup: 1.66(0.17/1.15/2.27), Num: 111
+Steps: 2, %Solved: 21.43, avgItrs: 11.19, avgPathCosts: 2.30, CTG_Backup: 2.11(0.28/1.62/2.86), Num: 126
+Steps: 3, %Solved: 31.45, avgItrs: 15.92, avgPathCosts: 3.08, CTG_Backup: 2.66(0.29/1.97/3.28), Num: 124
+Steps: 4, %Solved: 5.76, avgItrs: 29.50, avgPathCosts: 4.00, CTG_Backup: 3.10(0.32/2.50/3.89), Num: 139
+Steps: 5, %Solved: 1.55, avgItrs: 27.00, avgPathCosts: 5.00, CTG_Backup: 3.71(0.27/3.19/4.38), Num: 129
+Steps: 6, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 4.07(0.27/3.63/4.76), Num: 120
+Steps: 7, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 4.56(0.21/4.11/4.93), Num: 102
+Steps: 8, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 4.98(0.38/4.41/5.59), Num: 122
+Steps: 9, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 5.36(0.32/4.84/5.87), Num: 108
+Steps: 10, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 5.79(0.30/5.20/6.15), Num: 129
+Steps: 11, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 6.23(0.32/5.44/6.67), Num: 130
+Steps: 12, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 6.72(0.32/6.03/7.18), Num: 138
+Steps: 13, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.10(0.35/6.48/7.54), Num: 124
+Steps: 14, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.45(0.25/6.84/7.86), Num: 115
+Steps: 15, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.58(0.36/6.84/8.24), Num: 113
+Steps: 16, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.76(0.33/7.20/8.25), Num: 131
+Data - %solved: 10.80, path_costs: 2.742, search_itrs: 16.396, cost-to-go (mean/min/max): 4.21/0.00/8.59
+Train - itrs: 800, loss: 4.57E-01, targ_updated: True
+Times - up_start: 0.00, up_data: 348.48, up_end: 0.51, data_samp: 0.17, train: 2.15, save: 0.02, Tot: 351.33
+
+Getting Data - itr: 43200, update_num: 54, targ_update: 54, num_gen: 61,440, step max (curr): 16
+Generating 61,440 training instances with 2,048 searches
+Generated 61,440 training instances
+Times - steps_gen: 0.02, inst_info: 0.00, inst_add: 0.00, update_perf: 0.02, backup: 0.15, to_np: 0.29, put: 0.17, ->get_states: 0.00, ->pathfinding: 12420.09, Tot: 12420.75
+	(get_states): Tot: 0.00
+	(pathfinding): root: 0.01, pop: 0.22, is_solved: 1715.08, ub: 0.02, expand: 10695.65, heur: 4.28, make_nodes: 1.13, up_inst: 0.50, check: 2.82, cost: 0.17, push: 0.21, Tot: 12420.09
+Steps: 0, %Solved: 100.00, avgItrs: 1.00, avgPathCosts: 0.00, CTG_Backup: 0.00(0.00/0.00/0.00), Num: 3870
+Steps: 1, %Solved: 45.69, avgItrs: 8.98, avgPathCosts: 1.70, CTG_Backup: 1.58(0.23/1.09/1.94), Num: 116
+Steps: 2, %Solved: 28.57, avgItrs: 17.20, avgPathCosts: 2.67, CTG_Backup: 2.07(0.24/1.50/2.75), Num: 105
+Steps: 3, %Solved: 7.38, avgItrs: 20.67, avgPathCosts: 3.00, CTG_Backup: 2.47(0.26/2.09/3.25), Num: 122
+Steps: 4, %Solved: 0.78, avgItrs: 25.00, avgPathCosts: 4.00, CTG_Backup: 2.97(0.27/2.30/3.78), Num: 128
+Steps: 5, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 3.58(0.28/3.09/4.27), Num: 116
+Steps: 6, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 4.00(0.23/3.40/4.64), Num: 128
+Steps: 7, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 4.42(0.24/4.05/4.99), Num: 126
+Steps: 8, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 4.89(0.31/4.28/5.43), Num: 132
+Steps: 9, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 5.32(0.28/4.79/5.79), Num: 119
+Steps: 10, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 5.59(0.31/4.95/6.11), Num: 110
+Steps: 11, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 6.04(0.32/5.33/6.67), Num: 106
+Steps: 12, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 6.49(0.32/5.92/6.99), Num: 117
+Steps: 13, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 6.99(0.36/6.37/7.47), Num: 110
+Steps: 14, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.33(0.30/6.81/7.91), Num: 132
+Steps: 15, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.48(0.37/6.81/8.19), Num: 133
+Steps: 16, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.72(0.31/7.10/8.19), Num: 122
+Data - %solved: 10.73, path_costs: 2.273, search_itrs: 14.570, cost-to-go (mean/min/max): 4.04/0.00/8.54
+Train - itrs: 800, loss: 2.78E-01, targ_updated: True
+Times - up_start: 0.00, up_data: 345.66, up_end: 1.01, data_samp: 0.18, train: 2.16, save: 0.02, Tot: 349.03
+
+Getting Data - itr: 44000, update_num: 55, targ_update: 55, num_gen: 61,440, step max (curr): 16
+Generating 61,440 training instances with 2,048 searches
+Generated 61,440 training instances
+Times - steps_gen: 0.01, inst_info: 0.00, inst_add: 0.00, update_perf: 0.02, backup: 0.15, to_np: 0.28, put: 0.17, ->get_states: 0.00, ->pathfinding: 12329.00, Tot: 12329.63
+	(get_states): Tot: 0.00
+	(pathfinding): root: 0.01, pop: 0.20, is_solved: 1726.52, ub: 0.02, expand: 10593.74, heur: 4.17, make_nodes: 0.83, up_inst: 0.46, check: 2.68, cost: 0.16, push: 0.20, Tot: 12329.00
+Steps: 0, %Solved: 100.00, avgItrs: 1.00, avgPathCosts: 0.00, CTG_Backup: 0.00(0.00/0.00/0.00), Num: 3390
+Steps: 1, %Solved: 34.00, avgItrs: 11.76, avgPathCosts: 2.04, CTG_Backup: 1.61(0.24/1.00/1.99), Num: 150
+Steps: 2, %Solved: 25.19, avgItrs: 18.00, avgPathCosts: 2.70, CTG_Backup: 2.03(0.28/1.25/2.76), Num: 131
+Steps: 3, %Solved: 15.08, avgItrs: 14.37, avgPathCosts: 3.00, CTG_Backup: 2.55(0.21/2.13/2.93), Num: 126
+Steps: 4, %Solved: 3.25, avgItrs: 28.00, avgPathCosts: 4.00, CTG_Backup: 3.08(0.28/2.37/3.63), Num: 123
+Steps: 5, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 3.55(0.35/2.17/4.09), Num: 130
+Steps: 6, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 4.04(0.31/3.46/4.70), Num: 107
+Steps: 7, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 4.42(0.29/3.97/5.06), Num: 120
+Steps: 8, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 4.86(0.31/4.34/5.46), Num: 143
+Steps: 9, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 5.33(0.33/4.77/5.86), Num: 105
+Steps: 10, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 5.63(0.34/4.96/6.16), Num: 122
+Steps: 11, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 6.14(0.34/5.50/6.64), Num: 114
+Steps: 12, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 6.67(0.28/5.86/7.03), Num: 118
+Steps: 13, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 6.97(0.36/6.41/7.53), Num: 103
+Steps: 14, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.36(0.24/6.91/7.95), Num: 118
+Steps: 15, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.60(0.37/6.84/8.17), Num: 119
+Steps: 16, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.70(0.29/7.12/8.16), Num: 115
+Data - %solved: 10.44, path_costs: 2.347, search_itrs: 14.627, cost-to-go (mean/min/max): 3.99/0.00/8.54
+Train - itrs: 800, loss: 2.37E-01, targ_updated: True
+Times - up_start: 0.00, up_data: 349.86, up_end: 0.59, data_samp: 0.16, train: 2.14, save: 0.02, Tot: 352.78
+
+Getting Data - itr: 44800, update_num: 56, targ_update: 56, num_gen: 61,440, step max (curr): 16
+Generating 61,440 training instances with 2,048 searches
+Generated 61,440 training instances
+Times - steps_gen: 0.04, inst_info: 0.00, inst_add: 0.00, update_perf: 0.02, backup: 0.15, to_np: 0.28, put: 0.24, ->get_states: 0.00, ->pathfinding: 12355.16, Tot: 12355.90
+	(get_states): Tot: 0.00
+	(pathfinding): root: 0.01, pop: 0.19, is_solved: 1728.28, ub: 0.02, expand: 10618.11, heur: 4.17, make_nodes: 0.93, up_inst: 0.44, check: 2.66, cost: 0.16, push: 0.19, Tot: 12355.16
+Steps: 0, %Solved: 100.00, avgItrs: 1.00, avgPathCosts: 0.00, CTG_Backup: 0.00(0.00/0.00/0.00), Num: 3900
+Steps: 1, %Solved: 24.58, avgItrs: 12.03, avgPathCosts: 1.93, CTG_Backup: 1.68(0.22/1.24/2.05), Num: 118
+Steps: 2, %Solved: 28.57, avgItrs: 11.15, avgPathCosts: 2.35, CTG_Backup: 2.17(0.22/1.73/2.84), Num: 119
+Steps: 3, %Solved: 15.52, avgItrs: 12.22, avgPathCosts: 3.00, CTG_Backup: 2.66(0.26/2.01/3.33), Num: 116
+Steps: 4, %Solved: 2.52, avgItrs: 21.00, avgPathCosts: 4.00, CTG_Backup: 3.22(0.29/2.82/4.05), Num: 119
+Steps: 5, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 3.73(0.25/3.23/4.17), Num: 120
+Steps: 6, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 4.08(0.25/3.60/4.54), Num: 115
+Steps: 7, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 4.60(0.24/4.22/5.22), Num: 122
+Steps: 8, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 5.00(0.32/4.47/5.57), Num: 107
+Steps: 9, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 5.49(0.33/4.90/6.02), Num: 114
+Steps: 10, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 5.80(0.35/5.26/6.33), Num: 139
+Steps: 11, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 6.20(0.36/5.47/6.81), Num: 139
+Steps: 12, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 6.83(0.30/5.97/7.29), Num: 112
+Steps: 13, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.19(0.32/6.55/7.66), Num: 101
+Steps: 14, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.52(0.23/6.98/7.90), Num: 134
+Steps: 15, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.71(0.35/6.98/8.28), Num: 124
+Steps: 16, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.89(0.28/7.28/8.31), Num: 124
+Data - %solved: 10.07, path_costs: 2.257, search_itrs: 11.481, cost-to-go (mean/min/max): 4.20/0.00/8.65
+Train - itrs: 800, loss: 4.43E-01, targ_updated: True
+Times - up_start: 0.00, up_data: 355.31, up_end: 0.60, data_samp: 0.16, train: 2.14, save: 0.02, Tot: 358.23
+
+Getting Data - itr: 45600, update_num: 57, targ_update: 57, num_gen: 61,440, step max (curr): 16
+Generating 61,440 training instances with 2,048 searches
+Generated 61,440 training instances
+Times - steps_gen: 0.02, inst_info: 0.00, inst_add: 0.00, update_perf: 0.02, backup: 0.15, to_np: 0.28, put: 0.16, ->get_states: 0.00, ->pathfinding: 12401.68, Tot: 12402.32
+	(get_states): Tot: 0.00
+	(pathfinding): root: 0.01, pop: 0.18, is_solved: 1730.20, ub: 0.02, expand: 10662.82, heur: 4.09, make_nodes: 0.99, up_inst: 0.42, check: 2.60, cost: 0.16, push: 0.19, Tot: 12401.68
+Steps: 0, %Solved: 100.00, avgItrs: 1.00, avgPathCosts: 0.00, CTG_Backup: 0.00(0.00/0.00/0.00), Num: 3300
+Steps: 1, %Solved: 47.92, avgItrs: 10.68, avgPathCosts: 1.90, CTG_Backup: 1.63(0.22/1.20/2.24), Num: 144
+Steps: 2, %Solved: 16.53, avgItrs: 10.10, avgPathCosts: 2.20, CTG_Backup: 2.08(0.26/1.56/2.42), Num: 121
+Steps: 3, %Solved: 23.26, avgItrs: 16.80, avgPathCosts: 3.00, CTG_Backup: 2.52(0.25/1.91/3.36), Num: 129
+Steps: 4, %Solved: 7.27, avgItrs: 22.62, avgPathCosts: 4.00, CTG_Backup: 3.06(0.30/2.39/3.64), Num: 110
+Steps: 5, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 3.62(0.30/3.08/4.32), Num: 123
+Steps: 6, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 4.01(0.29/3.48/4.66), Num: 117
+Steps: 7, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 4.55(0.28/4.00/4.99), Num: 135
+Steps: 8, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 4.86(0.27/4.44/5.28), Num: 136
+Steps: 9, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 5.47(0.33/4.80/5.85), Num: 130
+Steps: 10, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 5.62(0.29/4.97/6.14), Num: 118
+Steps: 11, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 6.11(0.32/5.50/6.61), Num: 117
+Steps: 12, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 6.58(0.29/5.84/7.11), Num: 121
+Steps: 13, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.04(0.27/6.51/7.52), Num: 101
+Steps: 14, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.32(0.25/6.85/7.92), Num: 114
+Steps: 15, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.45(0.32/6.98/8.19), Num: 111
+Steps: 16, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.67(0.34/7.15/8.20), Num: 138
+Data - %solved: 11.47, path_costs: 2.220, search_itrs: 12.241, cost-to-go (mean/min/max): 4.06/0.00/8.56
+Train - itrs: 800, loss: 3.08E-01, targ_updated: True
+Times - up_start: 0.00, up_data: 344.27, up_end: 0.59, data_samp: 0.19, train: 2.24, save: 0.02, Tot: 347.32
+
+Getting Data - itr: 46400, update_num: 58, targ_update: 58, num_gen: 61,440, step max (curr): 16
+Generating 61,440 training instances with 2,048 searches
+Generated 61,440 training instances
+Times - steps_gen: 0.03, inst_info: 0.00, inst_add: 0.00, update_perf: 0.02, backup: 0.16, to_np: 0.30, put: 0.26, ->get_states: 0.00, ->pathfinding: 12320.13, Tot: 12320.90
+	(get_states): Tot: 0.00
+	(pathfinding): root: 0.01, pop: 0.21, is_solved: 1730.74, ub: 0.03, expand: 10580.18, heur: 4.26, make_nodes: 1.01, up_inst: 0.50, check: 2.82, cost: 0.17, push: 0.21, Tot: 12320.13
+Steps: 0, %Solved: 100.00, avgItrs: 1.00, avgPathCosts: 0.00, CTG_Backup: 0.00(0.00/0.00/0.00), Num: 3390
+Steps: 1, %Solved: 29.27, avgItrs: 18.22, avgPathCosts: 2.47, CTG_Backup: 1.57(0.25/1.14/2.02), Num: 123
+Steps: 2, %Solved: 44.26, avgItrs: 18.04, avgPathCosts: 2.63, CTG_Backup: 2.08(0.22/1.50/2.78), Num: 122
+Steps: 3, %Solved: 18.03, avgItrs: 12.77, avgPathCosts: 3.00, CTG_Backup: 2.62(0.29/2.15/3.30), Num: 122
+Steps: 4, %Solved: 7.35, avgItrs: 27.00, avgPathCosts: 4.00, CTG_Backup: 3.19(0.34/2.37/3.87), Num: 136
+Steps: 5, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 3.65(0.27/3.06/4.38), Num: 115
+Steps: 6, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 3.99(0.28/3.47/4.73), Num: 124
+Steps: 7, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 4.48(0.27/4.00/5.08), Num: 112
+Steps: 8, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 4.94(0.34/4.35/5.41), Num: 113
+Steps: 9, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 5.47(0.24/4.87/5.83), Num: 120
+Steps: 10, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 5.68(0.31/5.05/6.28), Num: 131
+Steps: 11, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 6.06(0.33/5.45/6.59), Num: 113
+Steps: 12, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 6.65(0.32/6.07/7.10), Num: 119
+Steps: 13, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.14(0.33/6.50/7.54), Num: 129
+Steps: 14, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.51(0.22/7.06/7.90), Num: 112
+Steps: 15, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.65(0.43/6.86/8.28), Num: 122
+Steps: 16, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.79(0.31/7.21/8.28), Num: 128
+Data - %solved: 11.70, path_costs: 2.420, search_itrs: 15.406, cost-to-go (mean/min/max): 4.12/0.00/8.63
+Train - itrs: 800, loss: 3.75E-01, targ_updated: True
+Times - up_start: 0.00, up_data: 347.57, up_end: 0.55, data_samp: 0.17, train: 2.08, save: 0.02, Tot: 350.39
+
+Getting Data - itr: 47200, update_num: 59, targ_update: 59, num_gen: 61,440, step max (curr): 16
+Generating 61,440 training instances with 2,048 searches
+Generated 61,440 training instances
+Times - steps_gen: 0.02, inst_info: 0.00, inst_add: 0.00, update_perf: 0.02, backup: 0.15, to_np: 0.29, put: 0.16, ->get_states: 0.00, ->pathfinding: 12500.75, Tot: 12501.40
+	(get_states): Tot: 0.00
+	(pathfinding): root: 0.01, pop: 0.22, is_solved: 1721.62, ub: 0.03, expand: 10769.86, heur: 4.28, make_nodes: 1.03, up_inst: 0.46, check: 2.86, cost: 0.17, push: 0.22, Tot: 12500.75
+Steps: 0, %Solved: 100.00, avgItrs: 1.00, avgPathCosts: 0.00, CTG_Backup: 0.00(0.00/0.00/0.00), Num: 3750
+Steps: 1, %Solved: 45.57, avgItrs: 14.28, avgPathCosts: 2.12, CTG_Backup: 1.62(0.24/1.12/2.19), Num: 158
+Steps: 2, %Solved: 22.41, avgItrs: 18.15, avgPathCosts: 2.62, CTG_Backup: 2.02(0.22/1.54/2.42), Num: 116
+Steps: 3, %Solved: 19.23, avgItrs: 13.76, avgPathCosts: 3.00, CTG_Backup: 2.55(0.36/1.91/3.30), Num: 130
+Steps: 4, %Solved: 9.52, avgItrs: 26.60, avgPathCosts: 4.00, CTG_Backup: 3.05(0.32/2.37/3.62), Num: 105
+Steps: 5, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 3.57(0.41/2.10/4.30), Num: 124
+Steps: 6, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 3.91(0.30/3.44/4.75), Num: 117
+Steps: 7, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 4.45(0.30/4.01/5.00), Num: 109
+Steps: 8, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 4.85(0.32/4.33/5.49), Num: 116
+Steps: 9, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 5.22(0.29/4.75/5.78), Num: 117
+Steps: 10, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 5.71(0.26/5.08/6.06), Num: 104
+Steps: 11, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 6.03(0.36/5.35/6.55), Num: 123
+Steps: 12, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 6.52(0.35/5.84/7.05), Num: 126
+Steps: 13, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 6.94(0.32/6.41/7.46), Num: 109
+Steps: 14, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.29(0.25/6.80/7.75), Num: 137
+Steps: 15, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.46(0.35/6.78/8.16), Num: 128
+Steps: 16, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.61(0.25/7.10/8.16), Num: 126
+Data - %solved: 11.57, path_costs: 2.348, search_itrs: 14.758, cost-to-go (mean/min/max): 4.03/0.00/8.50
+Train - itrs: 800, loss: 2.84E-01, targ_updated: True
+Times - up_start: 0.00, up_data: 345.96, up_end: 0.61, data_samp: 0.19, train: 2.19, save: 0.02, Tot: 348.98
+
+Getting Data - itr: 48000, update_num: 60, targ_update: 60, num_gen: 61,440, step max (curr): 16
+Generating 61,440 training instances with 2,048 searches
+Generated 61,440 training instances
+Times - steps_gen: 0.02, inst_info: 0.00, inst_add: 0.00, update_perf: 0.02, backup: 0.16, to_np: 0.31, put: 0.24, ->get_states: 0.00, ->pathfinding: 12442.92, Tot: 12443.67
+	(get_states): Tot: 0.00
+	(pathfinding): root: 0.01, pop: 0.23, is_solved: 1726.71, ub: 0.03, expand: 10706.88, heur: 4.31, make_nodes: 1.03, up_inst: 0.45, check: 2.89, cost: 0.17, push: 0.22, Tot: 12442.92
+Steps: 0, %Solved: 100.00, avgItrs: 1.00, avgPathCosts: 0.00, CTG_Backup: 0.00(0.00/0.00/0.00), Num: 3300
+Steps: 1, %Solved: 26.02, avgItrs: 16.00, avgPathCosts: 2.19, CTG_Backup: 1.73(0.21/1.23/2.04), Num: 123
+Steps: 2, %Solved: 36.64, avgItrs: 13.69, avgPathCosts: 2.52, CTG_Backup: 2.05(0.26/1.31/2.82), Num: 131
+Steps: 3, %Solved: 27.05, avgItrs: 16.55, avgPathCosts: 3.00, CTG_Backup: 2.63(0.30/1.98/3.38), Num: 122
+Steps: 4, %Solved: 13.56, avgItrs: 23.69, avgPathCosts: 4.00, CTG_Backup: 3.07(0.27/2.71/3.98), Num: 118
+Steps: 5, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 3.69(0.31/3.18/4.49), Num: 118
+Steps: 6, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 4.03(0.25/3.54/4.86), Num: 121
+Steps: 7, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 4.51(0.28/4.05/5.09), Num: 118
+Steps: 8, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 4.86(0.26/4.37/5.46), Num: 112
+Steps: 9, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 5.28(0.29/4.77/5.88), Num: 108
+Steps: 10, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 5.66(0.41/5.04/6.28), Num: 125
+Steps: 11, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 5.98(0.37/5.43/6.74), Num: 111
+Steps: 12, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 6.61(0.35/5.96/7.20), Num: 123
+Steps: 13, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.02(0.27/6.47/7.54), Num: 124
+Steps: 14, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.34(0.24/6.87/8.03), Num: 147
+Steps: 15, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.48(0.39/6.87/8.33), Num: 130
+Steps: 16, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.68(0.32/7.15/8.28), Num: 119
+Data - %solved: 11.96, path_costs: 2.342, search_itrs: 14.184, cost-to-go (mean/min/max): 4.16/0.00/8.66
+Train - itrs: 800, loss: 4.69E-01, targ_updated: True
+Times - up_start: 0.00, up_data: 353.92, up_end: 0.60, data_samp: 0.19, train: 2.20, save: 0.02, Tot: 356.94
+
+Getting Data - itr: 48800, update_num: 61, targ_update: 61, num_gen: 61,440, step max (curr): 16
+Generating 61,440 training instances with 2,048 searches
+Generated 61,440 training instances
+Times - steps_gen: 0.02, inst_info: 0.00, inst_add: 0.00, update_perf: 0.02, backup: 0.16, to_np: 0.32, put: 0.35, ->get_states: 0.00, ->pathfinding: 12391.61, Tot: 12392.49
+	(get_states): Tot: 0.00
+	(pathfinding): root: 0.01, pop: 0.22, is_solved: 1722.76, ub: 0.02, expand: 10659.59, heur: 4.28, make_nodes: 1.01, up_inst: 0.45, check: 2.86, cost: 0.17, push: 0.22, Tot: 12391.61
+Steps: 0, %Solved: 100.00, avgItrs: 1.00, avgPathCosts: 0.00, CTG_Backup: 0.00(0.00/0.00/0.00), Num: 3480
+Steps: 1, %Solved: 23.62, avgItrs: 20.37, avgPathCosts: 2.50, CTG_Backup: 1.60(0.19/1.09/2.00), Num: 127
+Steps: 2, %Solved: 31.09, avgItrs: 15.89, avgPathCosts: 2.49, CTG_Backup: 1.98(0.21/1.45/2.34), Num: 119
+Steps: 3, %Solved: 27.68, avgItrs: 14.61, avgPathCosts: 3.00, CTG_Backup: 2.48(0.21/2.11/2.83), Num: 112
+Steps: 4, %Solved: 3.54, avgItrs: 25.75, avgPathCosts: 4.00, CTG_Backup: 3.09(0.29/2.64/3.73), Num: 113
+Steps: 5, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 3.54(0.29/2.98/4.22), Num: 138
+Steps: 6, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 4.05(0.26/3.61/4.58), Num: 96
+Steps: 7, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 4.33(0.27/3.90/5.02), Num: 106
+Steps: 8, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 4.83(0.29/4.39/5.34), Num: 126
+Steps: 9, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 5.30(0.33/4.78/5.82), Num: 125
+Steps: 10, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 5.67(0.32/5.02/6.12), Num: 122
+Steps: 11, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 6.07(0.33/5.35/6.58), Num: 120
+Steps: 12, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 6.56(0.29/5.87/7.00), Num: 123
+Steps: 13, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 6.98(0.36/6.43/7.50), Num: 102
+Steps: 14, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.29(0.28/6.78/7.95), Num: 123
+Steps: 15, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.51(0.43/6.78/8.21), Num: 138
+Steps: 16, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.74(0.31/7.10/8.21), Num: 144
+Data - %solved: 10.94, path_costs: 2.397, search_itrs: 15.524, cost-to-go (mean/min/max): 4.10/0.00/8.52
+Train - itrs: 800, loss: 3.24E-01, targ_updated: True
+Times - up_start: 0.00, up_data: 353.50, up_end: 0.63, data_samp: 0.18, train: 2.18, save: 0.02, Tot: 356.52
+
+Getting Data - itr: 49600, update_num: 62, targ_update: 62, num_gen: 61,440, step max (curr): 16
+Generating 61,440 training instances with 2,048 searches
+Generated 61,440 training instances
+Times - steps_gen: 0.01, inst_info: 0.00, inst_add: 0.00, update_perf: 0.02, backup: 0.15, to_np: 0.27, put: 0.17, ->get_states: 0.00, ->pathfinding: 12242.31, Tot: 12242.93
+	(get_states): Tot: 0.00
+	(pathfinding): root: 0.01, pop: 0.18, is_solved: 1726.77, ub: 0.02, expand: 10506.96, heur: 4.14, make_nodes: 0.82, up_inst: 0.43, check: 2.62, cost: 0.16, push: 0.18, Tot: 12242.31
+Steps: 0, %Solved: 100.00, avgItrs: 1.00, avgPathCosts: 0.00, CTG_Backup: 0.00(0.00/0.00/0.00), Num: 3900
+Steps: 1, %Solved: 27.35, avgItrs: 9.03, avgPathCosts: 1.59, CTG_Backup: 1.61(0.23/1.17/2.02), Num: 117
+Steps: 2, %Solved: 42.76, avgItrs: 15.52, avgPathCosts: 2.53, CTG_Backup: 1.95(0.23/1.48/2.37), Num: 145
+Steps: 3, %Solved: 37.74, avgItrs: 14.95, avgPathCosts: 3.00, CTG_Backup: 2.68(0.26/2.19/3.26), Num: 106
+Steps: 4, %Solved: 9.47, avgItrs: 23.33, avgPathCosts: 4.00, CTG_Backup: 2.96(0.28/1.77/3.42), Num: 95
+Steps: 5, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 3.50(0.28/2.98/4.07), Num: 131
+Steps: 6, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 3.91(0.26/3.40/4.61), Num: 118
+Steps: 7, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 4.47(0.23/3.91/4.91), Num: 110
+Steps: 8, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 4.82(0.29/4.37/5.29), Num: 104
+Steps: 9, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 5.24(0.30/4.70/5.77), Num: 114
+Steps: 10, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 5.54(0.32/4.93/6.02), Num: 119
+Steps: 11, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 6.12(0.32/5.40/6.59), Num: 118
+Steps: 12, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 6.58(0.26/5.90/6.96), Num: 98
+Steps: 13, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.02(0.34/6.37/7.50), Num: 140
+Steps: 14, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.33(0.28/6.77/7.89), Num: 130
+Steps: 15, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.53(0.36/6.85/8.19), Num: 128
+Steps: 16, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.59(0.34/7.08/8.19), Num: 151
+Data - %solved: 12.78, path_costs: 2.225, search_itrs: 12.766, cost-to-go (mean/min/max): 4.09/0.00/8.54
+Train - itrs: 800, loss: 3.98E-01, targ_updated: True
+Times - up_start: 0.00, up_data: 345.42, up_end: 0.78, data_samp: 0.16, train: 3.65, save: 0.02, Tot: 350.04
+
+Getting Data - itr: 50400, update_num: 63, targ_update: 63, num_gen: 61,440, step max (curr): 16
+Generating 61,440 training instances with 2,048 searches
+Generated 61,440 training instances
+Times - steps_gen: 0.03, inst_info: 0.01, inst_add: 0.00, update_perf: 0.02, backup: 0.15, to_np: 0.28, put: 0.24, ->get_states: 0.00, ->pathfinding: 12312.56, Tot: 12313.29
+	(get_states): Tot: 0.00
+	(pathfinding): root: 0.01, pop: 0.19, is_solved: 1734.46, ub: 0.02, expand: 10567.71, heur: 5.91, make_nodes: 0.85, up_inst: 0.46, check: 2.61, cost: 0.16, push: 0.19, Tot: 12312.56
+Steps: 0, %Solved: 100.00, avgItrs: 1.00, avgPathCosts: 0.00, CTG_Backup: 0.00(0.00/0.00/0.00), Num: 3660
+Steps: 1, %Solved: 36.72, avgItrs: 9.62, avgPathCosts: 1.72, CTG_Backup: 1.59(0.18/1.15/2.01), Num: 128
+Steps: 2, %Solved: 17.46, avgItrs: 14.00, avgPathCosts: 2.59, CTG_Backup: 2.06(0.24/1.52/2.77), Num: 126
+Steps: 3, %Solved: 30.00, avgItrs: 15.61, avgPathCosts: 3.00, CTG_Backup: 2.50(0.30/1.87/3.29), Num: 120
+Steps: 4, %Solved: 10.79, avgItrs: 22.93, avgPathCosts: 4.00, CTG_Backup: 3.10(0.28/2.34/3.81), Num: 139
+Steps: 5, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 3.53(0.28/3.00/4.06), Num: 117
+Steps: 6, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 3.87(0.30/3.38/4.61), Num: 119
+Steps: 7, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 4.37(0.29/3.88/4.96), Num: 124
+Steps: 8, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 4.82(0.29/4.38/5.38), Num: 130
+Steps: 9, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 5.31(0.28/4.67/5.73), Num: 114
+Steps: 10, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 5.57(0.30/4.92/5.98), Num: 128
+Steps: 11, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 6.07(0.36/5.29/6.57), Num: 112
+Steps: 12, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 6.56(0.29/5.98/7.04), Num: 127
+Steps: 13, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 6.88(0.37/5.69/7.39), Num: 131
+Steps: 14, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.35(0.26/6.84/7.81), Num: 116
+Steps: 15, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.39(0.34/6.73/8.05), Num: 105
+Steps: 16, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.59(0.31/7.05/8.10), Num: 108
+Data - %solved: 11.47, path_costs: 2.263, search_itrs: 12.632, cost-to-go (mean/min/max): 3.98/0.00/8.44
+Train - itrs: 800, loss: 2.44E-01, targ_updated: True
+Times - up_start: 0.00, up_data: 346.00, up_end: 0.57, data_samp: 0.19, train: 2.59, save: 0.02, Tot: 349.38
+
+Getting Data - itr: 51200, update_num: 64, targ_update: 64, num_gen: 61,440, step max (curr): 16
+Generating 61,440 training instances with 2,048 searches
+Generated 61,440 training instances
+Times - steps_gen: 0.02, inst_info: 0.00, inst_add: 0.00, update_perf: 0.02, backup: 0.14, to_np: 0.27, put: 0.19, ->get_states: 0.00, ->pathfinding: 12340.48, Tot: 12341.11
+	(get_states): Tot: 0.00
+	(pathfinding): root: 0.01, pop: 0.19, is_solved: 1731.72, ub: 0.02, expand: 10599.97, heur: 4.13, make_nodes: 0.98, up_inst: 0.45, check: 2.66, cost: 0.16, push: 0.19, Tot: 12340.48
+Steps: 0, %Solved: 100.00, avgItrs: 1.00, avgPathCosts: 0.00, CTG_Backup: 0.00(0.00/0.00/0.00), Num: 3900
+Steps: 1, %Solved: 30.40, avgItrs: 14.21, avgPathCosts: 2.16, CTG_Backup: 1.62(0.18/1.13/2.02), Num: 125
+Steps: 2, %Solved: 31.31, avgItrs: 17.00, avgPathCosts: 2.65, CTG_Backup: 2.08(0.27/1.54/2.79), Num: 99
+Steps: 3, %Solved: 23.62, avgItrs: 17.83, avgPathCosts: 3.00, CTG_Backup: 2.56(0.36/1.93/3.34), Num: 127
+Steps: 4, %Solved: 5.98, avgItrs: 23.00, avgPathCosts: 4.00, CTG_Backup: 3.15(0.32/2.41/3.87), Num: 117
+Steps: 5, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 3.74(0.26/3.18/4.36), Num: 130
+Steps: 6, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 4.09(0.26/3.50/4.72), Num: 116
+Steps: 7, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 4.48(0.29/4.00/4.97), Num: 118
+Steps: 8, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 4.91(0.32/4.37/5.50), Num: 132
+Steps: 9, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 5.43(0.30/4.81/5.92), Num: 119
+Steps: 10, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 5.69(0.34/5.04/6.23), Num: 113
+Steps: 11, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 6.16(0.36/5.58/6.66), Num: 122
+Steps: 12, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 6.61(0.31/6.07/7.18), Num: 133
+Steps: 13, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.07(0.31/6.46/7.59), Num: 131
+Steps: 14, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.34(0.26/6.90/7.80), Num: 119
+Steps: 15, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.41(0.37/6.90/8.31), Num: 115
+Steps: 16, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.77(0.30/7.27/8.31), Num: 108
+Data - %solved: 11.25, path_costs: 2.361, search_itrs: 14.609, cost-to-go (mean/min/max): 4.08/0.00/8.66
+Train - itrs: 800, loss: 2.96E-01, targ_updated: True
+Times - up_start: 0.00, up_data: 344.29, up_end: 0.58, data_samp: 0.17, train: 2.13, save: 0.02, Tot: 347.19
+
+Getting Data - itr: 52000, update_num: 65, targ_update: 65, num_gen: 61,440, step max (curr): 16
+Generating 61,440 training instances with 2,048 searches
+Generated 61,440 training instances
+Times - steps_gen: 0.02, inst_info: 0.00, inst_add: 0.00, update_perf: 0.02, backup: 0.15, to_np: 0.29, put: 0.27, ->get_states: 0.00, ->pathfinding: 12248.84, Tot: 12249.58
+	(get_states): Tot: 0.00
+	(pathfinding): root: 0.01, pop: 0.19, is_solved: 1714.66, ub: 0.02, expand: 10525.40, heur: 4.16, make_nodes: 0.93, up_inst: 0.45, check: 2.66, cost: 0.16, push: 0.19, Tot: 12248.84
+Steps: 0, %Solved: 100.00, avgItrs: 1.00, avgPathCosts: 0.00, CTG_Backup: 0.00(0.00/0.00/0.00), Num: 3510
+Steps: 1, %Solved: 35.97, avgItrs: 13.66, avgPathCosts: 2.02, CTG_Backup: 1.64(0.25/1.08/2.13), Num: 139
+Steps: 2, %Solved: 25.19, avgItrs: 18.67, avgPathCosts: 2.64, CTG_Backup: 1.99(0.21/1.50/2.44), Num: 131
+Steps: 3, %Solved: 11.97, avgItrs: 15.64, avgPathCosts: 3.00, CTG_Backup: 2.57(0.22/2.10/3.26), Num: 117
+Steps: 4, %Solved: 9.09, avgItrs: 20.80, avgPathCosts: 4.00, CTG_Backup: 3.11(0.29/2.40/3.65), Num: 110
+Steps: 5, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 3.55(0.27/3.15/4.35), Num: 127
+Steps: 6, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 4.05(0.28/3.49/4.69), Num: 114
+Steps: 7, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 4.44(0.29/4.01/4.97), Num: 116
+Steps: 8, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 4.88(0.30/4.46/5.40), Num: 120
+Steps: 9, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 5.38(0.36/4.40/5.89), Num: 117
+Steps: 10, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 5.65(0.37/4.99/6.11), Num: 125
+Steps: 11, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 6.14(0.34/5.40/6.70), Num: 109
+Steps: 12, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 6.64(0.35/5.91/7.12), Num: 117
+Steps: 13, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.02(0.36/6.47/7.55), Num: 121
+Steps: 14, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.37(0.33/6.68/8.02), Num: 136
+Steps: 15, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.55(0.37/6.85/8.24), Num: 112
+Steps: 16, %Solved: 0.00, avgItrs: 0.00, avgPathCosts: 0.00, CTG_Backup: 7.85(0.30/7.19/8.29), Num: 120
+Data - %solved: 10.72, path_costs: 2.331, search_itrs: 13.954, cost-to-go (mean/min/max): 4.05/0.00/8.60
+Train - itrs: 800, loss: 3.70E-01, targ_updated: True
+Times - up_start: 0.00, up_data: 339.85, up_end: 0.60, data_samp: 0.19, train: 2.19, save: 0.02, Tot: 342.85
+
+Getting Data - itr: 52800, update_num: 66, targ_update: 66, num_gen: 61,440, step max (curr): 16
