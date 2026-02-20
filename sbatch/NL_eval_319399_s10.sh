@@ -20,11 +20,11 @@ source /home/neerattr/.venv/bin/activate
 cd /home/neerattr/numberlinkSolver
 
 RUN_ID=319399
-EVAL_FILE="eval/7x7x3_s10_2k.pkl"
-RESULTS_DIR="eval_results/${RUN_ID}_s10_bwas"
-HEUR_FILE="runs/${RUN_ID}/heur_targ.pt"
+EVAL_FILE="/home/neerattr/numberlinkSolver/eval/7x7x3_s10_2k.pkl"
+RESULTS_DIR="/home/neerattr/numberlinkSolver/eval_results/${RUN_ID}_s10_bwas"
+HEUR_FILE="/home/neerattr/numberlinkSolver/runs/${RUN_ID}/heur_targ.pt"
 
-mkdir -p eval eval_results
+mkdir -p /home/neerattr/numberlinkSolver/eval /home/neerattr/numberlinkSolver/eval_results
 
 echo "Job ID: ${SLURM_JOB_ID:-N/A}"
 echo "Host: $(hostname)"
@@ -39,7 +39,7 @@ fi
 
 if [[ ! -f "${EVAL_FILE}" ]]; then
   echo "Generating held-out eval set: ${EVAL_FILE}"
-  python -m deepxube._cli problem_inst \
+  python -m deepxube problem_inst \
     --domain numberlink.7x7x3_random_walk \
     --step_max 10 \
     --num 2000 \
@@ -48,8 +48,13 @@ else
   echo "Using existing eval set: ${EVAL_FILE}"
 fi
 
+if [[ ! -f "${EVAL_FILE}" ]]; then
+  echo "Eval generation did not produce file: ${EVAL_FILE}"
+  exit 1
+fi
+
 echo "Running solve with heuristic ${HEUR_FILE}"
-python -m deepxube._cli solve \
+python -m deepxube solve \
   --domain numberlink.7x7x3_random_walk \
   --heur resnet_fc.256H_2B_bn \
   --heur_type V \
@@ -60,5 +65,9 @@ python -m deepxube._cli solve \
   --redo
 
 echo "Summarizing results"
-python scripts/summarize_solve_results.py --results "${RESULTS_DIR}/results.pkl"
-
+if [[ -f "${RESULTS_DIR}/results.pkl" ]]; then
+  python scripts/summarize_solve_results.py --results "${RESULTS_DIR}/results.pkl"
+else
+  echo "Missing solve output: ${RESULTS_DIR}/results.pkl"
+  exit 1
+fi
