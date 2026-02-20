@@ -34,9 +34,10 @@ PY
 python train_numberlink.py \
   --domain numberlink.7x7x3_random_walk \
   --heur resnet_fc.1024H_2B_bn \
-  --max_itrs 100000 \
+  --max_itrs 1600 \
   --search_itrs 200 \
   --up_itrs 800 \
+  --up_gen_itrs 50 \
   --batch_size 2048 \
   --step_max 1000 \
   --procs "${SLURM_CPUS_PER_TASK}" \
