@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 #SBATCH --job-name=nl_7x7_100k_dynamic
 #SBATCH --chdir=/home/neerattr/testingdir/numberlinkSolver
-#SBATCH --output=/home/neerattr/testingdir/numberlinkSolver/logs/%j.out
-#SBATCH --error=/home/neerattr/testingdir/numberlinkSolver/logs/%j.err
+#SBATCH --output=/home/neerattr/numberlinkSolver/logs/%j.out
+#SBATCH --error=/home/neerattr/numberlinkSolver/logs/%j.err
 #SBATCH --partition=gpu-A100
 #SBATCH --account=agostinelli
 #SBATCH --nodes=1
@@ -35,7 +35,7 @@ python train_numberlink.py \
   --domain numberlink.7x7x3_random_walk \
   --heur resnet_fc.256H_2B_bn \
   --max_itrs 100000 \
-  --search_itrs 30 \
+  --search_itrs 40 \
   --up_itrs 800 \
   --up_gen_itrs 30 \
   --batch_size 2048 \
@@ -45,4 +45,4 @@ python train_numberlink.py \
   --procs "${SLURM_CPUS_PER_TASK}" \
   --debug \
   --curriculum \
-  --out_dir "runs/${SLURM_JOB_ID}"
+  --out_dir "/home/neerattr/numberlinkSolver/runs/${SLURM_JOB_ID}"

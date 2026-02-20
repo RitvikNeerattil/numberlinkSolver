@@ -41,7 +41,7 @@ def _nearest_divisor(n: int, target: int) -> int:
 def _install_refined_curriculum_hooks(base_search_itrs: int) -> None:
     def update_step_probs_refined(self: trainers.Status, step_to_search_perf: Dict[int, PathFindPerf]) -> None:
         ave_solve = float(np.mean([step_to_search_perf[step].per_solved() for step in step_to_search_perf.keys()]))
-        if ave_solve >= 70.0:
+        if ave_solve >= 60.0:
             self.step_max_curr = min(self.step_max_curr + 2, self.step_max)
 
         self.step_probs = np.zeros(self.step_max + 1)
