@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-#SBATCH --job-name=nl_7x7_foresta
+#SBATCH --job-name=nl_7x7_5k_up_v
 #SBATCH --chdir=/home/neerattr/numberlinkSolver
 #SBATCH --output=/home/neerattr/numberlinkSolver/logs/%j.out
 #SBATCH --error=/home/neerattr/numberlinkSolver/logs/%j.err
@@ -34,12 +34,12 @@ PY
 python train_numberlink.py \
   --domain numberlink.7x7x3_random_walk \
   --heur resnet_fc.1024H_2B_bn \
-  --max_itrs 1600 \
+  --max_itrs 5000 \
   --search_itrs 200 \
   --up_itrs 800 \
-  --up_gen_itrs 50 \
   --batch_size 2048 \
   --step_max 1000 \
   --procs "${SLURM_CPUS_PER_TASK}" \
+  --up_v \
   --curriculum \
   --out_dir "/home/neerattr/numberlinkSolver/runs/${SLURM_JOB_ID}"

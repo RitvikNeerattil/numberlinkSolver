@@ -15,11 +15,7 @@ from deepxube.utils.command_line_utils import (
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument(
-        "--domain",
-        default="numberlink.4x4x3_random_walk",
-        help="Domain string, e.g. numberlink.4x4x3_random_walk",
-    )
+    parser.add_argument("--domain", default="numberlink.4x4x3_random_walk")
     parser.add_argument("--out_dir", default="runs/numberlink_4x4_smoke")
     parser.add_argument("--heur", default="resnet_fc.256H_2B_bn")
     parser.add_argument("--procs", type=int, default=os.cpu_count() or 1)
@@ -33,19 +29,10 @@ def main() -> None:
     parser.add_argument("--max_itrs", type=int, default=100)
     parser.add_argument("--lr", type=float, default=1e-3)
     parser.add_argument("--lr_d", type=float, default=0.999)
-    parser.add_argument(
-        "--curriculum",
-        action="store_true",
-        default=False,
-        help="Enable step-max curriculum (balances steps and increases difficulty when solved rate improves).",
-    )
+    parser.add_argument("--curriculum", action="store_true", default=False)
     parser.add_argument("--debug", action="store_true", default=False)
-    parser.add_argument(
-        "--no_shm",
-        action="store_true",
-        default=False,
-        help="Disable shared memory (sets DEEPXUBE_NO_SHM=1 for the subprocess).",
-    )
+    parser.add_argument("--up_v", action="store_true", default=False)
+    parser.add_argument("--no_shm", action="store_true", default=False)
     args = parser.parse_args()
 
     if args.no_shm:
@@ -65,7 +52,7 @@ def main() -> None:
         up_batch_size=args.up_batch_size,
         nnet_batch_size=args.up_nnet_batch_size,
         sync_main=False,
-        v=args.debug,
+        v=(args.debug or args.up_v),
     )
     up_heur_args = UpHeurArgs(False, 1)
     updater = get_updater(domain, heur_nnet_par, pathfind_name, pathfind_kwargs, up_args, up_heur_args)
